@@ -227,6 +227,13 @@
   margin-left: 10px;     /* 略向右缩进，形成错落感 */
   line-height: 1.8;
 }
+.profile-center {
+  text-align: center;   /* 让这块内容居中 */
+}
+
+.profile-center .profile-desc {
+  margin-left: 0;       /* 之前为了“错落”加的缩进，这里取消 */
+}
 
 
     @media (max-width: 600px) {
@@ -265,9 +272,8 @@
     </header>
 
     <!-- Profile -->
-    <section>
-  <h2>Profile</h2>
-  <ul class="profile-list">
+   <section>
+  <ul class="profile-list profile-center">
     <li class="profile-item">
       <div class="profile-role">Undergraduate Student</div>
       <div class="profile-desc">
