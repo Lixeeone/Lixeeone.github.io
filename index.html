@@ -6,35 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
         content="Personal homepage of Zilin Li (李子林), undergraduate student at Donghua University and research intern at BCMI Lab, Shanghai Jiao Tong University.">
+
+  <!-- Font Awesome for simple icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
   <style>
-    :root {
-      --bg: #f6f7fb;
-      --card-bg: #ffffff;
-      --accent: #2b5cff;
-      --accent-soft: #e3e7ff;
-      --text-main: #1f2933;
-      --text-sub: #6b7280;
-      --border-soft: #e5e7eb;
-      --tag-bg: #f3f4f6;
-      --paper-title: #111827;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, #eef0ff 0, #f6f7fb 40%, #fdfdfd 100%);
-      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "Helvetica Neue", Arial, sans-serif;
+      background: #fafafa;
+      color: #111827;
     }
 
     a {
-      color: var(--accent);
+      color: #2563eb;
       text-decoration: none;
     }
 
@@ -42,646 +33,346 @@
       text-decoration: underline;
     }
 
-    .page {
-      max-width: 1120px;
+    main {
+      max-width: 800px;
       margin: 0 auto;
-      padding: 32px 16px 48px;
+      padding: 24px 16px 40px;
+      background: #ffffff;
     }
 
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
-      gap: 24px;
-      align-items: flex-start;
+    header {
+      text-align: center;
+      margin-bottom: 24px;
     }
 
-    /* Mobile layout: single column */
-    @media (max-width: 880px) {
-      .layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    h1 {
+      font-size: 28px;
+      margin: 12px 0 4px;
+      font-weight: 700;
     }
 
-    .card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      box-shadow:
-        0 18px 45px rgba(15, 23, 42, 0.06),
-        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
-      padding: 20px 22px;
+    .subtitle {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 12px;
     }
 
-    .profile-card {
-      position: sticky;
-      top: 24px;
-    }
-
-    @media (max-width: 880px) {
-      .profile-card {
-        position: static;
-      }
-    }
-
-    .avatar-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .avatar {
+    .profile-photo {
       width: 140px;
       height: 140px;
       border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid #ffffff;
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.2);
-      background: #e5e7eb;
-      flex-shrink: 0;
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* avoid distortion */
+      object-fit: cover; /* 防止图片变形 */
       display: block;
+      margin: 0 auto;
     }
 
-    .name-main {
-      margin-top: 14px;
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-align: center;
+    section {
+      margin-bottom: 28px;
     }
 
-    .name-sub {
-      margin-top: 4px;
-      font-size: 13px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text-sub);
-      text-align: center;
+    h2 {
+      font-size: 20px;
+      margin: 10px 0;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 4px;
     }
 
-    .tagline {
-      margin-top: 10px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .section-title {
+    h3 {
       font-size: 16px;
-      font-weight: 600;
-      margin: 0 0 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      margin: 14px 0 4px;
     }
 
-    .section-title span {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-sub);
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 4px 0 10px;
+      text-align: justify;
     }
 
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #d1d5db, transparent);
-      margin: 12px 0;
-    }
-
-    .profile-lines {
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text-sub);
-    }
-
-    .profile-lines strong {
-      color: var(--text-main);
-      font-weight: 600;
-    }
-
-    .profile-lines + .profile-lines {
-      margin-top: 8px;
+    ul {
+      padding-left: 20px;
     }
 
     .contact-list {
-      margin: 8px 0 0;
-      padding: 0;
       list-style: none;
-      font-size: 13px;
+      padding-left: 0;
+      margin: 0;
     }
 
-    .contact-item {
+    .contact-list li {
+      font-size: 14px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-top: 6px;
-      line-height: 1.4;
+      gap: 6px;
       word-break: break-all;
     }
 
-    .icon-badge {
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: #ffffff;
-      flex-shrink: 0;
+    .contact-list i {
+      width: 18px;
+      text-align: center;
+      color: #4b5563;
     }
 
-    .icon-google {
-      background: conic-gradient(
-        from 180deg,
-        #ea4335,
-        #fbbc05,
-        #34a853,
-        #4285f4,
-        #ea4335
-      );
-    }
-
-    .icon-orcid {
-      background: #a6ce39;
-    }
-
-    .icon-github {
-      background: #111827;
-    }
-
-    .icon-hf {
-      background: #ffb000;
-    }
-
-    .icon-scihub {
-      background: #6b21a8;
-    }
-
-    .main-column {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .main-title {
-      font-size: 18px;
-      font-weight: 650;
-      margin: 2px 0 10px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .main-title span {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-sub);
-    }
-
-    .paragraph-group {
+    .interests-list {
       font-size: 14px;
-      line-height: 1.8;
-      color: var(--text-main);
-      text-align: justify;
-    }
-
-    .paragraph-group p {
-      margin: 0 0 0.9em;
-    }
-
-    .paragraph-group p:last-child {
-      margin-bottom: 0;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .pill {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--tag-bg);
-      color: var(--text-sub);
-    }
-
-    .advisor-block {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 14px;
-      align-items: center;
-    }
-
-    @media (max-width: 520px) {
-      .advisor-block {
-        grid-template-columns: minmax(0, 1fr);
-        justify-items: center;
-        text-align: center;
-      }
-      .advisor-text {
-        text-align: center;
-      }
-    }
-
-    .advisor-avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid #ffffff;
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
-      background: #e5e7eb;
-      flex-shrink: 0;
-    }
-
-    .advisor-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* avoid distortion */
-      display: block;
-    }
-
-    .advisor-name {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .advisor-text p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text-sub);
-      text-align: justify;
-    }
-
-    .papers-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
       margin-top: 4px;
     }
 
-    .paper {
-      border-radius: 16px;
-      border: 1px solid var(--border-soft);
-      padding: 12px 14px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 180px);
-      gap: 12px;
-      background: rgba(255, 255, 255, 0.9);
-      align-items: stretch;
-    }
-
-    @media (max-width: 700px) {
-      .paper {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .paper-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--paper-title);
+    .interests-list li {
       margin-bottom: 4px;
     }
 
-    .paper-authors {
-      font-size: 12px;
-      color: var(--text-sub);
-      margin-bottom: 6px;
-    }
-
-    .paper-meta {
-      font-size: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .paper-meta a {
-      word-break: break-all;
-    }
-
-    .paper-tag {
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 11px;
-    }
-
-    .thumb {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border-soft);
-      background: #f3f4f6;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 120px;
-    }
-
-    .thumb-embed {
-      border: none;
-      width: 100%;
-      height: 150px; /* fixed aspect to avoid distortion */
+    .advisor-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
       display: block;
+      margin-bottom: 8px;
     }
 
-    @media (max-width: 520px) {
-      .thumb-embed {
-        height: 180px; /* slightly taller on phones */
+    .zh-note {
+      color: #6b7280;
+      font-style: italic; /* 灰色斜体括号 */
+    }
+
+    .pub-list {
+      font-size: 14px;
+      padding-left: 18px;
+    }
+
+    .pub-list li {
+      margin-bottom: 14px;
+    }
+
+    .pub-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .pub-authors {
+      color: #4b5563;
+      margin-bottom: 2px;
+    }
+
+    .pub-links {
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .pub-links a {
+      margin-right: 8px;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+      main {
+        padding: 20px 12px 32px;
       }
     }
-
-    .thumb-caption {
-      padding: 6px 8px;
-      font-size: 11px;
-      color: var(--text-sub);
-      border-top: 1px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    .footer-note {
-      margin-top: 10px;
-      font-size: 11px;
-      color: var(--text-sub);
-      text-align: right;
-    }
-    .zh-note {
-     color: var(--text-sub);  
-     font-style: italic;      
-    } 
   </style>
 </head>
 <body>
-  <main class="page">
-    <div class="layout">
-      <!-- Left column: profile -->
-      <aside class="card profile-card">
-        <div class="avatar-wrapper">
-          <!-- Place your photo at assets/images/myself.jpg -->
-          <div class="avatar">
-            <img src="assets/images/myself.jpg" alt="Portrait of Zilin Li (李子林)">
+  <main>
+    <!-- 顶部：姓名 + 照片 -->
+    <header>
+      <img src="assets/images/myself.jpg" alt="Portrait of Zilin Li (李子林)" class="profile-photo">
+      <h1>Zilin Li (李子林)</h1>
+      <div class="subtitle">Undergraduate Student · Donghua University</div>
+    </header>
+
+    <!-- 基本信息 -->
+    <section>
+      <h2>Profile</h2>
+      <p>
+        Undergraduate Student, School of Information Science and Technology,<br>
+        Donghua University, Shanghai, China.
+      </p>
+      <p>
+        Research Intern, BCMI Lab, Shanghai Jiao Tong University,<br>
+        Shanghai, China.
+      </p>
+    </section>
+
+    <!-- 联系方式 -->
+    <section>
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        <li>
+          <i class="fa-regular fa-envelope"></i>
+          <span>Email: <a href="mailto:tzulamlee@gmail.com">tzulamlee@gmail.com</a></span>
+        </li>
+        <li>
+          <i class="fa-brands fa-orcid"></i>
+          <span>ORCID:
+            <a href="https://orcid.org/0009-0002-4314-455X" target="_blank" rel="noreferrer">
+              0009-0002-4314-455X
+            </a>
+          </span>
+        </li>
+        <li>
+          <i class="fa-brands fa-github"></i>
+          <span>GitHub:
+            <a href="https://github.com/Lixeeone" target="_blank" rel="noreferrer">
+              github.com/Lixeeone
+            </a>
+          </span>
+        </li>
+        <li>
+          <i class="fa-regular fa-face-smile"></i>
+          <span>HuggingFace:
+            <a href="https://huggingface.co/Lixeeone" target="_blank" rel="noreferrer">
+              huggingface.co/Lixeeone
+            </a>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 研究方向 -->
+    <section>
+      <h2>Research Interests</h2>
+      <ul class="interests-list">
+        <li>Affective Computing</li>
+        <li>Human–Computer Interaction</li>
+        <li>Cognitive and Computational Neuroscience</li>
+        <li>Brain-inspired Machine Learning</li>
+      </ul>
+
+      <p>
+        My research is guided by the principle of <strong>“AI4Science, Science2AI”</strong>: on the one hand, using artificial intelligence to
+        accelerate scientific discovery; on the other hand, allowing scientific laws and mechanisms to inform the design and evolution
+        of intelligent systems. Under this principle, I seek to revisit and re-construct “primitive biological structures” within
+        computational models. In an interdisciplinary setting that combines computer science, psychology, and cognitive neuroscience,
+        I use biological and cognitive mechanisms as inspiration for algorithmic architectures and learning paradigms, with the goal of
+        addressing key challenges such as catastrophic forgetting, long-horizon sequence modeling, and performance bottlenecks.
+      </p>
+      <p>
+        During my undergraduate studies and early research experience, I have participated in projects focusing on mechanism- and
+        theory-driven modeling. I have taken or self-studied courses and literature in affective computing, human–computer interaction,
+        natural language processing, and cognitive &amp; computational neuroscience. These experiences have given me a more integrated
+        view of how these fields interact, and have helped me develop an “off-the-beaten-path” style of problem decomposition and
+        solution design. For example, in modeling emotional and cognitive processes, I am particularly interested in extracting
+        structurally meaningful and dynamically relevant features from the human perception–representation–decision pipeline, and
+        mapping them into differentiable modules or learning rules, so that biological plausibility and robustness can be jointly
+        improved.
+      </p>
+      <p>
+        A central question that motivates my work is how to better inspire machines from humans, and how to better enable machines to
+        serve humans. I hope that, by grounding models in real human behavior and neural mechanisms, machine learning can gradually move
+        beyond pure data fitting towards more embodied, interpretable, and adaptive forms of intelligence. At the same time, I aim for
+        future intelligent systems not only to perform well on benchmarks, but also to provide long-term, trustworthy, and human-centered
+        value in terms of safety, reliability, and human–AI collaboration in scientific and societal applications.
+      </p>
+    </section>
+
+    <!-- 学术关系 -->
+    <section>
+      <h2>Academic Relations</h2>
+
+      <h3>Advisor</h3>
+      <img src="assets/images/Ge_Zhang.jpg" alt="Portrait of Ge Zhang (张鸽)" class="advisor-photo">
+      <p>
+        Ge Zhang (张鸽) is a Pujiang Talent <span class="zh-note">（浦江人才）</span> in Shanghai.
+        She received her Ph.D. in Computer Science from Macquarie University, Australia, in 2024, and was awarded the Microsoft
+        Research PhD Fellowship (2022, the only recipient in the Australia &amp; New Zealand region). She serves as a reviewer
+        for top-tier AI conferences and journals, including ICLR, NeurIPS, KDD, and TNNLS.
+      </p>
+    </section>
+
+    <!-- 出版论文 -->
+    <section>
+      <h2>Publications</h2>
+      <ol class="pub-list">
+        <li>
+          <div class="pub-title">
+            NeuroGaze-Distill: Brain-informed Distillation and Depression-Inspired Geometric Priors for Robust Facial Emotion Recognition
           </div>
-          <div class="name-main">Zilin Li (李子林)</div>
-          <div class="name-sub">UNDERGRADUATE STUDENT</div>
-          <div class="tagline">AI4Science · Science2AI</div>
-        </div>
-
-        <div>
-          <h2 class="section-title">
-            Profile
-            <span>Basic Information</span>
-          </h2>
-          <div class="divider"></div>
-          <div class="profile-lines">
-            <strong>Undergraduate Student</strong><br>
-            School of Information Science and Technology,<br>
-            Donghua University, Shanghai, China
+          <div class="pub-authors">
+            Zilin Li, Weiwei Xu, Xuanqi Zhao, Yiran Zhu
           </div>
-          <div class="profile-lines">
-            <strong>Research Intern</strong><br>
-            BCMI Lab, Shanghai Jiao Tong University,<br>
-            Shanghai, China
+          <div class="pub-links">
+            <span>Preprint.</span>
+            <a href="https://arxiv.org/abs/2509.11916" target="_blank" rel="noreferrer">
+              arxiv.org/abs/2509.11916
+            </a>
+            <a href="assets/figs/fig1.pdf" target="_blank" rel="noreferrer">
+              Figure (fig1.pdf)
+            </a>
           </div>
-        </div>
+        </li>
 
-        <div style="margin-top:18px;">
-          <h2 class="section-title">
-            Contact
-            <span>Academic Links</span>
-          </h2>
-          <div class="divider"></div>
-          <ul class="contact-list">
-            <li class="contact-item">
-              <span class="icon-badge icon-google">G</span>
-              <span>
-                Email:
-                <a href="mailto:tzulamlee@gmail.com">tzulamlee@gmail.com</a>
-              </span>
-            </li>
-            <li class="contact-item">
-              <span class="icon-badge icon-orcid">O</span>
-              <span>
-                ORCID:
-                <a href="https://orcid.org/0009-0002-4314-455X" target="_blank" rel="noreferrer">
-                  0009-0002-4314-455X
-                </a>
-              </span>
-            </li>
-            <li class="contact-item">
-              <span class="icon-badge icon-github">GH</span>
-              <span>
-                GitHub:
-                <a href="https://github.com/Lixeeone" target="_blank" rel="noreferrer">
-                  github.com/Lixeeone
-                </a>
-              </span>
-            </li>
-            <li class="contact-item">
-              <span class="icon-badge icon-hf">HF</span>
-              <span>
-                HuggingFace:
-                <a href="https://huggingface.co/Lixeeone" target="_blank" rel="noreferrer">
-                  huggingface.co/Lixeeone
-                </a>
-              </span>
-            </li>
-          </ul>
-        </div>
-      </aside>
-
-      <!-- Right column: research, advisor, publications -->
-      <section class="main-column">
-        <!-- Research focus -->
-        <section class="card">
-          <h1 class="main-title">
-            Research Focus
-            <span>AI4Science · Science2AI</span>
-          </h1>
-          <div class="pill-row">
-            <div class="pill">Affective Computing</div>
-            <div class="pill">Human–Computer Interaction</div>
-            <div class="pill">Cognitive &amp; Computational Neuroscience</div>
-            <div class="pill">Brain-inspired Machine Learning</div>
+        <li>
+          <div class="pub-title">
+            Self-Empowering VLMs: Achieving Hierarchical Consistency via Self-Elicited Knowledge Distillation
           </div>
-          <div class="paragraph-group">
-            <p>
-              My research is guided by the principle of <strong>“AI4Science, Science2AI”</strong>: on the one hand, using artificial intelligence to accelerate scientific discovery; on the other hand, allowing scientific laws and mechanisms to inform the design and evolution of intelligent systems. Under this principle, I advocate revisiting and re-constructing “primitive biological structures” within computational models. In a strongly interdisciplinary setting, I aim to systematically integrate ideas from computer science, psychology, and cognitive neuroscience, and to use biological and cognitive mechanisms as inspiration for algorithmic architectures and learning paradigms. The overarching goal is to address key challenges in contemporary AI, such as catastrophic forgetting, long-horizon sequence modeling, and performance bottlenecks under realistic conditions.
-            </p>
-            <p>
-              During my undergraduate studies and early research experience, I have participated in several projects that focus on fundamental mechanisms and theory-driven modeling. I have taken or self-studied courses and literature in affective computing, human–computer interaction, natural language processing, and cognitive &amp; computational neuroscience. These experiences have given me a relatively deep and integrated understanding of how these fields couple and intersect, and have also helped me develop an “off-the-beaten-path” style of problem decomposition and solution design. For example, when modeling emotional and cognitive processes, I am particularly interested in extracting structurally meaningful and dynamically relevant features from the human perception–representation–decision pipeline, and mapping them into differentiable model components or learning rules, so that biological plausibility and robustness can be jointly improved.
-            </p>
-            <p>
-              A central question that motivates my research is <em>how to better inspire machines from humans, and how to better enable machines to serve humans</em>. I hope that by building models that are grounded in real human behavior and neural mechanisms, machine learning can gradually move beyond pure data fitting towards more embodied, interpretable, and adaptive forms of intelligence. At the same time, I aim for future intelligent systems not only to achieve competitive performance on benchmarks, but also to provide long-term, trustworthy, and human-centered value in terms of safety, reliability, and seamless human–AI collaboration in scientific and societal applications.
-            </p>
+          <div class="pub-authors">
+            Wei Yang, Yiran Zhu, Zilin Li, Xunjia Zhang, Hongtao Wang
           </div>
-        </section>
-
-        <!-- Academic relations -->
-        <section class="card">
-          <h2 class="main-title">
-            Academic Relations
-            <span>Mentorship</span>
-          </h2>
-          <div class="divider"></div>
-
-          <h3 class="section-title" style="margin-top:4px;">
-            Advisor
-            <span>Ge Zhang (张鸽)</span>
-          </h3>
-
-          <div class="advisor-block">
-            <!-- Place advisor photo at assets/images/Ge_Zhang.jpg -->
-            <div class="advisor-avatar">
-              <img src="assets/images/Ge_Zhang.jpg" alt="Portrait of Ge Zhang (张鸽)">
-            </div>
-            <div class="advisor-text">
-              <div class="advisor-name">Ge Zhang (张鸽)</div>
-              <p>
-                Ge Zhang is a Pujiang Talent <span class="zh-note">（浦江人才）</span> in Shanghai. She received her Ph.D. in Computer Science from Macquarie University, Australia, in 2024, and was awarded the Microsoft Research PhD Fellowship (2022, the only recipient in the Australia &amp; New Zealand region). She serves as a reviewer for top-tier AI conferences and journals, including ICLR, NeurIPS, KDD, and TNNLS.
-              </p>
-            </div>
+          <div class="pub-links">
+            <span>Preprint.</span>
+            <a href="https://arxiv.org/abs/2511.18415" target="_blank" rel="noreferrer">
+              arxiv.org/abs/2511.18415
+            </a>
+            <a href="assets/figs/fig2.pdf" target="_blank" rel="noreferrer">
+              Figure (fig2.pdf)
+            </a>
           </div>
-        </section>
+        </li>
 
-        <!-- Publications -->
-        <section class="card">
-          <h2 class="main-title">
-            Publications
-            <span>Selected Works</span>
-          </h2>
-
-          <div class="papers-list">
-            <!-- Paper 1 -->
-            <article class="paper">
-              <div>
-                <div class="paper-title">
-                  1. NeuroGaze-Distill: Brain-informed Distillation and Depression-Inspired Geometric Priors for Robust Facial Emotion Recognition
-                </div>
-                <div class="paper-authors">
-                  Zilin Li, Weiwei Xu, Xuanqi Zhao, Yiran Zhu
-                </div>
-                <div class="paper-meta">
-                  <span class="paper-tag">Preprint</span>
-                  <a href="https://arxiv.org/abs/2509.11916" target="_blank" rel="noreferrer">
-                    arxiv.org/abs/2509.11916
-                  </a>
-                </div>
-              </div>
-              <div class="thumb">
-                <!-- fig1.pdf preview; stored at assets/figs/fig1.pdf -->
-                <iframe class="thumb-embed"
-                        src="assets/figs/fig1.pdf"
-                        title="NeuroGaze-Distill main figure"></iframe>
-                <div class="thumb-caption">Illustration from <em>NeuroGaze-Distill</em> (fig1.pdf)</div>
-              </div>
-            </article>
-
-            <!-- Paper 2 -->
-            <article class="paper">
-              <div>
-                <div class="paper-title">
-                  2. Self-Empowering VLMs: Achieving Hierarchical Consistency via Self-Elicited Knowledge Distillation
-                </div>
-                <div class="paper-authors">
-                  Wei Yang, Yiran Zhu, Zilin Li, Xunjia Zhang, Hongtao Wang
-                </div>
-                <div class="paper-meta">
-                  <span class="paper-tag">Preprint</span>
-                  <a href="https://arxiv.org/abs/2511.18415" target="_blank" rel="noreferrer">
-                    arxiv.org/abs/2511.18415
-                  </a>
-                </div>
-              </div>
-              <div class="thumb">
-                <!-- fig2.pdf preview -->
-                <iframe class="thumb-embed"
-                        src="assets/figs/fig2.pdf"
-                        title="Self-Empowering VLMs main figure"></iframe>
-                <div class="thumb-caption">Illustration from <em>Self-Empowering VLMs</em> (fig2.pdf)</div>
-              </div>
-            </article>
-
-            <!-- Paper 3 -->
-            <article class="paper">
-              <div>
-                <div class="paper-title">
-                  3. Neuro-Vesicles: Neuromodulation Should Be a Dynamical System, Not a Tensor Decoration
-                </div>
-                <div class="paper-authors">
-                  Zilin Li, Weiwei Xu, Vicki Kane
-                </div>
-                <div class="paper-meta">
-                  <span class="paper-tag">Preprint</span>
-                  <a href="https://doi.org/10.48550/arxiv.2512.06966" target="_blank" rel="noreferrer">
-                    doi.org/10.48550/arxiv.2512.06966
-                  </a>
-                  <!-- Sci-hub style icon (visual only, no link) -->
-                  <span class="icon-badge icon-scihub" title="sci-hub style icon">SH</span>
-                </div>
-              </div>
-              <div class="thumb">
-                <!-- fig3.pdf preview -->
-                <iframe class="thumb-embed"
-                        src="assets/figs/fig3.pdf"
-                        title="Neuro-Vesicles main figure"></iframe>
-                <div class="thumb-caption">Illustration from <em>Neuro-Vesicles</em> (fig3.pdf)</div>
-              </div>
-            </article>
-
-            <!-- Paper 4 -->
-            <article class="paper">
-              <div>
-                <div class="paper-title">
-                  4. EmoLoom-2B: Fast Base-Model Screening for Emotion Classification and VAD
-                  with Lexicon-Weak Supervision and KV-Off Evaluation
-                </div>
-                <div class="paper-authors">
-                  Zilin Li, Weiwei Xu, Xuanbo Lu, Zheda Liu
-                </div>
-                <div class="paper-meta">
-                  <span class="paper-tag">To appear</span>
-                  <span style="font-size:11px;color:var(--text-sub);">
-                    (forthcoming work)
-                  </span>
-                </div>
-              </div>
-              <div class="thumb">
-                <!-- fig4.pdf preview -->
-                <iframe class="thumb-embed"
-                        src="assets/figs/fig4.pdf"
-                        title="EmoLoom-2B main figure"></iframe>
-                <div class="thumb-caption">Illustration from <em>EmoLoom-2B</em> (fig4.pdf)</div>
-              </div>
-            </article>
+        <li>
+          <div class="pub-title">
+            Neuro-Vesicles: Neuromodulation Should Be a Dynamical System, Not a Tensor Decoration
           </div>
-
-          <div class="footer-note">
-            Last update: maintained by Zilin&nbsp;Li (李子林).
+          <div class="pub-authors">
+            Zilin Li, Weiwei Xu, Vicki Kane
           </div>
-        </section>
-      </section>
-    </div>
+          <div class="pub-links">
+            <span>Preprint.</span>
+            <a href="https://doi.org/10.48550/arxiv.2512.06966" target="_blank" rel="noreferrer">
+              doi.org/10.48550/arxiv.2512.06966
+            </a>
+            <!-- Sci-hub.vg icon 作为尾缀 -->
+            <a href="https://sci-hub.vg/" target="_blank" rel="noreferrer" title="sci-hub.vg">
+              <i class="fa-solid fa-flask"></i>
+            </a>
+            <a href="assets/figs/fig3.pdf" target="_blank" rel="noreferrer">
+              Figure (fig3.pdf)
+            </a>
+          </div>
+        </li>
+
+        <li>
+          <div class="pub-title">
+            EmoLoom-2B: Fast Base-Model Screening for Emotion Classification and VAD
+            with Lexicon-Weak Supervision and KV-Off Evaluation
+          </div>
+          <div class="pub-authors">
+            Zilin Li, Weiwei Xu, Xuanbo Lu, Zheda Liu
+          </div>
+          <div class="pub-links">
+            <span>To appear.</span>
+            <a href="assets/figs/fig4.pdf" target="_blank" rel="noreferrer">
+              Figure (fig4.pdf)
+            </a>
+          </div>
+        </li>
+      </ol>
+
+      <div class="footer">
+        Last update: maintained by Zilin&nbsp;Li (李子林).
+      </div>
+    </section>
   </main>
 </body>
 </html>
-
