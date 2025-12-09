@@ -235,6 +235,93 @@
   margin-left: 0;       /* 之前为了“错落”加的缩进，这里取消 */
 }
 
+    /* --- tiny neural network footer --- */
+.nn-section {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.nn-caption {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.nn-wrapper {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.nn-svg {
+  width: 100%;
+  height: auto;
+}
+
+.nn-edge {
+  stroke: #d1d5db;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  opacity: 0.4;
+  stroke-dasharray: 80;
+  animation: nn-flow 4s ease-in-out infinite;
+}
+
+.nn-node {
+  fill: #2563eb;
+  opacity: 0.6;
+  animation: nn-pulse 3s ease-in-out infinite;
+}
+
+.nn-node.secondary {
+  fill: #a855f7;
+}
+
+/* 节点依次亮起 */
+.nn-node.d1 { animation-delay: 0s; }
+.nn-node.d2 { animation-delay: 0.4s; }
+.nn-node.d3 { animation-delay: 0.8s; }
+.nn-node.d4 { animation-delay: 1.2s; }
+.nn-node.d5 { animation-delay: 1.6s; }
+.nn-node.d6 { animation-delay: 2s; }
+
+/* 边上的“流动感” */
+.nn-edge.e1 { animation-delay: 0s; }
+.nn-edge.e2 { animation-delay: 0.3s; }
+.nn-edge.e3 { animation-delay: 0.6s; }
+.nn-edge.e4 { animation-delay: 0.9s; }
+.nn-edge.e5 { animation-delay: 1.2s; }
+.nn-edge.e6 { animation-delay: 1.5s; }
+.nn-edge.e7 { animation-delay: 1.8s; }
+.nn-edge.e8 { animation-delay: 2.1s; }
+
+@keyframes nn-pulse {
+  0%, 100% {
+    r: 4;
+    opacity: 0.3;
+  }
+  50% {
+    r: 6;
+    opacity: 0.95;
+  }
+}
+
+@keyframes nn-flow {
+  0% {
+    stroke-dashoffset: 80;
+    opacity: 0.15;
+  }
+  40% {
+    stroke-dashoffset: 0;
+    opacity: 0.6;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.15;
+  }
+}
+
 
     @media (max-width: 600px) {
       main {
@@ -473,9 +560,45 @@
       </ol>
 
       <div class="footer">
-        &copy; 2025&nbsp;Maintained by Zilin&nbsp;Li.
+        &copy; 2025&nbsp;Maintained by Zilin&nbsp;Li
       </div>
     </section>
+
+        <!-- Tiny neural network animation footer -->
+    <section class="nn-section">
+      <div class="nn-caption">
+        Minimal neural network sketch (conceptual illustration).
+      </div>
+      <div class="nn-wrapper">
+        <svg class="nn-svg" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- edges -->
+          <!-- input (x=30) -> hidden (x=130) -->
+          <line class="nn-edge e1" x1="30" y1="25"  x2="130" y2="20" />
+          <line class="nn-edge e2" x1="30" y1="25"  x2="130" y2="60" />
+          <line class="nn-edge e3" x1="30" y1="60"  x2="130" y2="20" />
+          <line class="nn-edge e4" x1="30" y1="60"  x2="130" y2="60" />
+
+          <!-- hidden -> output (x=220) -->
+          <line class="nn-edge e5" x1="130" y1="20"  x2="220" y2="35" />
+          <line class="nn-edge e6" x1="130" y1="20"  x2="220" y2="85" />
+          <line class="nn-edge e7" x1="130" y1="60"  x2="220" y2="35" />
+          <line class="nn-edge e8" x1="130" y1="60"  x2="220" y2="85" />
+
+          <!-- input layer -->
+          <circle class="nn-node d1" cx="30" cy="25" r="4" />
+          <circle class="nn-node d2" cx="30" cy="60" r="4" />
+
+          <!-- hidden layer -->
+          <circle class="nn-node secondary d3" cx="130" cy="20" r="4" />
+          <circle class="nn-node secondary d4" cx="130" cy="60" r="4" />
+
+          <!-- output layer -->
+          <circle class="nn-node d5" cx="220" cy="35" r="4" />
+          <circle class="nn-node d6" cx="220" cy="85" r="4" />
+        </svg>
+      </div>
+    </section>
+
   </main>
 </body>
 </html>
