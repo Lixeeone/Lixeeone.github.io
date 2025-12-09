@@ -206,6 +206,28 @@
       text-align: right;
       margin-top: 10px;
     }
+    .profile-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 6px 0 0;
+}
+
+.profile-item {
+  margin-bottom: 10px;
+}
+
+.profile-role {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.profile-desc {
+  font-size: 14px;
+  color: #4b5563;
+  margin-left: 10px;     /* 略向右缩进，形成错落感 */
+  line-height: 1.8;
+}
+
 
     @media (max-width: 600px) {
       main {
@@ -244,16 +266,25 @@
 
     <!-- Profile -->
     <section>
-      <h2>Profile</h2>
-      <p>
-        Undergraduate Student, School of Information and Intelligent Science,<br>
+  <h2>Profile</h2>
+  <ul class="profile-list">
+    <li class="profile-item">
+      <div class="profile-role">Undergraduate Student</div>
+      <div class="profile-desc">
+        School of Information and Intelligent Science,<br>
         Donghua University, Shanghai, China.
-      </p>
-      <p>
-        Research Intern, BCMI Lab, Shanghai Jiao Tong University,<br>
+      </div>
+    </li>
+    <li class="profile-item">
+      <div class="profile-role">Research Intern</div>
+      <div class="profile-desc">
+        BCMI Lab, Shanghai Jiao Tong University,<br>
         Shanghai, China.
-      </p>
-    </section>
+      </div>
+    </li>
+  </ul>
+</section>
+
 
     <!-- Contact -->
     <section>
