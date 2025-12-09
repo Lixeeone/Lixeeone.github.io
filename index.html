@@ -235,92 +235,7 @@
   margin-left: 0;       /* 之前为了“错落”加的缩进，这里取消 */
 }
 
- /* --- tiny neural network footer --- */
-.nn-section {
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid #e5e7eb;
-}
-
-.nn-wrapper {
-  max-width: 420px;      /* 更小一点 */
-  margin: 0 auto 4px;
-  opacity: 0.9;
-}
-
-.nn-svg {
-  width: 100%;
-  height: auto;
-}
-
-/* 连接线 */
-.nn-edge {
-  stroke: #d1d5db;
-  stroke-width: 1.1;
-  stroke-linecap: round;
-  opacity: 0.35;
-  stroke-dasharray: 70;
-  animation: nn-flow 5s ease-in-out infinite;
-}
-
-/* 节点基础样式 */
-.nn-node {
-  opacity: 0.7;
-  animation: nn-pulse 3.5s ease-in-out infinite;
-}
-
-/* 颜色从灰绿 -> 淡蓝 -> 淡紫 */
-.nn-node.layer1 { fill: #9ca3af; }  /* 灰偏绿 */
-.nn-node.layer2 { fill: #93c5fd; }  /* 淡蓝 */
-.nn-node.layer3 { fill: #c4b5fd; }  /* 淡紫 */
-
-/* 不同节点的时间错开一点 */
-.nn-node.d1 { animation-delay: 0s; }
-.nn-node.d2 { animation-delay: 0.3s; }
-.nn-node.d3 { animation-delay: 0.6s; }
-.nn-node.d4 { animation-delay: 0.9s; }
-.nn-node.d5 { animation-delay: 1.2s; }
-.nn-node.d6 { animation-delay: 1.5s; }
-.nn-node.d7 { animation-delay: 1.8s; }
-.nn-node.d8 { animation-delay: 2.1s; }
-.nn-node.d9 { animation-delay: 2.4s; }
-
-/* 让不同组的线有轻微时间差 */
-.nn-edge.e1 { animation-delay: 0s; }
-.nn-edge.e2 { animation-delay: 0.4s; }
-.nn-edge.e3 { animation-delay: 0.8s; }
-.nn-edge.e4 { animation-delay: 1.2s; }
-.nn-edge.e5 { animation-delay: 1.6s; }
-.nn-edge.e6 { animation-delay: 2.0s; }
-
-@keyframes nn-pulse {
-  0%, 100% {
-    r: 3;
-    opacity: 0.35;
-  }
-  50% {
-    r: 5;
-    opacity: 0.95;
-  }
-}
-
-@keyframes nn-flow {
-  0% {
-    stroke-dashoffset: 70;
-    opacity: 0.15;
-  }
-  40% {
-    stroke-dashoffset: 0;
-    opacity: 0.5;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 0.15;
-  }
-}
-
-
-
+ 
     @media (max-width: 600px) {
       main {
         padding: 22px 12px 32px;
@@ -561,53 +476,6 @@
         &copy; 2025&nbsp;Maintained by Zilin&nbsp;Li
       </div>
     </section>
-
-      <section class="nn-section">
-  <div class="nn-wrapper">
-    <svg class="nn-svg" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg">
-      <!-- edges: input (x≈30) -> hidden (x≈130) -->
-      <line class="nn-edge e1" x1="30" y1="20" x2="130" y2="15" />
-      <line class="nn-edge e1" x1="30" y1="20" x2="130" y2="55" />
-      <line class="nn-edge e1" x1="30" y1="20" x2="130" y2="95" />
-
-      <line class="nn-edge e2" x1="30" y1="60" x2="130" y2="15" />
-      <line class="nn-edge e2" x1="30" y1="60" x2="130" y2="55" />
-      <line class="nn-edge e2" x1="30" y1="60" x2="130" y2="95" />
-
-      <line class="nn-edge e3" x1="30" y1="100" x2="130" y2="15" />
-      <line class="nn-edge e3" x1="30" y1="100" x2="130" y2="55" />
-      <line class="nn-edge e3" x1="30" y1="100" x2="130" y2="95" />
-
-      <!-- edges: hidden -> output (x≈230) -->
-      <line class="nn-edge e4" x1="130" y1="15"  x2="230" y2="30" />
-      <line class="nn-edge e4" x1="130" y1="15"  x2="230" y2="70" />
-      <line class="nn-edge e4" x1="130" y1="15"  x2="230" y2="110" />
-
-      <line class="nn-edge e5" x1="130" y1="55"  x2="230" y2="30" />
-      <line class="nn-edge e5" x1="130" y1="55"  x2="230" y2="70" />
-      <line class="nn-edge e5" x1="130" y1="55"  x2="230" y2="110" />
-
-      <line class="nn-edge e6" x1="130" y1="95"  x2="230" y2="30" />
-      <line class="nn-edge e6" x1="130" y1="95"  x2="230" y2="70" />
-      <line class="nn-edge e6" x1="130" y1="95"  x2="230" y2="110" />
-
-      <!-- input layer (灰绿) -->
-      <circle class="nn-node layer1 d1" cx="30" cy="20"  r="3" />
-      <circle class="nn-node layer1 d2" cx="30" cy="60"  r="3" />
-      <circle class="nn-node layer1 d3" cx="30" cy="100" r="3" />
-
-      <!-- hidden layer (淡蓝) -->
-      <circle class="nn-node layer2 d4" cx="130" cy="15"  r="3" />
-      <circle class="nn-node layer2 d5" cx="130" cy="55"  r="3" />
-      <circle class="nn-node layer2 d6" cx="130" cy="95"  r="3" />
-
-      <!-- output layer (淡紫) -->
-      <circle class="nn-node layer3 d7" cx="230" cy="30"  r="3" />
-      <circle class="nn-node layer3 d8" cx="230" cy="70"  r="3" />
-      <circle class="nn-node layer3 d9" cx="230" cy="110" r="3" />
-    </svg>
-  </div>
-</section>
 
   </main>
 </body>
