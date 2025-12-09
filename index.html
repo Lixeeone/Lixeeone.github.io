@@ -7,7 +7,7 @@
   <meta name="description"
         content="Personal homepage of Zilin Li (李子林), undergraduate student at Donghua University and research intern at BCMI Lab, Shanghai Jiao Tong University.">
 
-  <!-- Font Awesome for simple icons -->
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -20,7 +20,7 @@
       padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
                    "Helvetica Neue", Arial, sans-serif;
-      background: #fafafa;
+      background: #f3f4f6;
       color: #111827;
     }
 
@@ -34,58 +34,60 @@
     }
 
     main {
-      max-width: 800px;
+      max-width: 820px;
       margin: 0 auto;
-      padding: 24px 16px 40px;
+      padding: 28px 16px 40px;
       background: #ffffff;
     }
 
     header {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     h1 {
-      font-size: 28px;
-      margin: 12px 0 4px;
+      font-size: 30px;
+      margin: 14px 0 6px;
       font-weight: 700;
     }
 
     .subtitle {
-      font-size: 14px;
+      font-size: 15px;
       color: #6b7280;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .profile-photo {
       width: 140px;
       height: 140px;
       border-radius: 50%;
-      object-fit: cover; /* 防止图片变形 */
+      object-fit: cover;
       display: block;
       margin: 0 auto;
     }
 
     section {
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     h2 {
-      font-size: 20px;
-      margin: 10px 0;
+      font-size: 22px;
+      margin: 10px 0 12px;
       border-bottom: 1px solid #e5e7eb;
       padding-bottom: 4px;
+      font-weight: 600;
     }
 
     h3 {
-      font-size: 16px;
-      margin: 14px 0 4px;
+      font-size: 17px;
+      margin: 14px 0 6px;
+      font-weight: 600;
     }
 
     p {
-      font-size: 14px;
-      line-height: 1.7;
-      margin: 4px 0 10px;
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 6px 0 12px;
       text-align: justify;
     }
 
@@ -96,15 +98,15 @@
     .contact-list {
       list-style: none;
       padding-left: 0;
-      margin: 0;
+      margin: 4px 0 0;
     }
 
     .contact-list li {
-      font-size: 14px;
-      margin-bottom: 6px;
+      font-size: 15px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       word-break: break-all;
     }
 
@@ -112,10 +114,11 @@
       width: 18px;
       text-align: center;
       color: #4b5563;
+      flex-shrink: 0;
     }
 
     .interests-list {
-      font-size: 14px;
+      font-size: 15px;
       margin-top: 4px;
     }
 
@@ -124,40 +127,72 @@
     }
 
     .advisor-photo {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .advisor-name {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
 
     .zh-note {
       color: #6b7280;
-      font-style: italic; /* 灰色斜体括号 */
+      font-style: italic;
     }
 
     .pub-list {
-      font-size: 14px;
-      padding-left: 18px;
+      font-size: 15px;
+      padding-left: 20px;
+      margin-top: 6px;
     }
 
     .pub-list li {
-      margin-bottom: 14px;
+      margin-bottom: 20px;
+      list-style-position: outside;
+    }
+
+    .pub-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .pub-text {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .pub-fig {
+      flex: 0 0 180px;
+      max-width: 40%;
+    }
+
+    .pub-fig img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      object-fit: cover;
     }
 
     .pub-title {
       font-weight: 600;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .pub-authors {
       color: #4b5563;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .pub-links {
-      font-size: 13px;
+      font-size: 14px;
       color: #374151;
     }
 
@@ -172,30 +207,46 @@
       margin-top: 10px;
     }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 24px;
-      }
+    @media (max-width: 600px) {
       main {
-        padding: 20px 12px 32px;
+        padding: 22px 12px 32px;
+      }
+      h1 {
+        font-size: 26px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      p, .contact-list li, .interests-list li {
+        font-size: 14px;
+      }
+      .pub-item {
+        flex-direction: column;
+      }
+      .pub-fig {
+        max-width: 100%;
+        flex-basis: auto;
+      }
+      .advisor-photo {
+        margin-top: 4px;
       }
     }
   </style>
 </head>
 <body>
   <main>
-    <!-- 顶部：姓名 + 照片 -->
+    <!-- Top: name + photo -->
     <header>
       <img src="assets/images/myself.jpg" alt="Portrait of Zilin Li (李子林)" class="profile-photo">
       <h1>Zilin Li (李子林)</h1>
       <div class="subtitle">Undergraduate Student · Donghua University</div>
     </header>
 
-    <!-- 基本信息 -->
+    <!-- Profile -->
     <section>
       <h2>Profile</h2>
       <p>
-        Undergraduate Student, School of Information Science and Technology,<br>
+        Undergraduate Student, School of Information and Intelligent Science,<br>
         Donghua University, Shanghai, China.
       </p>
       <p>
@@ -204,7 +255,7 @@
       </p>
     </section>
 
-    <!-- 联系方式 -->
+    <!-- Contact -->
     <section>
       <h2>Contact</h2>
       <ul class="contact-list">
@@ -239,7 +290,7 @@
       </ul>
     </section>
 
-    <!-- 研究方向 -->
+    <!-- Research Interests -->
     <section>
       <h2>Research Interests</h2>
       <ul class="interests-list">
@@ -276,101 +327,117 @@
       </p>
     </section>
 
-    <!-- 学术关系 -->
+    <!-- Academic relations -->
     <section>
       <h2>Academic Relations</h2>
 
       <h3>Advisor</h3>
       <img src="assets/images/Ge_Zhang.jpg" alt="Portrait of Ge Zhang (张鸽)" class="advisor-photo">
       <p>
-        Ge Zhang (张鸽) is a Pujiang Talent <span class="zh-note">（浦江人才）</span> in Shanghai.
-        She received her Ph.D. in Computer Science from Macquarie University, Australia, in 2024, and was awarded the Microsoft
-        Research PhD Fellowship (2022, the only recipient in the Australia &amp; New Zealand region). She serves as a reviewer
-        for top-tier AI conferences and journals, including ICLR, NeurIPS, KDD, and TNNLS.
+        <span class="advisor-name">Ge Zhang <span class="zh-note">(张鸽)</span></span> is a Pujiang Talent
+        <span class="zh-note">（浦江人才）</span> in Shanghai. She received her Ph.D. in Computer Science from
+        Macquarie University, Australia, in 2024, and was awarded the Microsoft Research PhD Fellowship (2022, the only recipient in the
+        Australia &amp; New Zealand region). She serves as a reviewer for top-tier AI conferences and journals, including ICLR,
+        NeurIPS, KDD, and TNNLS.
       </p>
     </section>
 
-    <!-- 出版论文 -->
+    <!-- Publications -->
     <section>
       <h2>Publications</h2>
       <ol class="pub-list">
         <li>
-          <div class="pub-title">
-            NeuroGaze-Distill: Brain-informed Distillation and Depression-Inspired Geometric Priors for Robust Facial Emotion Recognition
-          </div>
-          <div class="pub-authors">
-            Zilin Li, Weiwei Xu, Xuanqi Zhao, Yiran Zhu
-          </div>
-          <div class="pub-links">
-            <span>Preprint.</span>
-            <a href="https://arxiv.org/abs/2509.11916" target="_blank" rel="noreferrer">
-              arxiv.org/abs/2509.11916
-            </a>
-            <a href="assets/figs/fig1.pdf" target="_blank" rel="noreferrer">
-              Figure (fig1.pdf)
-            </a>
-          </div>
-        </li>
-
-        <li>
-          <div class="pub-title">
-            Self-Empowering VLMs: Achieving Hierarchical Consistency via Self-Elicited Knowledge Distillation
-          </div>
-          <div class="pub-authors">
-            Wei Yang, Yiran Zhu, Zilin Li, Xunjia Zhang, Hongtao Wang
-          </div>
-          <div class="pub-links">
-            <span>Preprint.</span>
-            <a href="https://arxiv.org/abs/2511.18415" target="_blank" rel="noreferrer">
-              arxiv.org/abs/2511.18415
-            </a>
-            <a href="assets/figs/fig2.pdf" target="_blank" rel="noreferrer">
-              Figure (fig2.pdf)
-            </a>
+          <div class="pub-item">
+            <div class="pub-text">
+              <div class="pub-title">
+                NeuroGaze-Distill: Brain-informed Distillation and Depression-Inspired Geometric Priors for Robust Facial Emotion Recognition
+              </div>
+              <div class="pub-authors">
+                <strong>Zilin Li</strong>, Weiwei Xu, Xuanqi Zhao, Yiran Zhu
+              </div>
+              <div class="pub-links">
+                <span>Preprint.</span>
+                <a href="https://arxiv.org/abs/2509.11916" target="_blank" rel="noreferrer">
+                  arxiv.org/abs/2509.11916
+                </a>
+              </div>
+            </div>
+            <div class="pub-fig">
+              <img src="assets/figs/fig1.png" alt="Figure for NeuroGaze-Distill">
+            </div>
           </div>
         </li>
 
         <li>
-          <div class="pub-title">
-            Neuro-Vesicles: Neuromodulation Should Be a Dynamical System, Not a Tensor Decoration
-          </div>
-          <div class="pub-authors">
-            Zilin Li, Weiwei Xu, Vicki Kane
-          </div>
-          <div class="pub-links">
-            <span>Preprint.</span>
-            <a href="https://doi.org/10.48550/arxiv.2512.06966" target="_blank" rel="noreferrer">
-              doi.org/10.48550/arxiv.2512.06966
-            </a>
-            <!-- Sci-hub.vg icon 作为尾缀 -->
-            <a href="https://sci-hub.vg/" target="_blank" rel="noreferrer" title="sci-hub.vg">
-              <i class="fa-solid fa-flask"></i>
-            </a>
-            <a href="assets/figs/fig3.pdf" target="_blank" rel="noreferrer">
-              Figure (fig3.pdf)
-            </a>
+          <div class="pub-item">
+            <div class="pub-text">
+              <div class="pub-title">
+                Self-Empowering VLMs: Achieving Hierarchical Consistency via Self-Elicited Knowledge Distillation
+              </div>
+              <div class="pub-authors">
+                Wei Yang, Yiran Zhu, <strong>Zilin Li</strong>, Xunjia Zhang, Hongtao Wang
+              </div>
+              <div class="pub-links">
+                <span>Preprint.</span>
+                <a href="https://arxiv.org/abs/2511.18415" target="_blank" rel="noreferrer">
+                  arxiv.org/abs/2511.18415
+                </a>
+              </div>
+            </div>
+            <div class="pub-fig">
+              <img src="assets/figs/fig2.png" alt="Figure for Self-Empowering VLMs">
+            </div>
           </div>
         </li>
 
         <li>
-          <div class="pub-title">
-            EmoLoom-2B: Fast Base-Model Screening for Emotion Classification and VAD
-            with Lexicon-Weak Supervision and KV-Off Evaluation
+          <div class="pub-item">
+            <div class="pub-text">
+              <div class="pub-title">
+                Neuro-Vesicles: Neuromodulation Should Be a Dynamical System, Not a Tensor Decoration
+              </div>
+              <div class="pub-authors">
+                <strong>Zilin Li</strong>, Weiwei Xu, Vicki Kane
+              </div>
+              <div class="pub-links">
+                <span>Preprint.</span>
+                <a href="https://doi.org/10.48550/arxiv.2512.06966" target="_blank" rel="noreferrer">
+                  doi.org/10.48550/arxiv.2512.06966
+                </a>
+                <a href="https://sci-hub.vg/" target="_blank" rel="noreferrer" title="sci-hub.vg">
+                  <i class="fa-solid fa-flask"></i>
+                </a>
+              </div>
+            </div>
+            <div class="pub-fig">
+              <img src="assets/figs/fig3.png" alt="Figure for Neuro-Vesicles">
+            </div>
           </div>
-          <div class="pub-authors">
-            Zilin Li, Weiwei Xu, Xuanbo Lu, Zheda Liu
-          </div>
-          <div class="pub-links">
-            <span>To appear.</span>
-            <a href="assets/figs/fig4.pdf" target="_blank" rel="noreferrer">
-              Figure (fig4.pdf)
-            </a>
+        </li>
+
+        <li>
+          <div class="pub-item">
+            <div class="pub-text">
+              <div class="pub-title">
+                EmoLoom-2B: Fast Base-Model Screening for Emotion Classification and VAD
+                with Lexicon-Weak Supervision and KV-Off Evaluation
+              </div>
+              <div class="pub-authors">
+                <strong>Zilin Li</strong>, Weiwei Xu, Xuanbo Lu, Zheda Liu
+              </div>
+              <div class="pub-links">
+                <span>To appear.</span>
+              </div>
+            </div>
+            <div class="pub-fig">
+              <img src="assets/figs/fig4.png" alt="Figure for EmoLoom-2B">
+            </div>
           </div>
         </li>
       </ol>
 
       <div class="footer">
-        Last update: maintained by Zilin&nbsp;Li (李子林).
+        Last update: maintained by Zilin&nbsp;Li.
       </div>
     </section>
   </main>
