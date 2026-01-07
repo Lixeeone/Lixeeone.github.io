@@ -265,16 +265,20 @@
   font-style: italic; /* 斜体 */
   font-weight: 500;   /* 不要太细，保持正式 */
 }
+    .profile {
+  width: 160px;          /* 你想要的显示宽度 */
+  height: 160px;         /* 头像占位尺寸 */
+  object-fit: contain;   /* 关键：保持原始比例 */
+  background-color: #fff; /* 防止出现透明边 */
+}
+
 
   </style>
 </head>
 <body>
   <main>
     <!-- Top: name + photo -->
-    <header>
-      <img src="assets/images/selfupgrade.png" alt="Portrait of Zilin Li (李子林)" class="profile-photo">
-      <h1>Zilin Li (李子林)</h1>
-    </header>
+    <header> <img src="assets/images/selfie.jpg" alt="Portrait of Zilin Li (李子林)" class="profile"> <h1>Zilin Li (李子林)</h1> </header>
 
     <!-- Profile -->
    <section>
