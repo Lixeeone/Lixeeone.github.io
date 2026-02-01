@@ -272,39 +272,27 @@
   background-color: #fff; /* 防止出现透明边 */
 }
 
-    /* Footer 整体容器：居中、灰色、顶部有分隔线 */
-.footer {
-  text-align: center;        /* 强制内容居中 */
-  margin-top: 40px;          /* 距离正文远一点 */
-  padding-top: 20px;         /* 内部留白 */
-  border-top: 1px solid #e5e7eb; /* 淡淡的顶部分隔线 */
-  font-size: 13px;
-  color: #9ca3af;
+  /* 这里的 margin-top 决定了它离上方版权文字的距离 */
+.footer-watermark {
+  text-align: center;
+  margin-top: 35px;      
+  padding-bottom: 30px;  /* 页面最底部的留白 */
 }
 
-/* 执照图标容器：横向排列、居中 */
-.footer-licenses {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;                 /* 图标之间的间距 */
-  margin-top: 10px;          /* 【关键】与上方版权信息的距离 */
+/* 水印图片的样式 */
+.footer-watermark img {
+  width: 180px;          /* 宽度大一点，显眼 */
+  height: auto;
+  opacity: 0.2;          /* 【关键】透明度0.2，制造“水印”感 */
+  filter: grayscale(100%); /* 【关键】强制转为纯灰色 */
+  transition: all 0.3s ease;
 }
 
-/* 链接样式：灰色、去下划线、鼠标悬停变色 */
-.footer-licenses a {
-  color: #9ca3af;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 6px;                  /* 图标和文字的微小间距 */
-  transition: color 0.2s;
+/* 鼠标悬停时的交互效果 */
+.footer-watermark a:hover img {
+  opacity: 0.8;          /* 变清晰 */
+  filter: grayscale(0%); /* 恢复原始颜色（如果有的话） */
 }
-
-.footer-licenses a:hover {
-  color: #4b5563;            /* 悬停时变深灰 */
-}
-
   </style>
 </head>
 <body>
@@ -536,7 +524,7 @@
   <div class="pub-item">
     <div class="pub-text">
       <div class="pub-title">
-        Neuro-Vesicles: A Dynamical Framework]{Neuro-Vesicles: A Dynamical Framework for Entity-Based Neural Modulation
+        Neuro-Vesicles: A Dynamical Framework for Entity-Based Neural Modulation
       </div>
       <div class="pub-authors">
         <strong>Zilin Li</strong>, Weiwei Xu, Xuanbo Lu, Xuchun Tong, Xuanqi Zhao,
@@ -554,31 +542,18 @@
 </li>
 
       </ol>
-
-      <div class="footer">
+<div class="footer">
   <div>
     &copy; 2025&nbsp;Maintained by Zilin&nbsp;Li
   </div>
 
-  <div class="footer-licenses">
-    
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="Content: CC BY-NC-SA 4.0">
-      <i class="fa-brands fa-creative-commons"></i>
-      <span>CC BY-NC-SA</span>
+  <div class="footer-watermark">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="Licensed under CC BY-NC-SA 4.0">
+      <img src="https://mirrors.creativecommons.org/presskit/logos/cc.logo.svg" alt="Creative Commons Watermark">
     </a>
-
-    <a href="https://opensource.org/licenses/MIT" target="_blank" title="Site Code: MIT License">
-      <i class="fa-solid fa-code"></i>
-      <span>MIT License</span>
-    </a>
-
-    <a href="https://github.com/Lixeeone/Lixeeone.github.io" target="_blank" title="Hosted on GitHub">
-      <i class="fa-brands fa-github"></i>
-      <span>Open Source</span>
-    </a>
-
   </div>
 </div>
+    
     </section>
 
   </main>
