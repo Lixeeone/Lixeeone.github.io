@@ -272,6 +272,38 @@
   background-color: #fff; /* 防止出现透明边 */
 }
 
+    /* Footer 整体容器：居中、灰色、顶部有分隔线 */
+.footer {
+  text-align: center;        /* 强制内容居中 */
+  margin-top: 40px;          /* 距离正文远一点 */
+  padding-top: 20px;         /* 内部留白 */
+  border-top: 1px solid #e5e7eb; /* 淡淡的顶部分隔线 */
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* 执照图标容器：横向排列、居中 */
+.footer-licenses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;                 /* 图标之间的间距 */
+  margin-top: 10px;          /* 【关键】与上方版权信息的距离 */
+}
+
+/* 链接样式：灰色、去下划线、鼠标悬停变色 */
+.footer-licenses a {
+  color: #9ca3af;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;                  /* 图标和文字的微小间距 */
+  transition: color 0.2s;
+}
+
+.footer-licenses a:hover {
+  color: #4b5563;            /* 悬停时变深灰 */
+}
 
   </style>
 </head>
@@ -504,8 +536,7 @@
   <div class="pub-item">
     <div class="pub-text">
       <div class="pub-title">
-        Decoupling Modulation from Tensors: Neuro-Vesicles as a General Dynamical Framework
-        for Entity-Based Neural Computation
+        Neuro-Vesicles: A Dynamical Framework]{Neuro-Vesicles: A Dynamical Framework for Entity-Based Neural Modulation
       </div>
       <div class="pub-authors">
         <strong>Zilin Li</strong>, Weiwei Xu, Xuanbo Lu, Xuchun Tong, Xuanqi Zhao,
@@ -525,8 +556,29 @@
       </ol>
 
       <div class="footer">
-        &copy; 2025&nbsp;Maintained by Zilin&nbsp;Li
-      </div>
+  <div>
+    &copy; 2025&nbsp;Maintained by Zilin&nbsp;Li
+  </div>
+
+  <div class="footer-licenses">
+    
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="Content: CC BY-NC-SA 4.0">
+      <i class="fa-brands fa-creative-commons"></i>
+      <span>CC BY-NC-SA</span>
+    </a>
+
+    <a href="https://opensource.org/licenses/MIT" target="_blank" title="Site Code: MIT License">
+      <i class="fa-solid fa-code"></i>
+      <span>MIT License</span>
+    </a>
+
+    <a href="https://github.com/Lixeeone/Lixeeone.github.io" target="_blank" title="Hosted on GitHub">
+      <i class="fa-brands fa-github"></i>
+      <span>Open Source</span>
+    </a>
+
+  </div>
+</div>
     </section>
 
   </main>
