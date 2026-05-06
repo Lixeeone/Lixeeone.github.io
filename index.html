@@ -293,6 +293,63 @@
   opacity: 0.8;          /* 变清晰 */
   filter: grayscale(0%); /* 恢复原始颜色（如果有的话） */
 }
+
+    .news-ticker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px auto 26px;
+  padding: 9px 12px;
+  max-width: 720px;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  background: #f9fafb;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.04);
+}
+
+.news-ticker-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.news-ticker-track {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.news-ticker-text {
+  display: inline-block;
+  padding-left: 100%;
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+  animation: ticker-scroll 22s linear infinite;
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 600px) {
+  .news-ticker {
+    margin: 14px auto 22px;
+    padding: 8px 10px;
+  }
+
+  .news-ticker-text {
+    font-size: 13px;
+    animation-duration: 26s;
+  }
+}
   </style>
 </head>
 <body>
@@ -300,6 +357,14 @@
     <!-- Top: name + photo -->
     <header> <img src="assets/images/newest.png" alt="Portrait of Zilin Li (李子林)" class="profile"> <h1>Zilin Li (李子林)</h1> </header>
 
+    <div class="news-ticker" aria-label="News">
+  <img src="assets/images/neurips-navbar-logo.svg" alt="NeurIPS icon" class="news-ticker-icon">
+  <div class="news-ticker-track">
+    <span class="news-ticker-text">
+      May 06, 2026 been nominated as a reciprocal reviewer for the Conference on Neural Information Processing Systems (NeurIPS) 2026
+    </span>
+  </div>
+</div>
     <!-- Profile -->
    <section>
   <ul class="profile-list profile-center">
@@ -409,7 +474,7 @@
   He was previously a Postdoctoral Associate at the Massachusetts Institute of Technology (MIT) and a Research
   Fellow at Massachusetts General Hospital, Harvard Medical School. He received his Ph.D. in Computer Science from
   Shanghai Jiao Tong University.
-<!--/p>
+
 
       <h3>Advisor</h3>
       <img src="assets/images/Ge_Zhang.jpg" alt="Portrait of Ge Zhang (张鸽)" class="advisor-photo">
@@ -419,7 +484,7 @@
         Macquarie University, Australia, in 2024, and was awarded the Microsoft Research PhD Fellowship (2022, the only recipient in the
         Australia &amp; New Zealand region). She serves as a reviewer for top-tier AI conferences and journals, including ICLR,
         NeurIPS, KDD, and TNNLS.
-</p-->
+</p>
 
   <h3>Coworker</h3>
   
@@ -531,26 +596,7 @@
     </div>
   </div>
 </li>
-<li>
-  <div class="pub-item">
-    <div class="pub-text">
-      <div class="pub-title">
-        Geometric Crystallization in Tabula Rasa: Self-OrganizingNeural Representations via Hebbian Agents
-      </div>
-      <div class="pub-authors">
-        <strong>Zilin Li</strong>, Weiwei Xu, Xuanbo Lu, Xuchun Tong, Xuanqi Zhao,
-        Zijian Wang<span class="corresponding-author">*</span>, Ge Zhang<span class="corresponding-author">*</span>
-      </div>
-      <div class="pub-links">
-        <span class="conf-under-review">NeurIPS 2026 Workshop NeurReps</span>  <span>Plan To Submit.</span>
-      </div>
-    </div>
 
-    <div class="pub-fig">
-      <img src="assets/figs/fig9.png" alt="Figure for Neuro-Vesicles (NVini)">
-    </div>
-  </div>
-      </li>
 
         <li>
 <div class="pub-item">
@@ -616,24 +662,6 @@ doi.org/10.31234/osf.io/xtu5m_v1
 </div>
 </li>
 
-<li>
-<div class="pub-item">
-<div class="pub-text">
-<div class="pub-title">
-Continuous Limits of Coupled Flows in Representation Learning
-</div>
-<div class="pub-authors">
-<strong>Zilin Li</strong>, Weiwei Xu, XuChun Tong, Xuanbo Lu, Xuanqi Zhao
-</div>
-<div class="pub-links">
-<span class="conf-under-review">NeurIPS 2026 Submission.</span>
-</div>
-</div>
-<div class="pub-fig">
-<img src="assets/fig13.png" alt="Figure for Continuous Limits of Coupled Flows in Representation Learning">
-</div>
-</div>
-</li>
   
       </ol>
 <div class="footer">
