@@ -294,11 +294,11 @@
   filter: grayscale(0%); /* 恢复原始颜色（如果有的话） */
 }
 
-    .news-ticker {
+   .news-ticker {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 18px auto 26px;
+  margin: 0;
   padding: 9px 12px;
   max-width: 720px;
   border: 1px solid #e5e7eb;
@@ -350,6 +350,18 @@
     animation-duration: 26s;
   }
 }
+    .latest-news-block {
+  margin: 18px auto 28px;
+  max-width: 720px;
+}
+
+.latest-news-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px 4px;
+  letter-spacing: 0.02em;
+}
   </style>
 </head>
 <body>
@@ -357,14 +369,7 @@
     <!-- Top: name + photo -->
     <header> <img src="assets/images/newest.png" alt="Portrait of Zilin Li (李子林)" class="profile"> <h1>Zilin Li (李子林)</h1> </header>
 
-    <div class="news-ticker" aria-label="News">
-  <img src="assets/images/neurips-navbar-logo.svg" alt="NeurIPS icon" class="news-ticker-icon">
-  <div class="news-ticker-track">
-    <span class="news-ticker-text">
-      May 06, 2026 been nominated as a reciprocal reviewer for the Conference on Neural Information Processing Systems (NeurIPS) 2026
-    </span>
-  </div>
-</div>
+  
     <!-- Profile -->
    <section>
   <ul class="profile-list profile-center">
@@ -384,7 +389,18 @@
     </li>
   </ul>
 </section>
+<div class="latest-news-block">
+  <div class="latest-news-title">Latest News</div>
 
+  <div class="news-ticker" aria-label="Latest News">
+    <img src="assets/images/neurips-navbar-logo.svg" alt="NeurIPS icon" class="news-ticker-icon">
+    <div class="news-ticker-track">
+      <span class="news-ticker-text">
+        May 06, 2026 been nominated as a reciprocal reviewer for the Conference on Neural Information Processing Systems (NeurIPS) 2026
+      </span>
+    </div>
+  </div>
+</div>
 
     <!-- Contact -->
     <section>
