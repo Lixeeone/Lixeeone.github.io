@@ -1,945 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Zilin Li — researcher, student, and builder. Explore his work through an interactive offline AI-style conversation." />
-  <meta name="theme-color" content="#0b1020" />
-  <title>Zilin Li — Interactive Research Profile</title>
-  <style>
-    :root {
-      --bg: #070a12;
-      --bg-soft: #0b1020;
-      --panel: rgba(18, 24, 42, 0.78);
-      --panel-strong: #12182a;
-      --panel-hover: #18203a;
-      --text: #f4f7ff;
-      --muted: #97a3bd;
-      --faint: #67728b;
-      --line: rgba(255,255,255,.085);
-      --accent: #8b7cff;
-      --accent-2: #5eead4;
-      --accent-3: #6aa8ff;
-      --danger: #ff7a9d;
-      --shadow: 0 24px 70px rgba(0, 0, 0, .42);
-      --radius: 20px;
-      --sidebar: 286px;
-      --font: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f7fb"><meta name="description" content="Zilin Li's integrated offline and DeepSeek-powered research chatbot"><title>Zilin Li · Research Chat</title><style>
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: var(--font);
-      background:
-        radial-gradient(circle at 15% 10%, rgba(139,124,255,.16), transparent 30%),
-        radial-gradient(circle at 85% 20%, rgba(94,234,212,.11), transparent 26%),
-        radial-gradient(circle at 60% 90%, rgba(106,168,255,.10), transparent 34%),
-        var(--bg);
-      overflow: hidden;
-    }
+:root{
+  color-scheme:light;
+  --bg:#f5f7fb;--surface:#ffffff;--surface-2:#f8fafc;--text:#152033;
+  --muted:#667085;--line:#e7ebf2;--line-strong:#d8dee9;--brand:#315efb;
+  --brand-2:#6d7cff;--brand-soft:#edf2ff;--ok:#16896b;--warn:#a2610a;
+  --danger:#c93a4a;--shadow:0 18px 60px rgba(24,39,75,.09);
+  --shadow-soft:0 8px 24px rgba(24,39,75,.06);--r:24px;--r2:16px;
+}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);background:
+radial-gradient(circle at 7% 4%,rgba(49,94,251,.08),transparent 29rem),
+radial-gradient(circle at 94% 86%,rgba(109,124,255,.07),transparent 30rem),var(--bg);overflow:hidden}
+button,input,textarea,select{font:inherit}button{border:0;cursor:pointer}.app{width:min(1500px,calc(100% - 32px));height:calc(100dvh - 32px);margin:16px auto;display:grid;grid-template-columns:320px minmax(0,1fr);gap:16px}.panel{background:rgba(255,255,255,.92);border:1px solid rgba(218,225,237,.9);box-shadow:var(--shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.sidebar{border-radius:var(--r);padding:25px;display:flex;flex-direction:column;min-height:0;overflow:auto}.brand-row{display:flex;align-items:center;justify-content:space-between}.mark{display:grid;place-items:center;width:43px;height:43px;border-radius:14px;background:linear-gradient(145deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 10px 25px rgba(49,94,251,.25)}.mark svg{width:22px}.status-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--muted);background:#fff}.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(22,137,107,.1)}.identity{padding:25px 0 18px}.eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--brand);font-weight:760}.identity h1{margin:8px 0 5px;font-size:30px;letter-spacing:-.04em}.pronouns{color:var(--muted);font-size:14px}.identity p{margin:17px 0 0;line-height:1.62;color:#526078;font-size:14px}.divider{height:1px;background:var(--line);margin:5px 0 19px}.section-label{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8a94a7;margin:0 0 11px}.tag-list{display:flex;gap:8px;flex-wrap:wrap}.tag{padding:8px 10px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);font-size:12px;color:#46536a}.profile-facts{display:grid;gap:12px;margin-top:18px}.fact{display:grid;grid-template-columns:33px 1fr;gap:10px;align-items:start}.fact-icon{width:33px;height:33px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center}.fact-icon svg{width:16px}.fact strong{display:block;font-size:13px;margin:1px 0 3px}.fact span{font-size:12px;color:var(--muted);line-height:1.42}.side-footer{margin-top:auto;padding-top:22px;color:#99a2b2;font-size:11px;line-height:1.5}
+.chat{border-radius:var(--r);min-width:0;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}.topbar{padding:18px 21px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px}.title-wrap{display:flex;align-items:center;gap:12px;min-width:0}.avatar{width:41px;height:41px;border-radius:14px;background:linear-gradient(145deg,#edf2ff,#f7f9ff);border:1px solid #dae3ff;color:var(--brand);display:grid;place-items:center;font-weight:820}.title-wrap h2{font-size:15px;margin:0 0 3px}.title-wrap p{font-size:12px;color:var(--muted);margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.actions{display:flex;gap:8px}.icon-btn,.soft-btn{height:38px;border-radius:12px;border:1px solid var(--line);background:#fff;color:#566177;display:inline-flex;align-items:center;justify-content:center;gap:7px}.icon-btn{width:38px}.icon-btn svg,.soft-btn svg{width:17px}.soft-btn{padding:0 13px;font-size:12px;font-weight:700}.icon-btn:hover,.soft-btn:hover{border-color:#cbd4e5;background:#f9fbff}.messages{overflow:auto;padding:28px clamp(18px,4vw,58px);scroll-behavior:smooth}.messages-inner{max-width:900px;margin:0 auto}.hero{padding:36px 0 25px}.hero-badge{width:58px;height:58px;border-radius:19px;background:linear-gradient(145deg,var(--brand),var(--brand-2));box-shadow:0 14px 34px rgba(49,94,251,.22);color:#fff;display:grid;place-items:center}.hero-badge svg{width:28px}.hero h3{font-size:31px;letter-spacing:-.045em;margin:20px 0 9px;max-width:650px}.hero p{margin:0;color:var(--muted);line-height:1.65;max-width:690px;font-size:14px}.starter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:24px}.starter{padding:16px;text-align:left;border-radius:15px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow-soft);transition:.18s ease}.starter:hover{transform:translateY(-1px);border-color:#cbd7f4}.starter strong{font-size:13px;display:block;margin-bottom:5px}.starter span{font-size:12px;color:var(--muted);line-height:1.4}.message{display:flex;gap:11px;margin:19px 0;animation:rise .22s ease}.message.user{justify-content:flex-end}.bubble{max-width:min(78%,720px);padding:13px 16px;border-radius:17px;line-height:1.62;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}.assistant .bubble{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-soft);border-top-left-radius:6px}.user .bubble{background:linear-gradient(145deg,var(--brand),#466dff);color:#fff;border-top-right-radius:6px;box-shadow:0 10px 24px rgba(49,94,251,.2)}.msg-avatar{flex:0 0 auto;width:31px;height:31px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:11px;font-weight:850}.meta{font-size:10px;color:#9aa3b2;margin-top:5px}.typing{display:inline-flex;gap:4px;align-items:center;height:19px}.typing i{width:6px;height:6px;border-radius:50%;background:#98a3b5;animation:pulse 1.1s infinite}.typing i:nth-child(2){animation-delay:.14s}.typing i:nth-child(3){animation-delay:.28s}.sources{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.confidence{display:inline-flex;align-items:center;gap:6px;margin-top:9px;font-size:10px;color:#7b8799}.confidence-bar{width:56px;height:4px;background:#e9edf4;border-radius:9px;overflow:hidden}.confidence-bar span{display:block;height:100%;background:var(--brand);border-radius:9px}
+.composer-wrap{padding:14px 18px 17px;border-top:1px solid var(--line);background:rgba(255,255,255,.84)}.composer{max-width:930px;margin:0 auto;border:1px solid var(--line-strong);border-radius:18px;background:#fff;box-shadow:0 8px 26px rgba(30,46,80,.07);padding:9px 9px 9px 14px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:10px}.composer:focus-within{border-color:#9eb2ff;box-shadow:0 0 0 4px rgba(49,94,251,.08),0 8px 26px rgba(30,46,80,.07)}textarea{resize:none;border:0;outline:0;min-height:28px;max-height:150px;padding:7px 0;background:transparent;color:var(--text);line-height:1.5}textarea::placeholder{color:#a1a9b8}.send{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,var(--brand),#496fff);color:#fff;display:grid;place-items:center;box-shadow:0 8px 18px rgba(49,94,251,.25)}.send:disabled{opacity:.42;cursor:not-allowed}.send svg{width:19px}.composer-note{text-align:center;margin:8px 0 0;color:#9aa3b2;font-size:10px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(21,32,51,.28);backdrop-filter:blur(5px);display:none;place-items:center;padding:20px;z-index:20}.modal-backdrop.open{display:grid}.modal{width:min(560px,100%);background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 100px rgba(20,35,70,.2);padding:24px}.modal-head{display:flex;justify-content:space-between;gap:15px;align-items:start;margin-bottom:18px}.modal h3{margin:0 0 6px;font-size:20px}.modal p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.form-grid{display:grid;gap:13px}.field label{display:block;font-size:11px;font-weight:800;color:#657086;margin:0 0 7px}.field input,.field select{width:100%;height:43px;border:1px solid var(--line-strong);border-radius:11px;padding:0 12px;outline:0;background:#fff;color:var(--text)}.field input:focus,.field select:focus{border-color:#9eb2ff;box-shadow:0 0 0 3px rgba(49,94,251,.08)}.hint{font-size:10px;color:#98a1b1;margin-top:6px;line-height:1.45}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:19px}.primary,.secondary,.danger-btn{height:40px;padding:0 15px;border-radius:11px;font-size:12px;font-weight:760}.primary{background:var(--brand);color:#fff}.secondary{background:#fff;color:#59657a;border:1px solid var(--line)}.danger-btn{background:#fff1f2;color:var(--danger);border:1px solid #ffd9dd}.notice{padding:11px 13px;border-radius:11px;background:#fff8e8;border:1px solid #f5dfaa;color:#80520c;font-size:11px;line-height:1.5}.toast{position:fixed;right:22px;bottom:22px;background:#182238;color:#fff;padding:11px 14px;border-radius:12px;font-size:12px;box-shadow:var(--shadow);transform:translateY(18px);opacity:0;pointer-events:none;transition:.2s;z-index:30}.toast.show{transform:none;opacity:1}.mobile-profile{display:none}
+@keyframes rise{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}@keyframes pulse{0%,70%,100%{opacity:.35;transform:translateY(0)}35%{opacity:1;transform:translateY(-2px)}}
+@media(max-width:860px){body{overflow:auto}.app{width:100%;height:100dvh;margin:0;grid-template-columns:1fr}.sidebar{display:none}.chat{border-radius:0;border:0;box-shadow:none}.topbar{padding:13px 15px}.mobile-profile{display:inline-flex}.messages{padding:20px 15px}.hero{padding-top:22px}.hero h3{font-size:26px}.starter-grid{grid-template-columns:1fr}.bubble{max-width:88%}.soft-btn .label{display:none}.soft-btn{width:38px;padding:0}.composer-wrap{padding:11px}.actions{gap:6px}}
+@media(max-width:470px){.title-wrap p{max-width:180px}.hero p{font-size:13px}.starter:nth-child(n+4){display:none}.bubble{max-width:92%}.messages{padding-bottom:12px}}
 
-    button, textarea, input { font: inherit; }
-    button { color: inherit; }
-    a { color: inherit; text-decoration: none; }
 
-    .app {
-      height: 100%;
-      display: grid;
-      grid-template-columns: var(--sidebar) 1fr;
-    }
+.mode-switch{display:flex;align-items:center;padding:3px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2);gap:2px}
+.mode-btn{height:31px;padding:0 11px;border-radius:9px;background:transparent;color:#778195;font-size:11px;font-weight:780;white-space:nowrap;transition:.18s ease}
+.mode-btn:hover{color:#40506a}.mode-btn.active{background:#fff;color:var(--brand);box-shadow:0 3px 10px rgba(24,39,75,.08)}
+.hidden{display:none!important}.mode-card{display:flex;gap:10px;align-items:center;padding:12px 13px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2);margin-top:14px}.mode-card strong{display:block;font-size:12px;margin-bottom:2px}.mode-card span{display:block;font-size:10px;color:var(--muted);line-height:1.45}.mode-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:var(--brand-soft);color:var(--brand);font-weight:850;font-size:11px;flex:0 0 auto}
+.corpus-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:15px}.corpus-stat{padding:13px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2)}.corpus-stat strong{display:block;font-size:20px;letter-spacing:-.04em}.corpus-stat span{display:block;margin-top:3px;color:var(--muted);font-size:10px}.category-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.category-list span{padding:7px 9px;border-radius:9px;background:#fff;border:1px solid var(--line);font-size:10px;color:#59657a}
+.mode-note{display:inline-flex;align-items:center;gap:7px}.mode-note:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}.mode-note.api-locked:before{background:#a8b0bd}.mode-note.api-ready:before{background:var(--ok)}
+.stop{background:#fff;color:var(--danger);border:1px solid #ffd9dd;box-shadow:none}.stop svg{width:17px}.top-actions-left{display:flex;align-items:center;gap:8px}.top-actions-right{display:flex;align-items:center;gap:8px}
+@media(max-width:1050px){.mode-btn{padding:0 8px}.mode-btn .wide{display:none}.topbar{padding:15px}}
+@media(max-width:860px){.topbar{flex-wrap:wrap}.title-wrap{flex:1}.actions{width:100%;justify-content:space-between}.top-actions-left,.top-actions-right{gap:6px}.mode-switch{flex:1}.mode-btn{flex:1}.mode-btn .wide{display:inline}.corpus-grid{grid-template-columns:1fr}}
+@media(max-width:470px){.mode-btn .wide{display:none}.mode-btn{padding:0 9px}.actions{align-items:center}.top-actions-right .soft-btn{width:38px;padding:0}.corpus-grid{grid-template-columns:1fr}}
 
-    .sidebar {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      padding: 18px 14px 14px;
-      border-right: 1px solid var(--line);
-      background: rgba(7, 10, 18, .72);
-      backdrop-filter: blur(24px);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 8px 18px;
-    }
-
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      font-weight: 800;
-      letter-spacing: -.04em;
-      background: linear-gradient(145deg, var(--accent), var(--accent-3));
-      box-shadow: 0 10px 30px rgba(139,124,255,.32);
-    }
-
-    .brand-copy { min-width: 0; }
-    .brand-copy strong { display: block; font-size: 15px; }
-    .brand-copy span { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
-
-    .new-chat {
-      width: 100%;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.045);
-      border-radius: 14px;
-      padding: 12px 13px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      transition: .2s ease;
-    }
-
-    .new-chat:hover { transform: translateY(-1px); background: rgba(255,255,255,.075); }
-    .new-chat span:first-child { display: flex; align-items: center; gap: 9px; font-weight: 650; font-size: 13px; }
-    .key { color: var(--faint); font-size: 11px; border: 1px solid var(--line); padding: 2px 6px; border-radius: 6px; }
-
-    .side-label {
-      margin: 20px 10px 8px;
-      color: var(--faint);
-      text-transform: uppercase;
-      font-size: 10px;
-      letter-spacing: .14em;
-      font-weight: 800;
-    }
-
-    .nav-list { display: grid; gap: 5px; }
-    .nav-item {
-      width: 100%;
-      border: 0;
-      background: transparent;
-      border-radius: 12px;
-      padding: 10px 11px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      cursor: pointer;
-      text-align: left;
-      transition: .18s ease;
-    }
-    .nav-item:hover, .nav-item.active { color: var(--text); background: rgba(255,255,255,.055); }
-    .nav-item svg { flex: 0 0 auto; opacity: .92; }
-    .nav-item span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 13px; }
-
-    .sidebar-spacer { flex: 1; }
-
-    .profile-mini {
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,.035);
-    }
-    .profile-row { display: flex; gap: 10px; align-items: center; }
-    .avatar {
-      width: 36px;
-      height: 36px;
-      flex: 0 0 auto;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #2f3f70, #1d2440);
-      color: #dbe5ff;
-      font-weight: 800;
-      font-size: 13px;
-      border: 1px solid rgba(255,255,255,.12);
-    }
-    .profile-row strong { display:block; font-size:13px; }
-    .profile-row span { display:block; margin-top:2px; color:var(--muted); font-size:11px; }
-    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 12px rgba(94,234,212,.8); }
-
-    .main {
-      min-width: 0;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      height: 100%;
-    }
-
-    .topbar {
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 24px;
-      border-bottom: 1px solid rgba(255,255,255,.055);
-      background: rgba(7,10,18,.44);
-      backdrop-filter: blur(18px);
-    }
-
-    .model-switch {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.035);
-      border-radius: 12px;
-      padding: 8px 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .model-switch strong { color: var(--text); font-size: 12px; }
-    .top-actions { display: flex; align-items: center; gap: 8px; }
-    .icon-btn {
-      width: 38px; height: 38px; display: grid; place-items: center;
-      border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.035); cursor: pointer;
-    }
-    .icon-btn:hover { background: rgba(255,255,255,.07); }
-
-    .chat-scroll {
-      overflow-y: auto;
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,.16) transparent;
-    }
-
-    .chat-shell {
-      width: min(920px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 52px 0 160px;
-    }
-
-    .hero {
-      min-height: calc(100vh - 245px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      animation: fadeUp .55s ease both;
-    }
-
-    .hero-orb {
-      width: 72px; height: 72px; border-radius: 24px;
-      display: grid; place-items: center;
-      background: linear-gradient(145deg, rgba(139,124,255,.95), rgba(106,168,255,.9));
-      box-shadow: 0 20px 60px rgba(99,102,241,.34), inset 0 1px 0 rgba(255,255,255,.35);
-      font-size: 25px; font-weight: 850; letter-spacing: -.06em;
-      transform: rotate(-3deg);
-    }
-
-    .hero h1 {
-      margin: 24px 0 8px;
-      font-size: clamp(31px, 4.3vw, 52px);
-      line-height: 1.02;
-      letter-spacing: -.055em;
-    }
-    .hero p { max-width: 660px; margin: 0; color: var(--muted); line-height: 1.65; font-size: 14px; }
-    .hero .gradient { background: linear-gradient(90deg, #fff, #b7c7ff 48%, #86f4df); -webkit-background-clip: text; color: transparent; }
-
-    .prompt-grid {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 34px;
-    }
-    .prompt-card {
-      border: 1px solid var(--line);
-      background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.025));
-      border-radius: 16px;
-      padding: 14px 15px;
-      text-align: left;
-      cursor: pointer;
-      transition: .2s ease;
-    }
-    .prompt-card:hover { transform: translateY(-2px); border-color: rgba(139,124,255,.35); background: rgba(139,124,255,.075); }
-    .prompt-card strong { display:block; font-size:13px; margin-bottom:4px; }
-    .prompt-card span { display:block; color:var(--muted); font-size:12px; line-height:1.45; }
-
-    .message {
-      display: grid;
-      grid-template-columns: 38px minmax(0,1fr);
-      gap: 14px;
-      margin: 0 0 28px;
-      animation: fadeUp .34s ease both;
-    }
-    .message.user { grid-template-columns: minmax(0,1fr) 38px; }
-    .message.user .message-body { order: 1; justify-self: end; max-width: 78%; }
-    .message.user .message-avatar { order: 2; }
-
-    .message-avatar {
-      width: 36px; height: 36px; display: grid; place-items: center; border-radius: 13px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.045);
-      font-size: 12px; font-weight: 800;
-    }
-    .message.assistant .message-avatar { background: linear-gradient(145deg, rgba(139,124,255,.95), rgba(106,168,255,.85)); border: 0; }
-
-    .message-body { min-width: 0; }
-    .message-meta { color: var(--faint); font-size: 11px; margin: 0 0 7px; display: flex; gap: 8px; align-items: center; }
-    .message-text {
-      color: #e9edfa;
-      line-height: 1.74;
-      font-size: 14px;
-      overflow-wrap: anywhere;
-    }
-    .message.user .message-text {
-      background: rgba(255,255,255,.07);
-      border: 1px solid var(--line);
-      border-radius: 17px 17px 5px 17px;
-      padding: 12px 14px;
-      line-height: 1.55;
-    }
-    .message-text p { margin: 0 0 12px; }
-    .message-text p:last-child { margin-bottom: 0; }
-    .message-text h3 { margin: 18px 0 8px; font-size: 15px; color: #fff; }
-    .message-text ul { margin: 8px 0 14px; padding-left: 20px; }
-    .message-text li { margin: 5px 0; }
-    .message-text strong { color: #fff; }
-    .message-text code { padding: 2px 6px; border-radius: 6px; background: rgba(255,255,255,.08); color: #cfd8ff; font-size: .92em; }
-
-    .thinking-card {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.026);
-      border-radius: 14px;
-      padding: 11px 12px;
-      margin: 0 0 12px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .thinking-head { display: flex; align-items:center; gap:9px; font-weight:700; color:#cfd7eb; }
-    .thinking-lines { margin-top:9px; display:grid; gap:6px; }
-    .skeleton { height: 6px; border-radius: 999px; background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.16), rgba(255,255,255,.06)); background-size: 220% 100%; animation: shimmer 1.2s linear infinite; }
-    .skeleton:nth-child(2) { width: 82%; }
-    .skeleton:nth-child(3) { width: 63%; }
-
-    .answer-tools { display:flex; gap:8px; margin-top:12px; }
-    .tool-btn { border:0; background:transparent; color:var(--faint); padding:5px; border-radius:7px; cursor:pointer; }
-    .tool-btn:hover { color:var(--text); background:rgba(255,255,255,.05); }
-
-    .composer-wrap {
-      position: relative;
-      z-index: 9;
-      padding: 12px 22px 18px;
-      background: linear-gradient(to top, rgba(7,10,18,.98) 55%, rgba(7,10,18,0));
-    }
-    .composer {
-      width: min(920px, 100%);
-      margin: 0 auto;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(18,24,42,.88);
-      backdrop-filter: blur(22px);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: 10px 10px 9px 15px;
-      transition: .2s ease;
-    }
-    .composer:focus-within { border-color: rgba(139,124,255,.55); box-shadow: 0 20px 70px rgba(0,0,0,.42), 0 0 0 3px rgba(139,124,255,.08); }
-    textarea {
-      width: 100%; min-height: 42px; max-height: 180px; resize: none; border: 0; outline: 0;
-      color: var(--text); background: transparent; padding: 10px 10px 7px 4px; line-height: 1.5;
-    }
-    textarea::placeholder { color: #6f7b94; }
-    .composer-bottom { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    .composer-note { color:var(--faint); font-size:10px; padding-left:4px; }
-    .send-btn {
-      width: 39px; height: 39px; display:grid; place-items:center; border:0; border-radius:13px; cursor:pointer;
-      background: linear-gradient(145deg, var(--accent), var(--accent-3));
-      box-shadow: 0 10px 22px rgba(139,124,255,.25);
-      transition:.18s ease;
-    }
-    .send-btn:hover { transform: translateY(-1px) scale(1.02); }
-    .send-btn:disabled { opacity:.45; cursor:not-allowed; transform:none; }
-
-    .mobile-menu { display:none; }
-
-    .modal-backdrop {
-      position: fixed; inset: 0; z-index: 30; display:none; place-items:center; padding:24px;
-      background: rgba(2,4,10,.72); backdrop-filter: blur(12px);
-    }
-    .modal-backdrop.open { display:grid; }
-    .modal {
-      width: min(760px, 100%); max-height: 86vh; overflow:auto;
-      border: 1px solid var(--line); background: #10162a; border-radius: 24px; box-shadow: var(--shadow); padding: 24px;
-    }
-    .modal-head { display:flex; align-items:center; justify-content:space-between; gap:16px; }
-    .modal h2 { margin:0; letter-spacing:-.03em; }
-    .close-btn { width:36px; height:36px; border:1px solid var(--line); border-radius:11px; background:rgba(255,255,255,.04); cursor:pointer; }
-    .profile-grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:20px; }
-    .info-card { border:1px solid var(--line); background:rgba(255,255,255,.035); border-radius:16px; padding:15px; }
-    .info-card small { color:var(--faint); text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
-    .info-card p { color:#dce3f7; line-height:1.6; margin:8px 0 0; font-size:13px; }
-    .pub-list { display:grid; gap:10px; margin-top:18px; }
-    .pub { border:1px solid var(--line); border-radius:15px; padding:14px; background:rgba(255,255,255,.025); }
-    .pub strong { display:block; line-height:1.45; font-size:13px; }
-    .pub span { display:block; color:var(--muted); font-size:11px; margin-top:6px; }
-
-    @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
-    @keyframes shimmer { to { background-position: -220% 0; } }
-    @keyframes blink { 0%,80%,100%{opacity:.25} 40%{opacity:1} }
-
-    .dots { display:inline-flex; gap:3px; margin-left:3px; }
-    .dots i { width:4px; height:4px; background:currentColor; border-radius:50%; animation:blink 1.1s infinite; }
-    .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
-
-    @media (max-width: 820px) {
-      :root { --sidebar: 260px; }
-      .app { grid-template-columns: 1fr; }
-      .sidebar { position:fixed; inset:0 auto 0 0; width:var(--sidebar); transform:translateX(-105%); transition:.25s ease; box-shadow:var(--shadow); }
-      .sidebar.open { transform:translateX(0); }
-      .mobile-menu { display:grid; }
-      .topbar { padding:11px 14px; }
-      .chat-shell { width:min(100% - 26px, 920px); padding-top:30px; }
-      .composer-wrap { padding:10px 12px 14px; }
-      .hero { min-height:calc(100vh - 230px); }
-    }
-
-    @media (max-width: 560px) {
-      .prompt-grid { grid-template-columns:1fr; }
-      .hero h1 { font-size:34px; }
-      .message { grid-template-columns:32px minmax(0,1fr); gap:10px; }
-      .message.user { grid-template-columns:minmax(0,1fr) 32px; }
-      .message-avatar { width:32px; height:32px; border-radius:11px; }
-      .message.user .message-body { max-width:88%; }
-      .profile-grid { grid-template-columns:1fr; }
-      .model-switch span { display:none; }
-    }
-  </style>
-</head>
-<body>
-  <div class="app">
-    <aside class="sidebar" id="sidebar">
-      <div class="brand">
-        <div class="brand-mark">ZL</div>
-        <div class="brand-copy">
-          <strong>Zilin AI</strong>
-          <span>Interactive research profile</span>
-        </div>
-      </div>
-
-      <button class="new-chat" id="newChatBtn">
-        <span>
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>
-          New conversation
-        </span>
-        <span class="key">Ctrl K</span>
-      </button>
-
-      <div class="side-label">Explore</div>
-      <div class="nav-list">
-        <button class="nav-item active" data-prompt="Give me a concise overview of Zilin Li.">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
-          <span>Profile overview</span>
-        </button>
-        <button class="nav-item" data-prompt="Summarize Zilin's current research agenda and how the projects connect.">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-1.5Z"/><path d="M8 7h6M8 11h7"/></svg>
-          <span>Research agenda</span>
-        </button>
-        <button class="nav-item" data-prompt="List Zilin Li's publications and explain the main idea of each one.">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8"/><path d="M4 7h10M4 12h10M4 17h10"/></svg>
-          <span>Publications</span>
-        </button>
-        <button class="nav-item" data-prompt="What is decentralized representation learning, and why is it difficult?">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="m7 11 10-5M7 13l10 5"/></svg>
-          <span>Distributed learning</span>
-        </button>
-        <button class="nav-item" data-prompt="Explain hierarchical consistency in vision-language models with an intuitive example.">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v6M6 21v-4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4M5 9h14M7 9v3M17 9v3"/></svg>
-          <span>Vision-language models</span>
-        </button>
-      </div>
-
-      <div class="side-label">Session</div>
-      <div class="nav-list" id="historyList">
-        <button class="nav-item"><span>Research profile assistant</span></button>
-      </div>
-
-      <div class="sidebar-spacer"></div>
-
-      <button class="profile-mini" id="openProfile" style="cursor:pointer; color:inherit; text-align:left;">
-        <div class="profile-row">
-          <div class="avatar">ZL</div>
-          <div style="min-width:0; flex:1;">
-            <strong>Zilin Li</strong>
-            <span>Donghua University</span>
-          </div>
-          <div class="status-dot" title="Available"></div>
-        </div>
-      </button>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <div style="display:flex; align-items:center; gap:9px;">
-          <button class="icon-btn mobile-menu" id="menuBtn" aria-label="Open menu">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-          </button>
-          <div class="model-switch">
-            <span>Model</span>
-            <strong>Zilin Research Reasoner</strong>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 10 5 5 5-5"/></svg>
-          </div>
-        </div>
-        <div class="top-actions">
-          <button class="icon-btn" id="shareBtn" aria-label="Copy page link" title="Copy page link">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.7 6.8-4.1M8.6 13.3l6.8 4.1"/></svg>
-          </button>
-          <button class="icon-btn" id="openProfileTop" aria-label="Open profile" title="Profile">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
-          </button>
-        </div>
-      </header>
-
-      <section class="chat-scroll" id="chatScroll">
-        <div class="chat-shell" id="chatShell">
-          <section class="hero" id="hero">
-            <div class="hero-orb">ZL</div>
-            <h1>Ask about <span class="gradient">Zilin's work.</span></h1>
-            <p>An offline, conversational research profile covering publications, technical interests, academic background, and adjacent machine learning concepts.</p>
-            <div class="prompt-grid">
-              <button class="prompt-card" data-prompt="Give me a concise overview of Zilin Li.">
-                <strong>Who is Zilin?</strong>
-                <span>Background, research identity, and current direction.</span>
-              </button>
-              <button class="prompt-card" data-prompt="Which of Zilin's projects is the most theoretically ambitious, and why?">
-                <strong>Assess the research</strong>
-                <span>Compare the technical ambition across his projects.</span>
-              </button>
-              <button class="prompt-card" data-prompt="Explain DuoTeach to a machine learning researcher in detail.">
-                <strong>Explain DuoTeach</strong>
-                <span>A deeper technical interpretation of the VLM project.</span>
-              </button>
-              <button class="prompt-card" data-prompt="What should Zilin focus on next to build a stronger research profile?">
-                <strong>Strategic advice</strong>
-                <span>Concrete next steps for an undergraduate researcher.</span>
-              </button>
-            </div>
-          </section>
-          <div id="messages"></div>
-        </div>
-      </section>
-
-      <div class="composer-wrap">
-        <div class="composer">
-          <textarea id="promptInput" rows="1" placeholder="Ask about Zilin, his research, or a related technical topic..."></textarea>
-          <div class="composer-bottom">
-            <div class="composer-note">Offline knowledge engine · No external API calls</div>
-            <button class="send-btn" id="sendBtn" aria-label="Send message">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="m5 12 14-8-4 16-3-6-7-2Z"/><path d="m12 14 7-10"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </main>
+</style></head>
+<body><main class="app">
+<aside class="sidebar panel">
+  <div class="brand-row"><div class="mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 18.5 4.5 21v-4.2A8.5 8.5 0 1 1 8 18.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10.5h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><span class="status-pill"><span class="dot"></span><span id="modePill">Offline ready</span></span></div>
+  <div class="identity"><div class="eyebrow">Personal AI Assistant</div><h1>Zilin Li</h1><div class="pronouns">he / him</div><p>Undergraduate student at the School of Information and Intelligent Science, Donghua University, Shanghai.</p></div>
+  <div class="divider"></div>
+  <div><div class="section-label">Expertise</div><div class="tag-list"><span class="tag">Distributed Machine Learning</span><span class="tag">Representation Learning</span></div></div>
+  <div class="profile-facts">
+    <div class="fact"><div class="fact-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m3 9 9-5 9 5-9 5-9-5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7 12v4.5c2.6 2 7.4 2 10 0V12M21 9v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><div><strong>Undergraduate</strong><span>Information &amp; Intelligent Science</span></div></div>
+    <div class="fact"><div class="fact-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.7"/></svg></div><div><strong>Donghua University</strong><span>Shanghai, China</span></div></div>
+    <div class="fact"><div class="fact-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9.5 5.2a3 3 0 0 0-5.1 2.2c0 .5.1 1 .4 1.4A3.4 3.4 0 0 0 6 15.4v.1A3.5 3.5 0 0 0 9.5 19V5.2Zm5 0a3 3 0 0 1 5.1 2.2c0 .5-.1 1-.4 1.4a3.4 3.4 0 0 1-1.2 6.6v.1a3.5 3.5 0 0 1-3.5 3.5V5.2Z" stroke="currentColor" stroke-width="1.7"/><path d="M9.5 9H7.8M14.5 9h1.7M9.5 14H8M14.5 14H16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><div><strong>Current focus</strong><span>Representation Learning</span></div></div>
   </div>
+  <div class="mode-card"><div class="mode-icon" id="sideModeIcon">OFF</div><div><strong id="sideModeTitle">Offline knowledge mode</strong><span id="sideModeText">Embedded bilingual corpus; no network or API key required.</span></div></div>
+  <div class="side-footer">One self-contained HTML file.<br>© 2026 Zilin Li</div>
+</aside>
+<section class="chat panel"><header class="topbar"><div class="title-wrap"><div class="avatar">ZL</div><div><h2>Zilin's Research Assistant</h2><p id="subtitle">Offline corpus · private and instant</p></div></div><div class="actions"><div class="top-actions-left"><div class="mode-switch" role="tablist" aria-label="Chat mode"><button class="mode-btn active" data-mode="offline" role="tab">Offline <span class="wide">Corpus</span></button><button class="mode-btn" data-mode="api" role="tab">DeepSeek <span class="wide">API</span></button></div></div><div class="top-actions-right"><button class="soft-btn mobile-profile" id="profileBtn" title="Profile"><span class="label">Profile</span> ZL</button><button class="soft-btn" id="knowledgeBtn" title="Offline knowledge"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4.5h10.5A3.5 3.5 0 0 1 19 8v11.5H8.5A3.5 3.5 0 0 1 5 16V4.5Z" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 19.5A3.5 3.5 0 0 1 12 16h7M9 8h6M9 11.5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="label">Corpus</span></button><button class="soft-btn hidden" id="settingsBtn"><svg viewBox="0 0 24 24" fill="none"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" stroke="currentColor" stroke-width="1.7"/><path d="m19 13.1 1.2 1-.2 1.4-1.5.6-.8 1.4.2 1.6-1.2.8-1.3-1-1.6.3-.9 1.4h-1.5l-.8-1.4-1.6-.3-1.3 1-1.2-.8.2-1.6-.8-1.4-1.5-.6-.2-1.4 1.2-1V11l-1.2-1 .2-1.4 1.5-.6.8-1.4-.2-1.6 1.2-.8 1.3 1 1.6-.3.8-1.4h1.5l.9 1.4 1.6.3 1.3-1 1.2.8-.2 1.6.8 1.4 1.5.6.2 1.4-1.2 1v2.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="label">API settings</span></button><button class="icon-btn" id="clearBtn" title="Clear current conversation"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7h14M9 7V4h6v3m-8 0 1 13h8l1-13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></header>
+<div class="messages" id="messages"><div class="messages-inner" id="messagesInner"></div></div>
+<footer class="composer-wrap"><div class="composer"><textarea id="input" rows="1" placeholder="Ask a research question…"></textarea><button class="send" id="sendBtn" disabled aria-label="Send"><svg viewBox="0 0 24 24" fill="none"><path d="m4 5 16 7-16 7 2.5-7L4 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6.5 12H20" stroke="currentColor" stroke-width="1.8"/></svg></button></div><p class="composer-note" id="composerNote">Offline answers come from the embedded curated corpus. No messages leave this page.</p></footer></section></main>
 
-  <div class="modal-backdrop" id="profileModal">
-    <div class="modal">
-      <div class="modal-head">
-        <div>
-          <div style="color:var(--accent-2); font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; margin-bottom:7px;">Research profile</div>
-          <h2>Zilin Li</h2>
-        </div>
-        <button class="close-btn" id="closeProfile" aria-label="Close">✕</button>
-      </div>
-      <div class="profile-grid">
-        <div class="info-card"><small>Current role</small><p>Undergraduate student, School of Information and Intelligent Science, Donghua University, Shanghai.</p></div>
-        <div class="info-card"><small>Research experience</small><p>Former intern at BCMI Lab, Shanghai Jiao Tong University, from 2024 to 2025.</p></div>
-        <div class="info-card"><small>Expertise</small><p>Distributed machine learning, representation learning, vision-language reasoning, and epistemic reliability.</p></div>
-        <div class="info-card"><small>Contact</small><p>231310414@mail.dhu.edu.cn<br>723602212576@sjtu.edu.cn</p></div>
-      </div>
-      <div class="side-label" style="margin-left:2px;">Selected work</div>
-      <div class="pub-list" id="modalPublications"></div>
-    </div>
-  </div>
+<div class="modal-backdrop" id="settingsModal"><div class="modal"><div class="modal-head"><div><h3>DeepSeek API settings</h3><p>Use a key for this tab, or store it locally only as AES-GCM ciphertext protected by your passphrase.</p></div><button class="icon-btn" data-close="settingsModal"><svg viewBox="0 0 24 24" fill="none"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><div class="form-grid">
+<div class="notice">A static website cannot make a shared API key secret. This vault protects the key at rest; the plaintext exists in browser memory while unlocked.</div>
+<div class="field"><label>API endpoint</label><input id="endpointInput" value="https://api.deepseek.com/chat/completions"><div class="hint">Use the official endpoint or your own compatible proxy if direct browser requests are blocked by CORS.</div></div>
+<div class="field"><label>Model</label><select id="modelInput"><option value="deepseek-v4-flash">deepseek-v4-flash</option><option value="deepseek-v4-pro">deepseek-v4-pro</option></select></div>
+<div class="field"><label>DeepSeek API key</label><input id="apiKeyInput" type="password" autocomplete="off" placeholder="sk-…"></div>
+<div class="field"><label>Vault passphrase</label><input id="passphraseInput" type="password" autocomplete="new-password" placeholder="At least 12 characters"><div class="hint">Required only when saving or unlocking the encrypted vault.</div></div>
+</div><div class="modal-actions"><button class="danger-btn" id="removeVaultBtn">Remove vault</button><button class="secondary" id="unlockBtn">Unlock vault</button><button class="secondary" id="useSessionBtn">Use for this tab</button><button class="primary" id="saveVaultBtn">Encrypt &amp; save</button></div></div></div>
+<div class="modal-backdrop" id="corpusModal"><div class="modal"><div class="modal-head"><div><h3>Embedded knowledge corpus</h3><p>The offline engine uses lightweight bilingual retrieval entirely inside this HTML file.</p></div><button class="icon-btn" data-close="corpusModal"><svg viewBox="0 0 24 24" fill="none"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><div class="corpus-grid"><div class="corpus-stat"><strong id="entryCount">0</strong><span>curated entries</span></div><div class="corpus-stat"><strong id="categoryCount">0</strong><span>knowledge categories</span></div><div class="corpus-stat"><strong>2</strong><span>supported languages</span></div></div><div class="category-list" id="categoryList"></div><div class="notice" style="margin-top:15px">Offline mode performs retrieval and answer selection, not generative inference. Unknown personal facts, publications, awards, and contact details are not invented.</div></div></div>
+<div class="modal-backdrop" id="profileModal"><div class="modal"><div class="modal-head"><div><h3>Zilin Li</h3><p>he / him · Undergraduate student, Donghua University, Shanghai</p></div><button class="icon-btn" data-close="profileModal"><svg viewBox="0 0 24 24" fill="none"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div><div class="tag-list"><span class="tag">Distributed Machine Learning</span><span class="tag">Representation Learning</span></div><p style="margin-top:16px">This assistant is limited to the profile facts provided on this website and should not invent publications, awards, employment, contact details, or other biographical claims.</p></div></div>
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+const CORPUS=[{"id":"profile_intro","category":"profile","questionsZh":["介绍一下Zilin Li","Zilin是谁","你是谁","个人简介"],"questionsEn":["Who is Zilin Li?","Introduce Zilin","Tell me about Zilin"],"answerZh":"Zilin Li（he/him）是东华大学信息与智能科学学院的本科生，所在地为上海。他的研究专长是分布式机器学习，目前重点关注表征学习。","answerEn":"Zilin Li (he/him) is an undergraduate student at the School of Information and Intelligent Science, Donghua University, Shanghai. His expertise is distributed machine learning, with a current focus on representation learning.","keywords":["zilin","li","东华大学","donghua","undergraduate","本科生","简介","profile"],"detailZh":"Zilin Li（he/him）是东华大学信息与智能科学学院的本科生，所在地为上海。他的研究专长是分布式机器学习，目前重点关注表征学习。","detailEn":"Zilin Li (he/him) is an undergraduate student at the School of Information and Intelligent Science, Donghua University, Shanghai. His expertise is distributed machine learning, with a current focus on representation learning.","suggestions":["研究方向","学校信息","专业能力"]},{"id":"profile_pronouns","category":"profile","questionsZh":["Zilin的代词是什么","怎么称呼Zilin","性别代词"],"questionsEn":["What are Zilin’s pronouns?","How should I refer to Zilin?"],"answerZh":"Zilin 使用 he/him 代词。","answerEn":"Zilin uses he/him pronouns.","keywords":["pronouns","代词","he","him"],"detailZh":"Zilin 使用 he/him 代词。","detailEn":"Zilin uses he/him pronouns.","suggestions":[]},{"id":"profile_school","category":"profile","questionsZh":["Zilin在哪所大学","学校是什么","东华大学信息"],"questionsEn":["Which university does Zilin attend?","Where does Zilin study?"],"answerZh":"Zilin 就读于上海的东华大学信息与智能科学学院，目前为本科生。","answerEn":"Zilin studies at the School of Information and Intelligent Science, Donghua University, in Shanghai, and is currently an undergraduate student.","keywords":["school","university","大学","东华","donghua","学院"],"detailZh":"Zilin 就读于上海的东华大学信息与智能科学学院，目前为本科生。","detailEn":"Zilin studies at the School of Information and Intelligent Science, Donghua University, in Shanghai, and is currently an undergraduate student.","suggestions":[]},{"id":"profile_location","category":"profile","questionsZh":["Zilin在哪里","所在城市","上海"],"questionsEn":["Where is Zilin based?","What city is Zilin in?"],"answerZh":"现有资料显示 Zilin 在中国上海学习。","answerEn":"The provided profile indicates that Zilin studies in Shanghai, China.","keywords":["location","city","上海","shanghai"],"detailZh":"现有资料显示 Zilin 在中国上海学习。","detailEn":"The provided profile indicates that Zilin studies in Shanghai, China.","suggestions":[]},{"id":"profile_expertise","category":"profile","questionsZh":["Zilin擅长什么","研究专长","expertise"],"questionsEn":["What is Zilin’s expertise?","What does Zilin specialize in?"],"answerZh":"Zilin 的研究专长是分布式机器学习，当前研究重点是表征学习。","answerEn":"Zilin’s expertise is distributed machine learning, and his current research focus is representation learning.","keywords":["expertise","专长","擅长","distributed","representation"],"detailZh":"Zilin 的研究专长是分布式机器学习，当前研究重点是表征学习。","detailEn":"Zilin’s expertise is distributed machine learning, and his current research focus is representation learning.","suggestions":[]},{"id":"profile_publications","category":"profile","questionsZh":["Zilin有哪些论文","发表了什么","publication"],"questionsEn":["What papers has Zilin published?","List Zilin’s publications"],"answerZh":"当前离线资料没有提供 Zilin 的论文列表，因此我不会虚构。你可以在语料文件中加入论文题目、作者、会议和链接。","answerEn":"The offline profile does not include a publication list, so I will not invent one. You can add paper titles, authors, venues, and links to the corpus file.","keywords":["publication","paper","论文","发表"],"detailZh":"当前离线资料没有提供 Zilin 的论文列表，因此我不会虚构。你可以在语料文件中加入论文题目、作者、会议和链接。","detailEn":"The offline profile does not include a publication list, so I will not invent one. You can add paper titles, authors, venues, and links to the corpus file.","suggestions":[]},{"id":"profile_contact","category":"profile","questionsZh":["怎么联系Zilin","邮箱是什么","联系方式"],"questionsEn":["How can I contact Zilin?","What is Zilin’s email?"],"answerZh":"当前资料没有提供公开邮箱或其他联系方式。部署前可在语料文件中加入你希望公开的邮箱、GitHub 或个人主页链接。","answerEn":"No public email or contact channel was provided. Before deployment, you can add the email, GitHub profile, or homepage link you want to publish.","keywords":["contact","email","联系","邮箱","github"],"detailZh":"当前资料没有提供公开邮箱或其他联系方式。部署前可在语料文件中加入你希望公开的邮箱、GitHub 或个人主页链接。","detailEn":"No public email or contact channel was provided. Before deployment, you can add the email, GitHub profile, or homepage link you want to publish.","suggestions":[]},{"id":"site_capabilities","category":"site","questionsZh":["这个聊天机器人能做什么","你能回答什么","功能"],"questionsEn":["What can this chatbot do?","What can I ask here?"],"answerZh":"我可以离线回答关于 Zilin 的已知简介，以及分布式机器学习、联邦学习、表征学习、自监督学习、研究设计和论文写作等常见问题。回答来自本地语料检索，不会调用外部 API。","answerEn":"I can answer offline questions about Zilin’s provided profile and common topics in distributed machine learning, federated learning, representation learning, self-supervised learning, research design, and academic writing. Responses are retrieved from local corpus data without external APIs.","keywords":["capability","function","功能","能做什么","offline"],"detailZh":"我可以离线回答关于 Zilin 的已知简介，以及分布式机器学习、联邦学习、表征学习、自监督学习、研究设计和论文写作等常见问题。回答来自本地语料检索，不会调用外部 API。","detailEn":"I can answer offline questions about Zilin’s provided profile and common topics in distributed machine learning, federated learning, representation learning, self-supervised learning, research design, and academic writing. Responses are retrieved from local corpus data without external APIs.","suggestions":[]},{"id":"site_offline","category":"site","questionsZh":["真的不需要API吗","是否联网","离线原理"],"questionsEn":["Does this really work without an API?","Is this chatbot offline?"],"answerZh":"是的。该版本在浏览器中完成分词、同义词扩展和语料相似度检索，不向模型服务发送请求。它的优势是免费、稳定和隐私友好，局限是不能像大语言模型那样自由生成全新答案。","answerEn":"Yes. This edition performs tokenization, synonym expansion, and corpus similarity retrieval entirely in the browser. It is free, stable, and privacy-friendly, but it cannot generate novel answers as flexibly as a large language model.","keywords":["offline","api","联网","离线","local"],"detailZh":"是的。该版本在浏览器中完成分词、同义词扩展和语料相似度检索，不向模型服务发送请求。它的优势是免费、稳定和隐私友好，局限是不能像大语言模型那样自由生成全新答案。","detailEn":"Yes. This edition performs tokenization, synonym expansion, and corpus similarity retrieval entirely in the browser. It is free, stable, and privacy-friendly, but it cannot generate novel answers as flexibly as a large language model.","suggestions":[]},{"id":"site_edit_corpus","category":"site","questionsZh":["怎么修改语料","如何添加答案","扩充知识库"],"questionsEn":["How do I edit the corpus?","How can I add answers?"],"answerZh":"打开 corpus.js，复制一个知识条目并修改 id、问题、关键词、中英文回答和建议问题。保存后与 index.html 一起重新上传即可。","answerEn":"Open corpus.js, duplicate a knowledge entry, and edit its id, questions, keywords, bilingual answers, and suggested follow-ups. Save it and upload it again with index.html.","keywords":["corpus","语料","知识库","修改","添加"],"detailZh":"打开 corpus.js，复制一个知识条目并修改 id、问题、关键词、中英文回答和建议问题。保存后与 index.html 一起重新上传即可。","detailEn":"Open corpus.js, duplicate a knowledge entry, and edit its id, questions, keywords, bilingual answers, and suggested follow-ups. Save it and upload it again with index.html.","suggestions":[]},{"id":"dml_overview","category":"distributed_ml","questionsZh":["分布式机器学习概述","什么是分布式机器学习概述","分布式机器学习概述怎么理解","什么是分布式机器学习"],"questionsEn":["Distributed machine learning overview","What is Distributed machine learning overview?","Explain Distributed machine learning overview"],"answerZh":"分布式机器学习把数据、模型或计算分散到多个设备或节点协同完成训练。核心目标是在算力、通信、隐私和容错约束下，获得接近集中式训练的模型质量。","answerEn":"Distributed machine learning coordinates training across multiple devices or nodes by distributing data, models, or computation. Its central goal is to approach centralized model quality under constraints on compute, communication, privacy, and fault tolerance.","keywords":["分布式机器学习","distributed machine learning","dml","概述"],"detailZh":"分布式机器学习把数据、模型或计算分散到多个设备或节点协同完成训练。核心目标是在算力、通信、隐私和容错约束下，获得接近集中式训练的模型质量。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Distributed machine learning coordinates training across multiple devices or nodes by distributing data, models, or computation. Its central goal is to approach centralized model quality under constraints on compute, communication, privacy, and fault tolerance. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"data_parallel","category":"distributed_ml","questionsZh":["数据并行","什么是数据并行","数据并行怎么理解"],"questionsEn":["Data parallelism","What is Data parallelism?","Explain Data parallelism"],"answerZh":"数据并行让每个工作节点持有完整模型、处理不同数据批次，再通过梯度或参数聚合保持模型一致。它适合模型可放入单卡、但训练数据或吞吐需求较大的场景。","answerEn":"In data parallelism, each worker holds a full model, processes a different batch, and synchronizes gradients or parameters. It is suitable when the model fits on one device but training data or throughput demands are large.","keywords":["数据并行","data parallel","gradient synchronization"],"detailZh":"数据并行让每个工作节点持有完整模型、处理不同数据批次，再通过梯度或参数聚合保持模型一致。它适合模型可放入单卡、但训练数据或吞吐需求较大的场景。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"In data parallelism, each worker holds a full model, processes a different batch, and synchronizes gradients or parameters. It is suitable when the model fits on one device but training data or throughput demands are large. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"model_parallel","category":"distributed_ml","questionsZh":["模型并行","什么是模型并行","模型并行怎么理解"],"questionsEn":["Model parallelism","What is Model parallelism?","Explain Model parallelism"],"answerZh":"模型并行把模型层、张量或计算图切分到多个设备，常见形式包括流水线并行和张量并行。它主要解决单个设备无法容纳模型的问题。","answerEn":"Model parallelism partitions layers, tensors, or the computation graph across devices. Common forms include pipeline and tensor parallelism, mainly addressing models that do not fit on one device.","keywords":["模型并行","model parallel","tensor parallel","pipeline parallel"],"detailZh":"模型并行把模型层、张量或计算图切分到多个设备，常见形式包括流水线并行和张量并行。它主要解决单个设备无法容纳模型的问题。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Model parallelism partitions layers, tensors, or the computation graph across devices. Common forms include pipeline and tensor parallelism, mainly addressing models that do not fit on one device. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"federated_overview","category":"distributed_ml","questionsZh":["联邦学习","什么是联邦学习","联邦学习怎么理解"],"questionsEn":["Federated learning","What is Federated learning?","Explain Federated learning"],"answerZh":"联邦学习让客户端保留本地数据，只交换模型更新或统计量。它减少了原始数据集中化，但不自动等同于隐私保护，通常还需要安全聚合、差分隐私或攻击防御。","answerEn":"Federated learning keeps data on clients and exchanges model updates or statistics. It reduces raw-data centralization but is not automatically private; secure aggregation, differential privacy, and attack defenses may still be required.","keywords":["联邦学习","federated learning","fl","隐私"],"detailZh":"联邦学习让客户端保留本地数据，只交换模型更新或统计量。它减少了原始数据集中化，但不自动等同于隐私保护，通常还需要安全聚合、差分隐私或攻击防御。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Federated learning keeps data on clients and exchanges model updates or statistics. It reduces raw-data centralization but is not automatically private; secure aggregation, differential privacy, and attack defenses may still be required. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"fedavg","category":"distributed_ml","questionsZh":["FedAvg算法","什么是FedAvg算法","FedAvg算法怎么理解"],"questionsEn":["FedAvg algorithm","What is FedAvg algorithm?","Explain FedAvg algorithm"],"answerZh":"FedAvg 在每轮选择部分客户端进行若干步本地 SGD，再按本地样本量对模型参数加权平均。它简单有效，但在强非独立同分布数据和本地步数过多时可能发生客户端漂移。","answerEn":"FedAvg selects a subset of clients each round, runs several local SGD steps, and averages model parameters weighted by local sample counts. It is simple and effective, but can suffer client drift under strong non-IID data and many local steps.","keywords":["fedavg","federated averaging","客户端漂移"],"detailZh":"FedAvg 在每轮选择部分客户端进行若干步本地 SGD，再按本地样本量对模型参数加权平均。它简单有效，但在强非独立同分布数据和本地步数过多时可能发生客户端漂移。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"FedAvg selects a subset of clients each round, runs several local SGD steps, and averages model parameters weighted by local sample counts. It is simple and effective, but can suffer client drift under strong non-IID data and many local steps. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"non_iid","category":"distributed_ml","questionsZh":["非IID数据","什么是非IID数据","非IID数据怎么理解"],"questionsEn":["Non-IID data","What is Non-IID data?","Explain Non-IID data"],"answerZh":"非 IID 指不同客户端的数据分布不一致，例如标签偏斜、特征偏移、样本量不平衡或时间漂移。它会使本地更新方向分散，增加收敛难度并降低全局公平性。","answerEn":"Non-IID data means client distributions differ through label skew, feature shift, sample imbalance, or temporal drift. It can make local update directions diverge, complicate convergence, and reduce global fairness.","keywords":["non iid","非iid","heterogeneity","异质性"],"detailZh":"非 IID 指不同客户端的数据分布不一致，例如标签偏斜、特征偏移、样本量不平衡或时间漂移。它会使本地更新方向分散，增加收敛难度并降低全局公平性。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Non-IID data means client distributions differ through label skew, feature shift, sample imbalance, or temporal drift. It can make local update directions diverge, complicate convergence, and reduce global fairness. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"client_drift","category":"distributed_ml","questionsZh":["客户端漂移","什么是客户端漂移","客户端漂移怎么理解"],"questionsEn":["Client drift","What is Client drift?","Explain Client drift"],"answerZh":"客户端漂移是本地模型因多步局部优化和数据异质性而偏离全局优化方向的现象。常见缓解方法包括近端正则、控制变量、服务器动量和个性化建模。","answerEn":"Client drift occurs when multiple local steps on heterogeneous data move client models away from the global optimization direction. Mitigations include proximal regularization, control variates, server momentum, and personalization.","keywords":["client drift","客户端漂移","local update"],"detailZh":"客户端漂移是本地模型因多步局部优化和数据异质性而偏离全局优化方向的现象。常见缓解方法包括近端正则、控制变量、服务器动量和个性化建模。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Client drift occurs when multiple local steps on heterogeneous data move client models away from the global optimization direction. Mitigations include proximal regularization, control variates, server momentum, and personalization. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"communication","category":"distributed_ml","questionsZh":["通信效率","什么是通信效率","通信效率怎么理解"],"questionsEn":["Communication efficiency","What is Communication efficiency?","Explain Communication efficiency"],"answerZh":"分布式训练常受通信而非计算限制。压缩、量化、稀疏化、本地多步更新、拓扑设计和异步机制都可减少通信成本，但通常会引入偏差、噪声或陈旧性。","answerEn":"Distributed training is often communication-bound rather than compute-bound. Compression, quantization, sparsification, local steps, topology design, and asynchronous updates reduce communication cost but may introduce bias, noise, or staleness.","keywords":["communication","通信","压缩","compression"],"detailZh":"分布式训练常受通信而非计算限制。压缩、量化、稀疏化、本地多步更新、拓扑设计和异步机制都可减少通信成本，但通常会引入偏差、噪声或陈旧性。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Distributed training is often communication-bound rather than compute-bound. Compression, quantization, sparsification, local steps, topology design, and asynchronous updates reduce communication cost but may introduce bias, noise, or staleness. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"gradient_compression","category":"distributed_ml","questionsZh":["梯度压缩","什么是梯度压缩","梯度压缩怎么理解"],"questionsEn":["Gradient compression","What is Gradient compression?","Explain Gradient compression"],"answerZh":"梯度压缩通过低比特量化、Top-k 稀疏化、随机舍入或误差反馈降低传输量。误差反馈常用于补偿有偏压缩造成的长期信息损失。","answerEn":"Gradient compression reduces traffic through low-bit quantization, top-k sparsification, stochastic rounding, or error feedback. Error feedback often compensates for long-term information loss caused by biased compressors.","keywords":["gradient compression","梯度压缩","quantization","sparsification"],"detailZh":"梯度压缩通过低比特量化、Top-k 稀疏化、随机舍入或误差反馈降低传输量。误差反馈常用于补偿有偏压缩造成的长期信息损失。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Gradient compression reduces traffic through low-bit quantization, top-k sparsification, stochastic rounding, or error feedback. Error feedback often compensates for long-term information loss caused by biased compressors. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"decentralized","category":"distributed_ml","questionsZh":["去中心化学习","什么是去中心化学习","去中心化学习怎么理解"],"questionsEn":["Decentralized learning","What is Decentralized learning?","Explain Decentralized learning"],"answerZh":"去中心化学习不依赖中央服务器，节点只与图上的邻居交换信息。分析通常涉及混合矩阵、图谱间隙、共识误差和优化误差之间的耦合。","answerEn":"Decentralized learning removes the central server and lets nodes communicate only with graph neighbors. Analysis typically involves mixing matrices, graph spectral gaps, consensus error, and its coupling with optimization error.","keywords":["decentralized","去中心化","gossip","共识"],"detailZh":"去中心化学习不依赖中央服务器，节点只与图上的邻居交换信息。分析通常涉及混合矩阵、图谱间隙、共识误差和优化误差之间的耦合。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Decentralized learning removes the central server and lets nodes communicate only with graph neighbors. Analysis typically involves mixing matrices, graph spectral gaps, consensus error, and its coupling with optimization error. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"consensus","category":"distributed_ml","questionsZh":["共识算法","什么是共识算法","共识算法怎么理解"],"questionsEn":["Consensus algorithms","What is Consensus algorithms?","Explain Consensus algorithms"],"answerZh":"共识算法让网络节点通过局部平均逐渐趋于一致。收敛速度取决于通信图连通性和混合矩阵的谱性质，谱间隙越大通常混合越快。","answerEn":"Consensus algorithms let network nodes approach agreement through local averaging. Convergence speed depends on graph connectivity and the spectral properties of the mixing matrix; a larger spectral gap usually implies faster mixing.","keywords":["consensus","共识","spectral gap","谱间隙"],"detailZh":"共识算法让网络节点通过局部平均逐渐趋于一致。收敛速度取决于通信图连通性和混合矩阵的谱性质，谱间隙越大通常混合越快。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Consensus algorithms let network nodes approach agreement through local averaging. Convergence speed depends on graph connectivity and the spectral properties of the mixing matrix; a larger spectral gap usually implies faster mixing. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"gossip","category":"distributed_ml","questionsZh":["Gossip通信","什么是Gossip通信","Gossip通信怎么理解"],"questionsEn":["Gossip communication","What is Gossip communication?","Explain Gossip communication"],"answerZh":"Gossip 方法每次只让少数节点随机交换信息，单步开销低且容易异步化。其代价是达到全局一致通常需要更多轮次，并且分析依赖随机图过程。","answerEn":"Gossip methods randomly exchange information between only a few nodes per step, giving low per-step cost and natural asynchrony. The tradeoff is more rounds to reach global agreement and analysis involving random graph processes.","keywords":["gossip","随机通信","pairwise"],"detailZh":"Gossip 方法每次只让少数节点随机交换信息，单步开销低且容易异步化。其代价是达到全局一致通常需要更多轮次，并且分析依赖随机图过程。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Gossip methods randomly exchange information between only a few nodes per step, giving low per-step cost and natural asynchrony. The tradeoff is more rounds to reach global agreement and analysis involving random graph processes. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"async","category":"distributed_ml","questionsZh":["异步分布式优化","什么是异步分布式优化","异步分布式优化怎么理解"],"questionsEn":["Asynchronous distributed optimization","What is Asynchronous distributed optimization?","Explain Asynchronous distributed optimization"],"answerZh":"异步方法允许节点无需全局同步即可更新，能减少慢节点阻塞，但会引入延迟和陈旧梯度。设计时需要限制最大延迟或采用能适应陈旧性的校正机制。","answerEn":"Asynchronous methods let nodes update without global synchronization, reducing straggler blocking but introducing delays and stale gradients. Designs typically bound delay or correct for staleness.","keywords":["asynchronous","异步","staleness","陈旧"],"detailZh":"异步方法允许节点无需全局同步即可更新，能减少慢节点阻塞，但会引入延迟和陈旧梯度。设计时需要限制最大延迟或采用能适应陈旧性的校正机制。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Asynchronous methods let nodes update without global synchronization, reducing straggler blocking but introducing delays and stale gradients. Designs typically bound delay or correct for staleness. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"stragglers","category":"distributed_ml","questionsZh":["慢节点问题","什么是慢节点问题","慢节点问题怎么理解"],"questionsEn":["Stragglers","What is Stragglers?","Explain Stragglers"],"answerZh":"慢节点会拖延同步训练的每一轮。常见策略包括备份工作节点、部分参与、编码计算、动态批量和异步聚合。","answerEn":"Stragglers delay each synchronous training round. Common strategies include backup workers, partial participation, coded computation, dynamic batching, and asynchronous aggregation.","keywords":["straggler","慢节点","部分参与"],"detailZh":"慢节点会拖延同步训练的每一轮。常见策略包括备份工作节点、部分参与、编码计算、动态批量和异步聚合。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Stragglers delay each synchronous training round. Common strategies include backup workers, partial participation, coded computation, dynamic batching, and asynchronous aggregation. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"fault_tolerance","category":"distributed_ml","questionsZh":["容错","什么是容错","容错怎么理解"],"questionsEn":["Fault tolerance","What is Fault tolerance?","Explain Fault tolerance"],"answerZh":"容错设计要处理节点掉线、网络中断、数值异常和恶意更新。检查点、冗余、鲁棒聚合和异常检测分别应对不同故障模型。","answerEn":"Fault tolerance addresses node dropouts, network failures, numerical anomalies, and malicious updates. Checkpointing, redundancy, robust aggregation, and anomaly detection target different failure models.","keywords":["fault tolerance","容错","dropout","故障"],"detailZh":"容错设计要处理节点掉线、网络中断、数值异常和恶意更新。检查点、冗余、鲁棒聚合和异常检测分别应对不同故障模型。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Fault tolerance addresses node dropouts, network failures, numerical anomalies, and malicious updates. Checkpointing, redundancy, robust aggregation, and anomaly detection target different failure models. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"byzantine","category":"distributed_ml","questionsZh":["拜占庭鲁棒性","什么是拜占庭鲁棒性","拜占庭鲁棒性怎么理解"],"questionsEn":["Byzantine robustness","What is Byzantine robustness?","Explain Byzantine robustness"],"answerZh":"拜占庭节点可以发送任意或恶意更新。坐标中位数、截断均值、Krum 类方法和基于相似度的过滤是常见防御，但效果取决于攻击比例和数据异质性。","answerEn":"Byzantine nodes may send arbitrary or malicious updates. Coordinate median, trimmed mean, Krum-style methods, and similarity filtering are common defenses, with effectiveness depending on attacker fraction and data heterogeneity.","keywords":["byzantine","拜占庭","robust aggregation","鲁棒聚合"],"detailZh":"拜占庭节点可以发送任意或恶意更新。坐标中位数、截断均值、Krum 类方法和基于相似度的过滤是常见防御，但效果取决于攻击比例和数据异质性。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Byzantine nodes may send arbitrary or malicious updates. Coordinate median, trimmed mean, Krum-style methods, and similarity filtering are common defenses, with effectiveness depending on attacker fraction and data heterogeneity. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"secure_aggregation","category":"distributed_ml","questionsZh":["安全聚合","什么是安全聚合","安全聚合怎么理解"],"questionsEn":["Secure aggregation","What is Secure aggregation?","Explain Secure aggregation"],"answerZh":"安全聚合使服务器只能看到客户端更新的总和，而不能读取单个更新。它保护传输中的单客户端信息，但不能单独阻止从聚合结果进行统计推断。","answerEn":"Secure aggregation lets the server observe only the sum of client updates rather than individual updates. It protects per-client information in transit but alone does not prevent statistical inference from the aggregate.","keywords":["secure aggregation","安全聚合","privacy"],"detailZh":"安全聚合使服务器只能看到客户端更新的总和，而不能读取单个更新。它保护传输中的单客户端信息，但不能单独阻止从聚合结果进行统计推断。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Secure aggregation lets the server observe only the sum of client updates rather than individual updates. It protects per-client information in transit but alone does not prevent statistical inference from the aggregate. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"differential_privacy","category":"distributed_ml","questionsZh":["差分隐私","什么是差分隐私","差分隐私怎么理解"],"questionsEn":["Differential privacy","What is Differential privacy?","Explain Differential privacy"],"answerZh":"差分隐私通过裁剪单个贡献并加入校准噪声，限制输出对任一训练样本或客户端的敏感度。隐私预算越严格，通常模型效用损失越明显。","answerEn":"Differential privacy clips individual contributions and adds calibrated noise to limit sensitivity to any one sample or client. Stronger privacy budgets generally cause larger utility loss.","keywords":["differential privacy","差分隐私","epsilon","隐私预算"],"detailZh":"差分隐私通过裁剪单个贡献并加入校准噪声，限制输出对任一训练样本或客户端的敏感度。隐私预算越严格，通常模型效用损失越明显。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Differential privacy clips individual contributions and adds calibrated noise to limit sensitivity to any one sample or client. Stronger privacy budgets generally cause larger utility loss. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"personalized_fl","category":"distributed_ml","questionsZh":["个性化联邦学习","什么是个性化联邦学习","个性化联邦学习怎么理解"],"questionsEn":["Personalized federated learning","What is Personalized federated learning?","Explain Personalized federated learning"],"answerZh":"个性化联邦学习不强求所有客户端共享完全相同的模型，而是在全局知识与本地适应之间平衡。方法包括局部微调、共享骨干与私有头、聚类、多任务学习和元学习。","answerEn":"Personalized federated learning balances shared global knowledge with local adaptation instead of forcing one identical model for all clients. Methods include local fine-tuning, shared backbones with private heads, clustering, multitask learning, and meta-learning.","keywords":["personalized federated","个性化联邦","local adaptation"],"detailZh":"个性化联邦学习不强求所有客户端共享完全相同的模型，而是在全局知识与本地适应之间平衡。方法包括局部微调、共享骨干与私有头、聚类、多任务学习和元学习。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Personalized federated learning balances shared global knowledge with local adaptation instead of forcing one identical model for all clients. Methods include local fine-tuning, shared backbones with private heads, clustering, multitask learning, and meta-learning. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"fairness_fl","category":"distributed_ml","questionsZh":["联邦公平性","什么是联邦公平性","联邦公平性怎么理解"],"questionsEn":["Federated fairness","What is Federated fairness?","Explain Federated fairness"],"answerZh":"联邦学习中的公平性既包括不同客户端性能差距，也包括参与机会、资源消耗和群体风险。只优化全局平均精度可能掩盖尾部客户端的显著退化。","answerEn":"Fairness in federated learning includes performance disparities, participation opportunities, resource cost, and group risk. Optimizing only global average accuracy can hide severe degradation on tail clients.","keywords":["fairness","公平","tail client"],"detailZh":"联邦学习中的公平性既包括不同客户端性能差距，也包括参与机会、资源消耗和群体风险。只优化全局平均精度可能掩盖尾部客户端的显著退化。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Fairness in federated learning includes performance disparities, participation opportunities, resource cost, and group risk. Optimizing only global average accuracy can hide severe degradation on tail clients. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"heterogeneous_systems","category":"distributed_ml","questionsZh":["系统异质性","什么是系统异质性","系统异质性怎么理解"],"questionsEn":["System heterogeneity","What is System heterogeneity?","Explain System heterogeneity"],"answerZh":"系统异质性指客户端在算力、内存、带宽、电量和在线时间上的差异。自适应本地步数、分层聚合和资源感知采样可以提高整体效率。","answerEn":"System heterogeneity refers to differences in client compute, memory, bandwidth, battery, and availability. Adaptive local steps, hierarchical aggregation, and resource-aware sampling can improve efficiency.","keywords":["system heterogeneity","系统异质性","resource aware"],"detailZh":"系统异质性指客户端在算力、内存、带宽、电量和在线时间上的差异。自适应本地步数、分层聚合和资源感知采样可以提高整体效率。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"System heterogeneity refers to differences in client compute, memory, bandwidth, battery, and availability. Adaptive local steps, hierarchical aggregation, and resource-aware sampling can improve efficiency. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"convergence","category":"distributed_ml","questionsZh":["分布式收敛分析","什么是分布式收敛分析","分布式收敛分析怎么理解"],"questionsEn":["Distributed convergence analysis","What is Distributed convergence analysis?","Explain Distributed convergence analysis"],"answerZh":"收敛分析通常把误差拆成优化误差、随机梯度噪声、共识误差、客户端漂移和压缩误差，再通过光滑性、凸性或梯度支配条件建立界。","answerEn":"Convergence analysis often decomposes error into optimization error, stochastic gradient noise, consensus error, client drift, and compression error, then derives bounds under smoothness, convexity, or gradient-dominance assumptions.","keywords":["convergence","收敛","proof","误差分解"],"detailZh":"收敛分析通常把误差拆成优化误差、随机梯度噪声、共识误差、客户端漂移和压缩误差，再通过光滑性、凸性或梯度支配条件建立界。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Convergence analysis often decomposes error into optimization error, stochastic gradient noise, consensus error, client drift, and compression error, then derives bounds under smoothness, convexity, or gradient-dominance assumptions. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"topology","category":"distributed_ml","questionsZh":["通信拓扑","什么是通信拓扑","通信拓扑怎么理解"],"questionsEn":["Communication topology","What is Communication topology?","Explain Communication topology"],"answerZh":"星型拓扑便于集中聚合，环形和网格更去中心化，分层拓扑可适配边缘网络。拓扑选择影响带宽瓶颈、容错性、谱间隙和部署复杂度。","answerEn":"Star topologies simplify centralized aggregation; rings and meshes are more decentralized; hierarchical topologies fit edge networks. Topology affects bandwidth bottlenecks, fault tolerance, spectral gap, and deployment complexity.","keywords":["topology","拓扑","graph","通信图"],"detailZh":"星型拓扑便于集中聚合，环形和网格更去中心化，分层拓扑可适配边缘网络。拓扑选择影响带宽瓶颈、容错性、谱间隙和部署复杂度。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Star topologies simplify centralized aggregation; rings and meshes are more decentralized; hierarchical topologies fit edge networks. Topology affects bandwidth bottlenecks, fault tolerance, spectral gap, and deployment complexity. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"evaluation_dml","category":"distributed_ml","questionsZh":["分布式学习评估","什么是分布式学习评估","分布式学习评估怎么理解"],"questionsEn":["Evaluating distributed learning","What is Evaluating distributed learning?","Explain Evaluating distributed learning"],"answerZh":"评估应同时报告模型精度、通信字节、训练轮数、墙钟时间、客户端公平性、掉线鲁棒性和隐私开销。只比较最终精度无法反映系统价值。","answerEn":"Evaluation should report model quality, communicated bytes, rounds, wall-clock time, client fairness, dropout robustness, and privacy cost. Final accuracy alone does not capture system value.","keywords":["evaluation","评估","communication bytes","wall clock"],"detailZh":"评估应同时报告模型精度、通信字节、训练轮数、墙钟时间、客户端公平性、掉线鲁棒性和隐私开销。只比较最终精度无法反映系统价值。 研究中应明确数据划分、通信协议、参与率、同步方式和威胁模型，否则不同方法的比较可能不公平。","detailEn":"Evaluation should report model quality, communicated bytes, rounds, wall-clock time, client fairness, dropout robustness, and privacy cost. Final accuracy alone does not capture system value. A rigorous study should state data partitioning, communication protocol, participation rate, synchronization mode, and threat model so comparisons remain fair.","suggestions":[]},{"id":"repr_overview","category":"representation","questionsZh":["表征学习","什么是表征学习","表征学习怎么理解","什么是表征学习"],"questionsEn":["Representation learning","What is Representation learning?","Explain Representation learning"],"answerZh":"表征学习让模型从数据中自动学习有用的特征空间，而不是完全依赖人工特征。好的表征通常保留任务相关信息、压缩无关变化，并支持迁移、聚类、检索或预测。","answerEn":"Representation learning lets models learn useful feature spaces directly from data instead of relying entirely on handcrafted features. Good representations preserve task-relevant information, suppress irrelevant variation, and support transfer, clustering, retrieval, or prediction.","keywords":["表征学习","representation learning","embedding"],"detailZh":"表征学习让模型从数据中自动学习有用的特征空间，而不是完全依赖人工特征。好的表征通常保留任务相关信息、压缩无关变化，并支持迁移、聚类、检索或预测。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Representation learning lets models learn useful feature spaces directly from data instead of relying entirely on handcrafted features. Good representations preserve task-relevant information, suppress irrelevant variation, and support transfer, clustering, retrieval, or prediction. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"embedding","category":"representation","questionsZh":["嵌入表示","什么是嵌入表示","嵌入表示怎么理解"],"questionsEn":["Embeddings","What is Embeddings?","Explain Embeddings"],"answerZh":"嵌入是把离散或高维对象映射为连续向量。距离、夹角或局部邻域通常被设计为反映语义、结构或相似性。","answerEn":"An embedding maps discrete or high-dimensional objects into continuous vectors. Distances, angles, or local neighborhoods are designed to reflect semantics, structure, or similarity.","keywords":["embedding","嵌入","vector"],"detailZh":"嵌入是把离散或高维对象映射为连续向量。距离、夹角或局部邻域通常被设计为反映语义、结构或相似性。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"An embedding maps discrete or high-dimensional objects into continuous vectors. Distances, angles, or local neighborhoods are designed to reflect semantics, structure, or similarity. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"supervised_repr","category":"representation","questionsZh":["监督表征学习","什么是监督表征学习","监督表征学习怎么理解"],"questionsEn":["Supervised representation learning","What is Supervised representation learning?","Explain Supervised representation learning"],"answerZh":"监督表征学习使用标签塑造特征，使同类更可分、不同类更易区分。它通常直接服务于目标任务，但可能过度依赖标签定义并降低跨任务泛化。","answerEn":"Supervised representation learning uses labels to shape features so classes become more separable. It serves the target task directly but may overfit the label definition and transfer less well across tasks.","keywords":["supervised representation","监督表征","label"],"detailZh":"监督表征学习使用标签塑造特征，使同类更可分、不同类更易区分。它通常直接服务于目标任务，但可能过度依赖标签定义并降低跨任务泛化。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Supervised representation learning uses labels to shape features so classes become more separable. It serves the target task directly but may overfit the label definition and transfer less well across tasks. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"self_supervised","category":"representation","questionsZh":["自监督学习","什么是自监督学习","自监督学习怎么理解"],"questionsEn":["Self-supervised learning","What is Self-supervised learning?","Explain Self-supervised learning"],"answerZh":"自监督学习从数据自身构造训练信号，例如遮蔽预测、上下文预测、视图一致性或教师学生目标。它能利用大量无标注数据学习可迁移表征。","answerEn":"Self-supervised learning constructs supervision from the data itself through masked prediction, context prediction, view consistency, or teacher-student targets. It can learn transferable representations from large unlabeled datasets.","keywords":["self supervised","自监督","ssl"],"detailZh":"自监督学习从数据自身构造训练信号，例如遮蔽预测、上下文预测、视图一致性或教师学生目标。它能利用大量无标注数据学习可迁移表征。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Self-supervised learning constructs supervision from the data itself through masked prediction, context prediction, view consistency, or teacher-student targets. It can learn transferable representations from large unlabeled datasets. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"contrastive","category":"representation","questionsZh":["对比学习","什么是对比学习","对比学习怎么理解"],"questionsEn":["Contrastive learning","What is Contrastive learning?","Explain Contrastive learning"],"answerZh":"对比学习拉近正样本对、推远负样本或其他实例。关键设计包括数据增强、相似度函数、温度参数、负样本规模和防止伪负样本。","answerEn":"Contrastive learning pulls positive pairs together and pushes negatives or other instances apart. Key choices include augmentation, similarity function, temperature, negative-set size, and mitigation of false negatives.","keywords":["contrastive","对比学习","positive pair","negative"],"detailZh":"对比学习拉近正样本对、推远负样本或其他实例。关键设计包括数据增强、相似度函数、温度参数、负样本规模和防止伪负样本。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Contrastive learning pulls positive pairs together and pushes negatives or other instances apart. Key choices include augmentation, similarity function, temperature, negative-set size, and mitigation of false negatives. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"simclr","category":"representation","questionsZh":["SimCLR","什么是SimCLR","SimCLR怎么理解"],"questionsEn":["SimCLR","What is SimCLR?","Explain SimCLR"],"answerZh":"SimCLR 对同一样本生成两个增强视图，以编码器和投影头进行批内对比。其效果高度依赖增强策略、大批量负样本和温度设置。","answerEn":"SimCLR creates two augmented views of each sample and performs in-batch contrastive learning with an encoder and projection head. Its performance depends strongly on augmentation, large negative batches, and temperature.","keywords":["simclr","contrastive"],"detailZh":"SimCLR 对同一样本生成两个增强视图，以编码器和投影头进行批内对比。其效果高度依赖增强策略、大批量负样本和温度设置。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"SimCLR creates two augmented views of each sample and performs in-batch contrastive learning with an encoder and projection head. Its performance depends strongly on augmentation, large negative batches, and temperature. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"moco","category":"representation","questionsZh":["MoCo","什么是MoCo","MoCo怎么理解"],"questionsEn":["MoCo","What is MoCo?","Explain MoCo"],"answerZh":"MoCo 使用动量编码器和队列维护大量一致的负样本，降低了超大批量训练的需求。队列长度和动量系数影响负样本的新鲜度与稳定性。","answerEn":"MoCo uses a momentum encoder and queue to maintain many consistent negatives, reducing the need for extremely large batches. Queue length and momentum affect negative freshness and stability.","keywords":["moco","momentum encoder","queue"],"detailZh":"MoCo 使用动量编码器和队列维护大量一致的负样本，降低了超大批量训练的需求。队列长度和动量系数影响负样本的新鲜度与稳定性。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"MoCo uses a momentum encoder and queue to maintain many consistent negatives, reducing the need for extremely large batches. Queue length and momentum affect negative freshness and stability. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"byol","category":"representation","questionsZh":["BYOL","什么是BYOL","BYOL怎么理解"],"questionsEn":["BYOL","What is BYOL?","Explain BYOL"],"answerZh":"BYOL 通过在线网络预测目标网络的表征，不显式使用负样本。停止梯度、目标网络的指数移动平均和非对称预测结构共同帮助避免坍塌。","answerEn":"BYOL predicts target-network representations from an online network without explicit negatives. Stop-gradient, exponential moving average of the target, and asymmetric prediction help avoid collapse.","keywords":["byol","negative free","target network"],"detailZh":"BYOL 通过在线网络预测目标网络的表征，不显式使用负样本。停止梯度、目标网络的指数移动平均和非对称预测结构共同帮助避免坍塌。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"BYOL predicts target-network representations from an online network without explicit negatives. Stop-gradient, exponential moving average of the target, and asymmetric prediction help avoid collapse. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"masked_modeling","category":"representation","questionsZh":["掩码建模","什么是掩码建模","掩码建模怎么理解"],"questionsEn":["Masked modeling","What is Masked modeling?","Explain Masked modeling"],"answerZh":"掩码建模隐藏输入的一部分，并要求模型恢复离散标记、像素、特征或潜变量。它鼓励模型利用上下文结构，但掩码比例和目标空间会显著影响学习结果。","answerEn":"Masked modeling hides part of the input and asks the model to recover tokens, pixels, features, or latent targets. It encourages contextual structure learning, while masking ratio and target space strongly affect results.","keywords":["masked modeling","掩码建模","mask"],"detailZh":"掩码建模隐藏输入的一部分，并要求模型恢复离散标记、像素、特征或潜变量。它鼓励模型利用上下文结构，但掩码比例和目标空间会显著影响学习结果。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Masked modeling hides part of the input and asks the model to recover tokens, pixels, features, or latent targets. It encourages contextual structure learning, while masking ratio and target space strongly affect results. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"autoencoder","category":"representation","questionsZh":["自编码器","什么是自编码器","自编码器怎么理解"],"questionsEn":["Autoencoders","What is Autoencoders?","Explain Autoencoders"],"answerZh":"自编码器通过编码器压缩输入，再由解码器重建。瓶颈、噪声、稀疏性或变分正则决定表征学习到的是简单复制还是更有结构的因素。","answerEn":"Autoencoders compress inputs with an encoder and reconstruct them with a decoder. Bottlenecks, noise, sparsity, or variational regularization determine whether the representation merely copies input or captures structured factors.","keywords":["autoencoder","自编码器","reconstruction"],"detailZh":"自编码器通过编码器压缩输入，再由解码器重建。瓶颈、噪声、稀疏性或变分正则决定表征学习到的是简单复制还是更有结构的因素。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Autoencoders compress inputs with an encoder and reconstruct them with a decoder. Bottlenecks, noise, sparsity, or variational regularization determine whether the representation merely copies input or captures structured factors. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"vae","category":"representation","questionsZh":["变分自编码器","什么是变分自编码器","变分自编码器怎么理解"],"questionsEn":["Variational autoencoders","What is Variational autoencoders?","Explain Variational autoencoders"],"answerZh":"VAE 学习近似后验并用 KL 正则将潜空间约束到先验分布，同时优化重建项。它提供可采样的连续潜空间，但可能出现后验坍塌或重建模糊。","answerEn":"A VAE learns an approximate posterior, regularizes it toward a prior with a KL term, and optimizes reconstruction. It provides a sampleable continuous latent space but may suffer posterior collapse or blurry reconstructions.","keywords":["vae","变分自编码器","latent"],"detailZh":"VAE 学习近似后验并用 KL 正则将潜空间约束到先验分布，同时优化重建项。它提供可采样的连续潜空间，但可能出现后验坍塌或重建模糊。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"A VAE learns an approximate posterior, regularizes it toward a prior with a KL term, and optimizes reconstruction. It provides a sampleable continuous latent space but may suffer posterior collapse or blurry reconstructions. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"metric_learning","category":"representation","questionsZh":["度量学习","什么是度量学习","度量学习怎么理解"],"questionsEn":["Metric learning","What is Metric learning?","Explain Metric learning"],"answerZh":"度量学习直接塑造样本间距离，常用对比损失、三元组损失和代理类损失。采样策略往往与损失形式同样重要。","answerEn":"Metric learning directly shapes distances between samples using contrastive, triplet, or proxy-based losses. Sampling strategy is often as important as the loss itself.","keywords":["metric learning","度量学习","triplet"],"detailZh":"度量学习直接塑造样本间距离，常用对比损失、三元组损失和代理类损失。采样策略往往与损失形式同样重要。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Metric learning directly shapes distances between samples using contrastive, triplet, or proxy-based losses. Sampling strategy is often as important as the loss itself. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"triplet_loss","category":"representation","questionsZh":["三元组损失","什么是三元组损失","三元组损失怎么理解"],"questionsEn":["Triplet loss","What is Triplet loss?","Explain Triplet loss"],"answerZh":"三元组损失要求锚点与正样本的距离比锚点与负样本更小，并保留间隔。困难负样本能提高学习效率，但过难或错误负样本可能导致不稳定。","answerEn":"Triplet loss enforces an anchor-positive distance smaller than the anchor-negative distance by a margin. Hard negatives improve efficiency, but excessively hard or mislabeled negatives can destabilize learning.","keywords":["triplet loss","三元组","hard negative"],"detailZh":"三元组损失要求锚点与正样本的距离比锚点与负样本更小，并保留间隔。困难负样本能提高学习效率，但过难或错误负样本可能导致不稳定。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Triplet loss enforces an anchor-positive distance smaller than the anchor-negative distance by a margin. Hard negatives improve efficiency, but excessively hard or mislabeled negatives can destabilize learning. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"invariance","category":"representation","questionsZh":["不变性","什么是不变性","不变性怎么理解"],"questionsEn":["Invariance","What is Invariance?","Explain Invariance"],"answerZh":"表征不变性意味着对任务无关变化保持稳定，例如图像轻微裁剪或语音说话速度变化。关键是避免把任务相关信息也当作应被消除的变化。","answerEn":"Representation invariance means stability to task-irrelevant transformations, such as mild image crops or speech-rate changes. The key is not to remove variations that are actually task-relevant.","keywords":["invariance","不变性","augmentation"],"detailZh":"表征不变性意味着对任务无关变化保持稳定，例如图像轻微裁剪或语音说话速度变化。关键是避免把任务相关信息也当作应被消除的变化。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Representation invariance means stability to task-irrelevant transformations, such as mild image crops or speech-rate changes. The key is not to remove variations that are actually task-relevant. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"equivariance","category":"representation","questionsZh":["等变性","什么是等变性","等变性怎么理解"],"questionsEn":["Equivariance","What is Equivariance?","Explain Equivariance"],"answerZh":"等变表征不会忽略变换，而是以可预测方式随变换变化。例如旋转输入后，特征也按对应群作用变换。","answerEn":"Equivariant representations do not ignore transformations; they change predictably with them. For example, rotating the input induces a corresponding group action in the feature.","keywords":["equivariance","等变性","group"],"detailZh":"等变表征不会忽略变换，而是以可预测方式随变换变化。例如旋转输入后，特征也按对应群作用变换。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Equivariant representations do not ignore transformations; they change predictably with them. For example, rotating the input induces a corresponding group action in the feature. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"disentanglement","category":"representation","questionsZh":["解耦表征","什么是解耦表征","解耦表征怎么理解"],"questionsEn":["Disentangled representations","What is Disentangled representations?","Explain Disentangled representations"],"answerZh":"解耦表征希望不同潜变量分别对应独立生成因素。无监督识别通常缺乏唯一性，因此应明确归纳偏置、监督信息和评价定义。","answerEn":"Disentangled representations aim for different latent variables to correspond to independent generative factors. Unsupervised identification is generally non-unique, so inductive biases, supervision, and evaluation definitions must be explicit.","keywords":["disentanglement","解耦表征","factor"],"detailZh":"解耦表征希望不同潜变量分别对应独立生成因素。无监督识别通常缺乏唯一性，因此应明确归纳偏置、监督信息和评价定义。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Disentangled representations aim for different latent variables to correspond to independent generative factors. Unsupervised identification is generally non-unique, so inductive biases, supervision, and evaluation definitions must be explicit. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"collapse","category":"representation","questionsZh":["表征坍塌","什么是表征坍塌","表征坍塌怎么理解"],"questionsEn":["Representation collapse","What is Representation collapse?","Explain Representation collapse"],"answerZh":"表征坍塌指不同输入被映射到几乎相同的向量，导致特征失去区分性。方差约束、协方差正则、停止梯度、教师网络和负样本都可用于缓解。","answerEn":"Representation collapse maps different inputs to nearly identical vectors, destroying discriminability. Variance constraints, covariance regularization, stop-gradient, teacher networks, and negatives can mitigate it.","keywords":["collapse","坍塌","variance"],"detailZh":"表征坍塌指不同输入被映射到几乎相同的向量，导致特征失去区分性。方差约束、协方差正则、停止梯度、教师网络和负样本都可用于缓解。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Representation collapse maps different inputs to nearly identical vectors, destroying discriminability. Variance constraints, covariance regularization, stop-gradient, teacher networks, and negatives can mitigate it. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"dim_reduction","category":"representation","questionsZh":["降维","什么是降维","降维怎么理解"],"questionsEn":["Dimensionality reduction","What is Dimensionality reduction?","Explain Dimensionality reduction"],"answerZh":"PCA 保留最大方差的线性子空间，t-SNE 和 UMAP 更偏向局部邻域可视化。二维图适合探索结构，但不应单独作为表示质量的严格证据。","answerEn":"PCA preserves a linear subspace of maximum variance, while t-SNE and UMAP emphasize local-neighborhood visualization. Two-dimensional plots are useful for exploration but should not be the sole evidence of representation quality.","keywords":["dimensionality reduction","降维","pca","tsne","umap"],"detailZh":"PCA 保留最大方差的线性子空间，t-SNE 和 UMAP 更偏向局部邻域可视化。二维图适合探索结构，但不应单独作为表示质量的严格证据。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"PCA preserves a linear subspace of maximum variance, while t-SNE and UMAP emphasize local-neighborhood visualization. Two-dimensional plots are useful for exploration but should not be the sole evidence of representation quality. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"pca","category":"representation","questionsZh":["主成分分析","什么是主成分分析","主成分分析怎么理解"],"questionsEn":["Principal component analysis","What is Principal component analysis?","Explain Principal component analysis"],"answerZh":"PCA 通过协方差矩阵的主特征向量寻找最大方差正交方向。它是线性、无监督且可解释的，但无法捕获一般非线性流形。","answerEn":"PCA finds orthogonal maximum-variance directions through the leading eigenvectors of the covariance matrix. It is linear, unsupervised, and interpretable, but cannot capture general nonlinear manifolds.","keywords":["pca","主成分","eigenvector"],"detailZh":"PCA 通过协方差矩阵的主特征向量寻找最大方差正交方向。它是线性、无监督且可解释的，但无法捕获一般非线性流形。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"PCA finds orthogonal maximum-variance directions through the leading eigenvectors of the covariance matrix. It is linear, unsupervised, and interpretable, but cannot capture general nonlinear manifolds. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"manifold","category":"representation","questionsZh":["流形学习","什么是流形学习","流形学习怎么理解"],"questionsEn":["Manifold learning","What is Manifold learning?","Explain Manifold learning"],"answerZh":"流形假设认为高维数据集中在较低维的非线性结构附近。方法通过局部邻域、图结构或生成映射恢复这一结构，但对噪声和邻域选择敏感。","answerEn":"The manifold hypothesis assumes high-dimensional data concentrate near a lower-dimensional nonlinear structure. Methods recover it through local neighborhoods, graphs, or generative maps, but can be sensitive to noise and neighborhood choice.","keywords":["manifold learning","流形学习","local geometry"],"detailZh":"流形假设认为高维数据集中在较低维的非线性结构附近。方法通过局部邻域、图结构或生成映射恢复这一结构，但对噪声和邻域选择敏感。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"The manifold hypothesis assumes high-dimensional data concentrate near a lower-dimensional nonlinear structure. Methods recover it through local neighborhoods, graphs, or generative maps, but can be sensitive to noise and neighborhood choice. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"multimodal","category":"representation","questionsZh":["多模态表征","什么是多模态表征","多模态表征怎么理解"],"questionsEn":["Multimodal representation learning","What is Multimodal representation learning?","Explain Multimodal representation learning"],"answerZh":"多模态表征学习对齐文本、图像、音频或传感器信号。关键问题包括语义粒度、缺失模态、时间同步、模态偏置和跨模态负样本。","answerEn":"Multimodal representation learning aligns text, images, audio, or sensor signals. Key issues include semantic granularity, missing modalities, temporal synchronization, modality bias, and cross-modal negatives.","keywords":["multimodal","多模态","alignment"],"detailZh":"多模态表征学习对齐文本、图像、音频或传感器信号。关键问题包括语义粒度、缺失模态、时间同步、模态偏置和跨模态负样本。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Multimodal representation learning aligns text, images, audio, or sensor signals. Key issues include semantic granularity, missing modalities, temporal synchronization, modality bias, and cross-modal negatives. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"transfer","category":"representation","questionsZh":["迁移学习","什么是迁移学习","迁移学习怎么理解"],"questionsEn":["Transfer learning","What is Transfer learning?","Explain Transfer learning"],"answerZh":"迁移学习先在源任务或大规模数据上学习表征，再在目标任务上微调或线性探测。迁移效果取决于源目标相关性和微调策略。","answerEn":"Transfer learning first learns representations on a source task or large dataset, then fine-tunes or linearly probes on the target. Success depends on source-target relatedness and adaptation strategy.","keywords":["transfer learning","迁移学习","fine tuning"],"detailZh":"迁移学习先在源任务或大规模数据上学习表征，再在目标任务上微调或线性探测。迁移效果取决于源目标相关性和微调策略。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Transfer learning first learns representations on a source task or large dataset, then fine-tunes or linearly probes on the target. Success depends on source-target relatedness and adaptation strategy. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"linear_probe","category":"representation","questionsZh":["线性探测","什么是线性探测","线性探测怎么理解"],"questionsEn":["Linear probing","What is Linear probing?","Explain Linear probing"],"answerZh":"线性探测冻结编码器，只训练线性分类器，用于衡量特征的线性可分性。它便于比较，但不能代表充分微调后的最终任务性能。","answerEn":"Linear probing freezes the encoder and trains only a linear classifier to assess linear separability. It is convenient for comparison but does not represent fully fine-tuned downstream performance.","keywords":["linear probe","线性探测","frozen encoder"],"detailZh":"线性探测冻结编码器，只训练线性分类器，用于衡量特征的线性可分性。它便于比较，但不能代表充分微调后的最终任务性能。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Linear probing freezes the encoder and trains only a linear classifier to assess linear separability. It is convenient for comparison but does not represent fully fine-tuned downstream performance. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"few_shot","category":"representation","questionsZh":["少样本表征","什么是少样本表征","少样本表征怎么理解"],"questionsEn":["Few-shot representations","What is Few-shot representations?","Explain Few-shot representations"],"answerZh":"少样本场景要求表征能用很少标注快速适应新类别。常见评估包括原型分类、线性头、最近邻和情景式元学习。","answerEn":"Few-shot settings require representations to adapt to new classes with few labels. Common evaluations include prototypical classification, linear heads, nearest neighbors, and episodic meta-learning.","keywords":["few shot","少样本","prototype"],"detailZh":"少样本场景要求表征能用很少标注快速适应新类别。常见评估包括原型分类、线性头、最近邻和情景式元学习。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Few-shot settings require representations to adapt to new classes with few labels. Common evaluations include prototypical classification, linear heads, nearest neighbors, and episodic meta-learning. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"domain_adaptation","category":"representation","questionsZh":["领域适应","什么是领域适应","领域适应怎么理解"],"questionsEn":["Domain adaptation","What is Domain adaptation?","Explain Domain adaptation"],"answerZh":"领域适应处理训练域与测试域分布不同的问题。方法可对齐特征分布、重加权样本、使用伪标签或学习域不变与域特定分量。","answerEn":"Domain adaptation addresses distribution differences between training and test domains. Methods align feature distributions, reweight samples, use pseudo-labels, or separate domain-invariant and domain-specific components.","keywords":["domain adaptation","领域适应","domain shift"],"detailZh":"领域适应处理训练域与测试域分布不同的问题。方法可对齐特征分布、重加权样本、使用伪标签或学习域不变与域特定分量。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Domain adaptation addresses distribution differences between training and test domains. Methods align feature distributions, reweight samples, use pseudo-labels, or separate domain-invariant and domain-specific components. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"ood","category":"representation","questionsZh":["分布外泛化","什么是分布外泛化","分布外泛化怎么理解"],"questionsEn":["Out-of-distribution generalization","What is Out-of-distribution generalization?","Explain Out-of-distribution generalization"],"answerZh":"OOD 泛化关注模型面对训练分布之外环境时的可靠性。应使用按环境划分的数据、避免验证泄漏，并同时评估性能、校准和失败模式。","answerEn":"OOD generalization studies reliability outside the training distribution. Evaluation should split data by environment, avoid validation leakage, and assess performance, calibration, and failure modes.","keywords":["ood","分布外","generalization"],"detailZh":"OOD 泛化关注模型面对训练分布之外环境时的可靠性。应使用按环境划分的数据、避免验证泄漏，并同时评估性能、校准和失败模式。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"OOD generalization studies reliability outside the training distribution. Evaluation should split data by environment, avoid validation leakage, and assess performance, calibration, and failure modes. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"repr_evaluation","category":"representation","questionsZh":["表征质量评估","什么是表征质量评估","表征质量评估怎么理解","表征学习应该如何评估","如何评价表征质量","表征学习用什么指标"],"questionsEn":["Evaluating representations","What is Evaluating representations?","Explain Evaluating representations","How should representation learning be evaluated?","How do I evaluate representation quality?"],"answerZh":"表征评估应结合线性探测、kNN、微调、跨域迁移、检索、聚类、鲁棒性和消融。单一二维可视化或单一数据集通常不足以支撑强结论。","answerEn":"Representation evaluation should combine linear probing, kNN, fine-tuning, cross-domain transfer, retrieval, clustering, robustness, and ablations. A single 2D visualization or one dataset is rarely enough for a strong claim.","keywords":["representation evaluation","表征评估","linear probe","knn"],"detailZh":"表征评估应结合线性探测、kNN、微调、跨域迁移、检索、聚类、鲁棒性和消融。单一二维可视化或单一数据集通常不足以支撑强结论。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Representation evaluation should combine linear probing, kNN, fine-tuning, cross-domain transfer, retrieval, clustering, robustness, and ablations. A single 2D visualization or one dataset is rarely enough for a strong claim. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"similarity","category":"representation","questionsZh":["相似度函数","什么是相似度函数","相似度函数怎么理解"],"questionsEn":["Similarity functions","What is Similarity functions?","Explain Similarity functions"],"answerZh":"余弦相似度忽略向量尺度，欧氏距离保留幅值信息，点积同时受方向和范数影响。选择应与归一化、损失函数和下游几何一致。","answerEn":"Cosine similarity ignores scale, Euclidean distance preserves magnitude, and dot product depends on both direction and norm. The choice should align with normalization, training loss, and downstream geometry.","keywords":["cosine similarity","余弦相似度","euclidean","dot product"],"detailZh":"余弦相似度忽略向量尺度，欧氏距离保留幅值信息，点积同时受方向和范数影响。选择应与归一化、损失函数和下游几何一致。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Cosine similarity ignores scale, Euclidean distance preserves magnitude, and dot product depends on both direction and norm. The choice should align with normalization, training loss, and downstream geometry. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"temperature","category":"representation","questionsZh":["温度参数","什么是温度参数","温度参数怎么理解"],"questionsEn":["Temperature in contrastive learning","What is Temperature in contrastive learning?","Explain Temperature in contrastive learning"],"answerZh":"对比学习中的温度控制 softmax 分布尖锐程度。较小温度强调困难样本但可能放大噪声，较大温度更平滑但可能减弱区分信号。","answerEn":"Temperature controls the sharpness of the softmax distribution in contrastive learning. Lower values emphasize hard samples but may amplify noise; higher values smooth the distribution but may weaken discrimination.","keywords":["temperature","温度参数","contrastive"],"detailZh":"对比学习中的温度控制 softmax 分布尖锐程度。较小温度强调困难样本但可能放大噪声，较大温度更平滑但可能减弱区分信号。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Temperature controls the sharpness of the softmax distribution in contrastive learning. Lower values emphasize hard samples but may amplify noise; higher values smooth the distribution but may weaken discrimination. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"augmentation","category":"representation","questionsZh":["数据增强设计","什么是数据增强设计","数据增强设计怎么理解"],"questionsEn":["Data augmentation design","What is Data augmentation design?","Explain Data augmentation design"],"answerZh":"增强定义了模型应保持不变的因素，因此不是纯粹的数据预处理。过弱增强难以形成学习信号，过强增强可能破坏标签语义。","answerEn":"Augmentation defines which factors the model should treat as invariant, so it is more than preprocessing. Weak augmentation may provide little learning signal, while overly strong augmentation can destroy label semantics.","keywords":["augmentation","数据增强","views"],"detailZh":"增强定义了模型应保持不变的因素，因此不是纯粹的数据预处理。过弱增强难以形成学习信号，过强增强可能破坏标签语义。 实验时建议同时说明训练目标、归一化方式、增强策略、表征维度和下游评估协议。","detailEn":"Augmentation defines which factors the model should treat as invariant, so it is more than preprocessing. Weak augmentation may provide little learning signal, while overly strong augmentation can destroy label semantics. Experiments should also report the training objective, normalization, augmentation policy, representation dimension, and downstream evaluation protocol.","suggestions":[]},{"id":"topic_selection","category":"research","questionsZh":["选研究题目","如何选研究题目","选研究题目建议"],"questionsEn":["Choosing a research topic","How should I approach Choosing a research topic?"],"answerZh":"好的本科研究题目应同时满足问题清晰、基线可复现、计算预算可控和评价标准明确。先把贡献压缩成一句可证伪的假设，再决定方法复杂度。","answerEn":"A good undergraduate research topic has a clear problem, reproducible baselines, manageable compute, and explicit evaluation. Compress the contribution into one falsifiable hypothesis before increasing method complexity.","keywords":["选题","research topic","本科科研"],"detailZh":"好的本科研究题目应同时满足问题清晰、基线可复现、计算预算可控和评价标准明确。先把贡献压缩成一句可证伪的假设，再决定方法复杂度。","detailEn":"A good undergraduate research topic has a clear problem, reproducible baselines, manageable compute, and explicit evaluation. Compress the contribution into one falsifiable hypothesis before increasing method complexity.","suggestions":[]},{"id":"project_combo","category":"research","questionsZh":["分布式与表征学习结合","如何分布式与表征学习结合","分布式与表征学习结合建议","推荐一个分布式表征学习的本科项目","分布式表征学习项目建议"],"questionsEn":["Combining distributed and representation learning","How should I approach Combining distributed and representation learning?"],"answerZh":"一个可控方向是研究非 IID 客户端下的自监督表征学习：比较集中式、自监督 FedAvg、带漂移校正的方法，并评估线性探测、通信量和客户端公平性。","answerEn":"A tractable direction is self-supervised representation learning under non-IID clients: compare centralized training, self-supervised FedAvg, and drift-corrected variants, then evaluate linear probing, communication, and client fairness.","keywords":["project","项目","distributed representation","研究方向"],"detailZh":"一个可控方向是研究非 IID 客户端下的自监督表征学习：比较集中式、自监督 FedAvg、带漂移校正的方法，并评估线性探测、通信量和客户端公平性。","detailEn":"A tractable direction is self-supervised representation learning under non-IID clients: compare centralized training, self-supervised FedAvg, and drift-corrected variants, then evaluate linear probing, communication, and client fairness.","suggestions":[]},{"id":"baseline","category":"research","questionsZh":["选择基线","如何选择基线","选择基线建议"],"questionsEn":["Choosing baselines","How should I approach Choosing baselines?"],"answerZh":"基线应覆盖最简单方法、最接近的方法和强通用方法。每个基线使用公开实现或充分调参，并统一数据划分、预算和早停规则。","answerEn":"Baselines should include a simple method, the closest prior method, and a strong general method. Use public implementations or adequate tuning, with identical data splits, budgets, and early-stopping rules.","keywords":["baseline","基线","comparison"],"detailZh":"基线应覆盖最简单方法、最接近的方法和强通用方法。每个基线使用公开实现或充分调参，并统一数据划分、预算和早停规则。","detailEn":"Baselines should include a simple method, the closest prior method, and a strong general method. Use public implementations or adequate tuning, with identical data splits, budgets, and early-stopping rules.","suggestions":[]},{"id":"ablation","category":"research","questionsZh":["消融实验","如何消融实验","消融实验建议"],"questionsEn":["Ablation studies","How should I approach Ablation studies?"],"answerZh":"消融应逐个移除真正对应贡献的组件，并控制训练预算。除了最终性能，还应解释组件影响了收敛速度、稳定性、通信量还是表征几何。","answerEn":"Ablations should remove contribution-bearing components one at a time under controlled budgets. Beyond final performance, explain whether each component affects convergence speed, stability, communication, or representation geometry.","keywords":["ablation","消融","component"],"detailZh":"消融应逐个移除真正对应贡献的组件，并控制训练预算。除了最终性能，还应解释组件影响了收敛速度、稳定性、通信量还是表征几何。","detailEn":"Ablations should remove contribution-bearing components one at a time under controlled budgets. Beyond final performance, explain whether each component affects convergence speed, stability, communication, or representation geometry.","suggestions":[]},{"id":"reproducibility","category":"research","questionsZh":["可复现性","如何可复现性","可复现性建议"],"questionsEn":["Reproducibility","How should I approach Reproducibility?"],"answerZh":"可复现实验需要固定随机种子、记录环境、公开配置、说明数据预处理并保存关键日志。最好提供一条从安装到复现主结果的命令。","answerEn":"Reproducible experiments fix random seeds, record environments, publish configurations, document preprocessing, and save key logs. Ideally provide one command from installation to the main result.","keywords":["reproducibility","可复现","seed","environment"],"detailZh":"可复现实验需要固定随机种子、记录环境、公开配置、说明数据预处理并保存关键日志。最好提供一条从安装到复现主结果的命令。","detailEn":"Reproducible experiments fix random seeds, record environments, publish configurations, document preprocessing, and save key logs. Ideally provide one command from installation to the main result.","suggestions":[]},{"id":"hypothesis","category":"research","questionsZh":["研究假设","如何研究假设","研究假设建议"],"questionsEn":["Research hypotheses","How should I approach Research hypotheses?"],"answerZh":"研究假设应说明在什么条件下，某个机制为什么会改善哪个可测指标。避免只写“提出新方法并优于现有方法”这种无法解释机制的假设。","answerEn":"A research hypothesis should state under which conditions a mechanism improves a measurable outcome and why. Avoid hypotheses that merely say a new method will outperform existing methods.","keywords":["hypothesis","假设","mechanism"],"detailZh":"研究假设应说明在什么条件下，某个机制为什么会改善哪个可测指标。避免只写“提出新方法并优于现有方法”这种无法解释机制的假设。","detailEn":"A research hypothesis should state under which conditions a mechanism improves a measurable outcome and why. Avoid hypotheses that merely say a new method will outperform existing methods.","suggestions":[]},{"id":"experiment_design","category":"research","questionsZh":["实验设计","如何实验设计","实验设计建议"],"questionsEn":["Experimental design","How should I approach Experimental design?"],"answerZh":"先定义主问题和成功标准，再确定数据集、基线、指标、预算和统计检验。不要在看到测试集结果后反复修改设计。","answerEn":"Define the main question and success criterion first, then choose datasets, baselines, metrics, budget, and statistical tests. Avoid repeatedly changing the design after inspecting test results.","keywords":["experiment design","实验设计","metric"],"detailZh":"先定义主问题和成功标准，再确定数据集、基线、指标、预算和统计检验。不要在看到测试集结果后反复修改设计。","detailEn":"Define the main question and success criterion first, then choose datasets, baselines, metrics, budget, and statistical tests. Avoid repeatedly changing the design after inspecting test results.","suggestions":[]},{"id":"metrics","category":"research","questionsZh":["指标选择","如何指标选择","指标选择建议"],"questionsEn":["Choosing metrics","How should I approach Choosing metrics?"],"answerZh":"指标必须对应研究主张。分布式学习应加入通信和公平性，表征学习应加入迁移与线性探测，类别不平衡时应报告宏平均 F1 或平衡准确率。","answerEn":"Metrics must match the claim. Distributed learning should include communication and fairness; representation learning should include transfer and linear probing; imbalanced classification should report macro-F1 or balanced accuracy.","keywords":["metrics","指标","macro f1","balanced accuracy"],"detailZh":"指标必须对应研究主张。分布式学习应加入通信和公平性，表征学习应加入迁移与线性探测，类别不平衡时应报告宏平均 F1 或平衡准确率。","detailEn":"Metrics must match the claim. Distributed learning should include communication and fairness; representation learning should include transfer and linear probing; imbalanced classification should report macro-F1 or balanced accuracy.","suggestions":[]},{"id":"statistical","category":"research","questionsZh":["统计可靠性","如何统计可靠性","统计可靠性建议"],"questionsEn":["Statistical reliability","How should I approach Statistical reliability?"],"answerZh":"至少使用多个随机种子报告均值和标准差，并在差异较小时给出置信区间或配对检验。只展示最好一次运行容易高估方法效果。","answerEn":"Use multiple random seeds and report mean and standard deviation. When differences are small, add confidence intervals or paired tests. Reporting only the best run can overstate gains.","keywords":["statistics","统计","standard deviation","confidence interval"],"detailZh":"至少使用多个随机种子报告均值和标准差，并在差异较小时给出置信区间或配对检验。只展示最好一次运行容易高估方法效果。","detailEn":"Use multiple random seeds and report mean and standard deviation. When differences are small, add confidence intervals or paired tests. Reporting only the best run can overstate gains.","suggestions":[]},{"id":"paper_structure","category":"research","questionsZh":["论文结构","如何论文结构","论文结构建议"],"questionsEn":["Paper structure","How should I approach Paper structure?"],"answerZh":"技术论文通常按问题与动机、相关工作、方法、理论或机制、实验、局限和结论组织。每节都应服务于核心主张，而不是堆叠内容。","answerEn":"Technical papers typically organize problem and motivation, related work, method, theory or mechanism, experiments, limitations, and conclusion. Every section should support the central claim rather than accumulate material.","keywords":["paper structure","论文结构","writing"],"detailZh":"技术论文通常按问题与动机、相关工作、方法、理论或机制、实验、局限和结论组织。每节都应服务于核心主张，而不是堆叠内容。","detailEn":"Technical papers typically organize problem and motivation, related work, method, theory or mechanism, experiments, limitations, and conclusion. Every section should support the central claim rather than accumulate material.","suggestions":[]},{"id":"abstract","category":"research","questionsZh":["摘要写作","如何摘要写作","摘要写作建议"],"questionsEn":["Writing an abstract","How should I approach Writing an abstract?"],"answerZh":"摘要应在有限篇幅内交代问题、缺口、方法、最重要结果和意义。避免只列模块名，也避免使用未被实验或理论支撑的强形容词。","answerEn":"An abstract should concisely state the problem, gap, method, most important result, and significance. Avoid merely listing modules or using strong adjectives unsupported by experiments or theory.","keywords":["abstract","摘要","writing"],"detailZh":"摘要应在有限篇幅内交代问题、缺口、方法、最重要结果和意义。避免只列模块名，也避免使用未被实验或理论支撑的强形容词。","detailEn":"An abstract should concisely state the problem, gap, method, most important result, and significance. Avoid merely listing modules or using strong adjectives unsupported by experiments or theory.","suggestions":[]},{"id":"related_work","category":"research","questionsZh":["相关工作","如何相关工作","相关工作建议"],"questionsEn":["Related work","How should I approach Related work?"],"answerZh":"相关工作不应只是论文清单，而应按问题轴组织，说明每类方法的假设、优势、局限以及你的工作填补的具体空缺。","answerEn":"Related work should not be a paper list. Organize it by problem axes and explain each family’s assumptions, strengths, limitations, and the exact gap your work addresses.","keywords":["related work","相关工作","literature"],"detailZh":"相关工作不应只是论文清单，而应按问题轴组织，说明每类方法的假设、优势、局限以及你的工作填补的具体空缺。","detailEn":"Related work should not be a paper list. Organize it by problem axes and explain each family’s assumptions, strengths, limitations, and the exact gap your work addresses.","suggestions":[]},{"id":"theory_claim","category":"research","questionsZh":["理论主张边界","如何理论主张边界","理论主张边界建议"],"questionsEn":["Scoping theoretical claims","How should I approach Scoping theoretical claims?"],"answerZh":"理论主张必须与定理假设和证明范围一致。若只证明固定环境或平均动力学，就不应暗示已证明完整反馈耦合随机系统。","answerEn":"Theoretical claims must match theorem assumptions and proof scope. If only a fixed environment or averaged dynamics are proved, the paper should not imply a proof for the fully feedback-coupled stochastic system.","keywords":["theory","理论","claim scope","assumption"],"detailZh":"理论主张必须与定理假设和证明范围一致。若只证明固定环境或平均动力学，就不应暗示已证明完整反馈耦合随机系统。","detailEn":"Theoretical claims must match theorem assumptions and proof scope. If only a fixed environment or averaged dynamics are proved, the paper should not imply a proof for the fully feedback-coupled stochastic system.","suggestions":[]},{"id":"review_response","category":"research","questionsZh":["审稿回复","如何审稿回复","审稿回复建议"],"questionsEn":["Reviewer response","How should I approach Reviewer response?"],"answerZh":"回复审稿人时先准确复述问题，再给出直接答案、证据和修改位置。对真实局限应承认边界并调整表述，而不是用更多术语掩盖。","answerEn":"When responding to reviewers, accurately restate the concern, then give a direct answer, evidence, and revision location. Acknowledge genuine limitations and adjust claims instead of obscuring them with more terminology.","keywords":["rebuttal","审稿回复","reviewer"],"detailZh":"回复审稿人时先准确复述问题，再给出直接答案、证据和修改位置。对真实局限应承认边界并调整表述，而不是用更多术语掩盖。","detailEn":"When responding to reviewers, accurately restate the concern, then give a direct answer, evidence, and revision location. Acknowledge genuine limitations and adjust claims instead of obscuring them with more terminology.","suggestions":[]},{"id":"limitations","category":"research","questionsZh":["局限性","如何局限性","局限性建议"],"questionsEn":["Limitations","How should I approach Limitations?"],"answerZh":"局限性部分应说明方法在哪些数据、假设、规模、资源或风险下可能失效，并区分当前未完成工作与原则性限制。","answerEn":"A limitations section should state under what data, assumptions, scale, resources, or risks the method may fail, and distinguish unfinished work from fundamental limitations.","keywords":["limitations","局限","failure"],"detailZh":"局限性部分应说明方法在哪些数据、假设、规模、资源或风险下可能失效，并区分当前未完成工作与原则性限制。","detailEn":"A limitations section should state under what data, assumptions, scale, resources, or risks the method may fail, and distinguish unfinished work from fundamental limitations.","suggestions":[]},{"id":"code_release","category":"research","questionsZh":["代码发布","如何代码发布","代码发布建议"],"questionsEn":["Releasing research code","How should I approach Releasing research code?"],"answerZh":"最小可用代码应包含环境、配置、训练或诊断入口、数据说明和预期输出。匿名投稿时应移除身份信息、绝对路径和可追踪元数据。","answerEn":"A minimal usable release should include environment setup, configurations, training or diagnostics entry points, data instructions, and expected outputs. Anonymous submissions should remove identity, absolute paths, and traceable metadata.","keywords":["code release","代码发布","anonymous"],"detailZh":"最小可用代码应包含环境、配置、训练或诊断入口、数据说明和预期输出。匿名投稿时应移除身份信息、绝对路径和可追踪元数据。","detailEn":"A minimal usable release should include environment setup, configurations, training or diagnostics entry points, data instructions, and expected outputs. Anonymous submissions should remove identity, absolute paths, and traceable metadata.","suggestions":[]},{"id":"timeline","category":"research","questionsZh":["本科项目时间线","如何本科项目时间线","本科项目时间线建议"],"questionsEn":["Undergraduate project timeline","How should I approach Undergraduate project timeline?"],"answerZh":"一个十二周节奏可以是：两周复现与数据管线，三周基线，三周方法与消融，两周补充实验，一周写作，一周复查与打包。","answerEn":"A twelve-week schedule can allocate two weeks to reproduction and data pipelines, three to baselines, three to method and ablations, two to additional experiments, one to writing, and one to final review and packaging.","keywords":["timeline","时间线","12周","milestone"],"detailZh":"一个十二周节奏可以是：两周复现与数据管线，三周基线，三周方法与消融，两周补充实验，一周写作，一周复查与打包。","detailEn":"A twelve-week schedule can allocate two weeks to reproduction and data pipelines, three to baselines, three to method and ablations, two to additional experiments, one to writing, and one to final review and packaging.","suggestions":[]},{"id":"compute_budget","category":"research","questionsZh":["计算预算","如何计算预算","计算预算建议"],"questionsEn":["Compute budgeting","How should I approach Compute budgeting?"],"answerZh":"先用小数据、低分辨率和少轮数做冒烟测试，再只对少数候选配置投入完整训练。记录 GPU 小时和失败实验可避免无效搜索。","answerEn":"Start with smoke tests using small data, low resolution, and few epochs, then fully train only a small set of candidate configurations. Track GPU hours and failed runs to avoid wasteful search.","keywords":["compute budget","计算预算","gpu hours"],"detailZh":"先用小数据、低分辨率和少轮数做冒烟测试，再只对少数候选配置投入完整训练。记录 GPU 小时和失败实验可避免无效搜索。","detailEn":"Start with smoke tests using small data, low resolution, and few epochs, then fully train only a small set of candidate configurations. Track GPU hours and failed runs to avoid wasteful search.","suggestions":[]},{"id":"dataset_split","category":"research","questionsZh":["数据划分","如何数据划分","数据划分建议"],"questionsEn":["Dataset splitting","How should I approach Dataset splitting?"],"answerZh":"划分应防止同一主体、时间段、场景或近重复样本跨越训练与测试集合。跨主体或跨域任务尤其要按真实部署边界划分。","answerEn":"Splits should prevent the same subject, time period, scene, or near-duplicate samples from crossing train and test sets. Cross-subject and cross-domain tasks should follow realistic deployment boundaries.","keywords":["dataset split","数据划分","leakage"],"detailZh":"划分应防止同一主体、时间段、场景或近重复样本跨越训练与测试集合。跨主体或跨域任务尤其要按真实部署边界划分。","detailEn":"Splits should prevent the same subject, time period, scene, or near-duplicate samples from crossing train and test sets. Cross-subject and cross-domain tasks should follow realistic deployment boundaries.","suggestions":[]},{"id":"data_leakage","category":"research","questionsZh":["数据泄漏","如何数据泄漏","数据泄漏建议"],"questionsEn":["Data leakage","How should I approach Data leakage?"],"answerZh":"数据泄漏包括测试信息进入训练、重复样本跨集合、用测试集调参或预处理统计量使用全部数据。它会让结果看似优秀但无法复现。","answerEn":"Data leakage includes test information entering training, duplicates crossing splits, tuning on the test set, or computing preprocessing statistics on all data. It produces deceptively strong but non-reproducible results.","keywords":["data leakage","数据泄漏","test set"],"detailZh":"数据泄漏包括测试信息进入训练、重复样本跨集合、用测试集调参或预处理统计量使用全部数据。它会让结果看似优秀但无法复现。","detailEn":"Data leakage includes test information entering training, duplicates crossing splits, tuning on the test set, or computing preprocessing statistics on all data. It produces deceptively strong but non-reproducible results.","suggestions":[]},{"id":"dml_repr_bridge","category":"bridge","questionsZh":["为什么分布式学习需要好表征","解释为什么分布式学习需要好表征"],"questionsEn":["Why representations matter in distributed learning","Explain Why representations matter in distributed learning"],"answerZh":"在异质客户端中，共享更稳健的表征可以减少任务头之间的冲突、提高迁移性，并为个性化提供公共基础。但共享表征也可能放大主导客户端偏差，因此需评估尾部客户端。","answerEn":"Under heterogeneous clients, a robust shared representation can reduce conflicts between task heads, improve transfer, and provide a common basis for personalization. It may also amplify dominant-client bias, so tail clients must be evaluated.","keywords":["distributed representation","分布式 表征","shared encoder"],"detailZh":"在异质客户端中，共享更稳健的表征可以减少任务头之间的冲突、提高迁移性，并为个性化提供公共基础。但共享表征也可能放大主导客户端偏差，因此需评估尾部客户端。","detailEn":"Under heterogeneous clients, a robust shared representation can reduce conflicts between task heads, improve transfer, and provide a common basis for personalization. It may also amplify dominant-client bias, so tail clients must be evaluated.","suggestions":[]},{"id":"ssl_fl","category":"bridge","questionsZh":["联邦自监督学习","解释联邦自监督学习"],"questionsEn":["Federated self-supervised learning","Explain Federated self-supervised learning"],"answerZh":"联邦自监督学习在客户端无需标签地学习编码器，适合标签稀缺场景。主要难点是不同客户端增强与数据分布差异、负样本不足、教师漂移和通信成本。","answerEn":"Federated self-supervised learning learns encoders without client labels and suits label-scarce settings. Main challenges include heterogeneous augmentations and data, insufficient negatives, teacher drift, and communication cost.","keywords":["federated self supervised","联邦自监督","ssl fl"],"detailZh":"联邦自监督学习在客户端无需标签地学习编码器，适合标签稀缺场景。主要难点是不同客户端增强与数据分布差异、负样本不足、教师漂移和通信成本。","detailEn":"Federated self-supervised learning learns encoders without client labels and suits label-scarce settings. Main challenges include heterogeneous augmentations and data, insufficient negatives, teacher drift, and communication cost.","suggestions":[]},{"id":"decentralized_repr","category":"bridge","questionsZh":["去中心化表征学习","解释去中心化表征学习"],"questionsEn":["Decentralized representation learning","Explain Decentralized representation learning"],"answerZh":"去中心化表征学习让邻居节点通过图通信共同学习特征，不依赖中央聚合器。除了优化收敛，还需要研究局部表征是否对齐、是否发生退化以及图拓扑如何影响语义一致性。","answerEn":"Decentralized representation learning lets graph neighbors jointly learn features without a central aggregator. Beyond optimization convergence, it must study local representation alignment, degeneration, and how topology affects semantic consistency.","keywords":["decentralized representation","去中心化表征","alignment"],"detailZh":"去中心化表征学习让邻居节点通过图通信共同学习特征，不依赖中央聚合器。除了优化收敛，还需要研究局部表征是否对齐、是否发生退化以及图拓扑如何影响语义一致性。","detailEn":"Decentralized representation learning lets graph neighbors jointly learn features without a central aggregator. Beyond optimization convergence, it must study local representation alignment, degeneration, and how topology affects semantic consistency.","suggestions":[]},{"id":"privacy_repr","category":"bridge","questionsZh":["表征与隐私","解释表征与隐私"],"questionsEn":["Representations and privacy","Explain Representations and privacy"],"answerZh":"表征并不天然匿名，嵌入可能泄露身份、属性或原始输入。应通过攻击评估、成员推断、属性推断、重建测试和正式隐私机制验证风险。","answerEn":"Representations are not inherently anonymous; embeddings may leak identity, attributes, or original inputs. Risk should be tested through membership inference, attribute inference, reconstruction attacks, and formal privacy mechanisms.","keywords":["embedding privacy","表征隐私","membership inference"],"detailZh":"表征并不天然匿名，嵌入可能泄露身份、属性或原始输入。应通过攻击评估、成员推断、属性推断、重建测试和正式隐私机制验证风险。","detailEn":"Representations are not inherently anonymous; embeddings may leak identity, attributes, or original inputs. Risk should be tested through membership inference, attribute inference, reconstruction attacks, and formal privacy mechanisms.","suggestions":[]},{"id":"graph_repr","category":"bridge","questionsZh":["图表征学习","解释图表征学习"],"questionsEn":["Graph representation learning","Explain Graph representation learning"],"answerZh":"图表征学习把节点、边或整个图映射到向量，常通过消息传递聚合邻域信息。关键问题包括过平滑、异配图、可扩展采样和结构噪声。","answerEn":"Graph representation learning maps nodes, edges, or whole graphs to vectors, often through neighborhood message passing. Key issues include over-smoothing, heterophily, scalable sampling, and structural noise.","keywords":["graph representation","图表征","gnn"],"detailZh":"图表征学习把节点、边或整个图映射到向量，常通过消息传递聚合邻域信息。关键问题包括过平滑、异配图、可扩展采样和结构噪声。","detailEn":"Graph representation learning maps nodes, edges, or whole graphs to vectors, often through neighborhood message passing. Key issues include over-smoothing, heterophily, scalable sampling, and structural noise.","suggestions":[]},{"id":"ojsa","category":"bridge","questionsZh":["Oja更新","解释Oja更新"],"questionsEn":["Oja’s rule","Explain Oja’s rule"],"answerZh":"Oja 规则是在线主成分学习的随机更新，可看作带归一化约束的 Hebbian 学习。矩阵版本与子空间跟踪、在线 PCA 和某些表征动力学密切相关。","answerEn":"Oja’s rule is a stochastic update for online principal-component learning, interpretable as normalized Hebbian learning. Matrix variants connect to subspace tracking, online PCA, and some representation dynamics.","keywords":["oja","oja rule","在线pca","subspace"],"detailZh":"Oja 规则是在线主成分学习的随机更新，可看作带归一化约束的 Hebbian 学习。矩阵版本与子空间跟踪、在线 PCA 和某些表征动力学密切相关。","detailEn":"Oja’s rule is a stochastic update for online principal-component learning, interpretable as normalized Hebbian learning. Matrix variants connect to subspace tracking, online PCA, and some representation dynamics.","suggestions":[]},{"id":"markov_data","category":"bridge","questionsZh":["马尔可夫数据流","解释马尔可夫数据流"],"questionsEn":["Markovian data streams","Explain Markovian data streams"],"answerZh":"当样本由马尔可夫过程生成时，相邻梯度相关，不能直接套用独立同分布分析。常见工具包括混合时间、谱间隙、Poisson 方程和随机逼近。","answerEn":"When samples come from a Markov process, successive gradients are correlated, so IID analysis does not directly apply. Common tools include mixing time, spectral gap, Poisson equations, and stochastic approximation.","keywords":["markovian data","马尔可夫数据","mixing time"],"detailZh":"当样本由马尔可夫过程生成时，相邻梯度相关，不能直接套用独立同分布分析。常见工具包括混合时间、谱间隙、Poisson 方程和随机逼近。","detailEn":"When samples come from a Markov process, successive gradients are correlated, so IID analysis does not directly apply. Common tools include mixing time, spectral gap, Poisson equations, and stochastic approximation.","suggestions":[]},{"id":"slow_fast","category":"bridge","questionsZh":["快慢系统","解释快慢系统"],"questionsEn":["Slow-fast systems","Explain Slow-fast systems"],"answerZh":"快慢系统包含不同时间尺度的状态。分析常先证明快过程在冻结慢变量下混合，再用平均原理推导慢变量的有效动力学，但必须明确有限时域和反馈耦合边界。","answerEn":"Slow-fast systems contain states evolving at different time scales. Analysis often proves mixing of the fast process with frozen slow variables and derives averaged slow dynamics, while carefully scoping finite-horizon and feedback-coupling claims.","keywords":["slow fast","快慢系统","averaging"],"detailZh":"快慢系统包含不同时间尺度的状态。分析常先证明快过程在冻结慢变量下混合，再用平均原理推导慢变量的有效动力学，但必须明确有限时域和反馈耦合边界。","detailEn":"Slow-fast systems contain states evolving at different time scales. Analysis often proves mixing of the fast process with frozen slow variables and derives averaged slow dynamics, while carefully scoping finite-horizon and feedback-coupling claims.","suggestions":[]},{"id":"greeting","category":"social","questionsZh":["你好","嗨","晚上好","早上好"],"questionsEn":["hello","hi","good morning","good evening"],"answerZh":"你好，我是 Zilin Li 个人主页的离线研究助手。你可以问我关于 Zilin、分布式机器学习、表征学习或科研设计的问题。","answerEn":"Hello. I am the offline research assistant for Zilin Li’s personal website. You can ask about Zilin, distributed machine learning, representation learning, or research design.","keywords":["你好","hello","hi"],"detailZh":"你好，我是 Zilin Li 个人主页的离线研究助手。你可以问我关于 Zilin、分布式机器学习、表征学习或科研设计的问题。","detailEn":"Hello. I am the offline research assistant for Zilin Li’s personal website. You can ask about Zilin, distributed machine learning, representation learning, or research design.","suggestions":["介绍 Zilin","什么是表征学习","推荐一个研究题目"]},{"id":"thanks","category":"social","questionsZh":["谢谢","感谢","明白了"],"questionsEn":["thanks","thank you","got it"],"answerZh":"不客气。你可以继续追问某个概念的直觉、公式、实验设计或研究局限。","answerEn":"You’re welcome. You can follow up on intuition, formulas, experimental design, or research limitations.","keywords":["thanks","谢谢","感谢"],"detailZh":"不客气。你可以继续追问某个概念的直觉、公式、实验设计或研究局限。","detailEn":"You’re welcome. You can follow up on intuition, formulas, experimental design, or research limitations.","suggestions":[]},{"id":"language","category":"social","questionsZh":["你支持中文吗","可以英文回答吗","语言"],"questionsEn":["Can you answer in Chinese?","Do you support English?"],"answerZh":"支持中英文。系统会根据当前问题自动选择回答语言；你也可以在问题中直接写“请用中文”或“answer in English”。","answerEn":"Both Chinese and English are supported. The system selects a response language from your query, and you can explicitly ask for Chinese or English.","keywords":["language","语言","中文","english"],"detailZh":"支持中英文。系统会根据当前问题自动选择回答语言；你也可以在问题中直接写“请用中文”或“answer in English”。","detailEn":"Both Chinese and English are supported. The system selects a response language from your query, and you can explicitly ask for Chinese or English.","suggestions":[]}];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const state={mode:localStorage.getItem('zilin_chat_mode')==='api'?'api':'offline',histories:{offline:[],api:[]},apiKey:'',controller:null,lastActivity:Date.now(),lastOffline:null,busy:false};
+const SYSTEM=`You are the professional website assistant for Zilin Li (he/him), an undergraduate student at the School of Information and Intelligent Science, Donghua University, Shanghai. His expertise is Distributed Machine Learning and his current focus is Representation Learning. Answer clearly and technically. Never invent publications, awards, employment, email addresses, links, or biographical details. When asked about unknown personal facts, say they are not provided. You may answer general research and technical questions beyond this profile.`;
+const els={messages:$('#messages'),inner:$('#messagesInner'),input:$('#input'),send:$('#sendBtn'),toast:$('#toast'),subtitle:$('#subtitle'),pill:$('#modePill'),note:$('#composerNote'),settings:$('#settingsBtn'),knowledge:$('#knowledgeBtn')};
+function toast(t){els.toast.textContent=t;els.toast.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>els.toast.classList.remove('show'),2300)}
+function openModal(id){$('#'+id).classList.add('open')}function closeModal(id){$('#'+id).classList.remove('open')}
+$$('[data-close]').forEach(b=>b.onclick=()=>closeModal(b.dataset.close));$('#settingsBtn').onclick=()=>openModal('settingsModal');$('#knowledgeBtn').onclick=()=>openModal('corpusModal');$('#profileBtn').onclick=()=>openModal('profileModal');
+$$('.modal-backdrop').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function fit(){els.input.style.height='auto';els.input.style.height=Math.min(150,els.input.scrollHeight)+'px'}
+els.input.addEventListener('input',()=>{fit();els.send.disabled=!els.input.value.trim()||state.busy});els.input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});els.send.onclick=send;
+function heroHTML(){const offline=state.mode==='offline';return `<section class="hero" id="hero"><div class="hero-badge"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 18.5 4.5 21v-4.2A8.5 8.5 0 1 1 8 18.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10.5h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><h3>${offline?'Private research answers, available instantly.':'Open-ended research conversations with DeepSeek.'}</h3><p>${offline?`Ask from ${CORPUS.length} embedded bilingual entries. This mode works without a network connection, account, or API key.`:'Configure your DeepSeek key through the encrypted browser vault, then ask broader technical, mathematical, writing, or planning questions.'}</p><div class="starter-grid"><button class="starter" data-prompt="Introduce Zilin Li and his research interests."><strong>About Zilin</strong><span>Profile, university, and current research focus</span></button><button class="starter" data-prompt="Explain distributed machine learning and its main research challenges."><strong>Distributed ML</strong><span>Communication, heterogeneity, privacy, and convergence</span></button><button class="starter" data-prompt="Give me an intuitive overview of representation learning."><strong>Representation learning</strong><span>Embeddings, invariance, objectives, and evaluation</span></button><button class="starter" data-prompt="Suggest a focused undergraduate research project combining distributed and representation learning."><strong>Project ideation</strong><span>A scoped research direction with milestones</span></button></div></section>`}
+function messageExtra(m){if(m.mode!=='offline'||m.role!=='assistant')return '';let out=`<div class="confidence"><span>Match confidence</span><span class="confidence-bar"><span style="width:${Math.round((m.conf||0)*100)}%"></span></span><span>${Math.round((m.conf||0)*100)}%</span></div>`;if(m.suggestions?.length)out+=`<div class="sources">Try next: ${m.suggestions.map(esc).join(' · ')}</div>`;return out}
+function messageHTML(m){const bubble=`<div class="bubble">${esc(m.text)}${messageExtra(m)}</div>`;return `<div class="message ${m.role}">${m.role==='assistant'?'<div class="msg-avatar">AI</div>':''}${bubble}</div>`}
+function renderHistory(){const h=state.histories[state.mode];els.inner.innerHTML=h.length?h.map(messageHTML).join(''):heroHTML();els.messages.scrollTop=els.messages.scrollHeight;bindStarters()}
+function bindStarters(){$$('.starter').forEach(b=>b.onclick=()=>{els.input.value=b.dataset.prompt;fit();els.send.disabled=false;send()})}
+function setStatus(){const api=state.mode==='api',ready=!!state.apiKey;$$('.mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===state.mode));els.settings.classList.toggle('hidden',!api);els.knowledge.classList.toggle('hidden',api);if(!api){els.subtitle.textContent='Offline corpus · private and instant';els.pill.textContent='Offline ready';els.note.textContent='Offline answers come from the embedded curated corpus. No messages leave this page.';$('#sideModeIcon').textContent='OFF';$('#sideModeTitle').textContent='Offline knowledge mode';$('#sideModeText').textContent='Embedded bilingual corpus; no network or API key required.';document.querySelector('.status-pill .dot').style.background='var(--ok)'}else{els.subtitle.textContent=ready?'DeepSeek API · vault unlocked':'DeepSeek API · configure access';els.pill.textContent=ready?'API ready':'API locked';els.note.textContent='API responses may be inaccurate. Verify technical claims before using them in research.';$('#sideModeIcon').textContent='API';$('#sideModeTitle').textContent='DeepSeek API mode';$('#sideModeText').textContent=ready?'Encrypted vault unlocked for this browser tab.':'Add or unlock an API key to start generative chat.';document.querySelector('.status-pill .dot').style.background=ready?'var(--ok)':'#a8b0bd'}}
+function switchMode(mode){if(mode===state.mode)return;if(state.controller)state.controller.abort();setBusy(false);state.mode=mode;localStorage.setItem('zilin_chat_mode',mode);els.input.value='';fit();els.send.disabled=true;setStatus();renderHistory();if(mode==='api'&&!state.apiKey){openModal('settingsModal');toast('Unlock or configure an API key for DeepSeek mode')}}
+$$('.mode-btn').forEach(b=>b.onclick=()=>switchMode(b.dataset.mode));
+function addTyping(){const row=document.createElement('div');row.className='message assistant';row.id='typing';row.innerHTML='<div class="msg-avatar">AI</div><div class="bubble"><span class="typing"><i></i><i></i><i></i></span></div>';els.inner.appendChild(row);els.messages.scrollTop=els.messages.scrollHeight}
+function setBusy(on){state.busy=on;els.send.disabled=on||!els.input.value.trim();els.input.disabled=on}
 
-  <script>
-    const profile = {
-      name: "Zilin Li",
-      otherName: "Tzu-Lam Lee",
-      pronouns: "he/him",
-      role: "Undergraduate student",
-      institution: "School of Information and Intelligent Science, Donghua University, Shanghai",
-      education: "Donghua University, 2023–Present",
-      internship: "BCMI Lab, Shanghai Jiao Tong University, 2024–2025",
-      advisor: "Ge Zhang, undergraduate advisor since 2025",
-      emails: ["231310414@mail.dhu.edu.cn", "723602212576@sjtu.edu.cn"],
-      expertise: ["Distributed Machine Learning", "Representation Learning", "Vision-Language Models", "Diagnostic Reasoning", "Epistemic Reliability"],
-      publications: [
-        {
-          title: "DuoTeach: Dual Role Self-Teaching for Coarse-to-Fine Decision Coordination in Vision–Language Models",
-          authors: "Wei Yang, Yiran Zhu, Zilin Li, Xunjia Zhang, Qi Lu, Jun Xia, Hongtao Wang",
-          venue: "AAAI 2027 Conference Submission",
-          date: "22 Jul 2026",
-          concept: "A self-teaching framework in which a vision-language model coordinates coarse semantic decisions with fine-grained recognition, using complementary teacher roles to improve hierarchical consistency."
-        },
-        {
-          title: "Decentralized Coupled Representation Learning",
-          authors: "Zilin Li, Weiwei Xu, XuChun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang",
-          venue: "NeurIPS 2026 Conference Submission",
-          date: "15 Apr 2026",
-          concept: "A theory-oriented study of representation learning when decentralized agents learn from data generated by coupled spatial exploration, connecting graph processes, stochastic approximation, and subspace dynamics."
-        },
-        {
-          title: "IntraDiag: Learning Intrinsic Diagnostic Procedure Capability for Multi-Step Diagnostic Reasoning",
-          authors: "Yiran Zhu, Wei Yang, Hanning Zhang, Zilin Li, Ziyang Guo, Hongtao Wang",
-          venue: "Submitted to ACM Multimedia 2026",
-          date: "26 Mar 2026",
-          concept: "A multi-step reasoning approach that emphasizes internalized diagnostic procedures rather than isolated answer prediction, aiming to make diagnostic reasoning more systematic and traceable."
-        },
-        {
-          title: "PIERCE: Triadic Bayesian Reasoning for Establishing Epistemic Boundaries in LLMs",
-          authors: "Zilin Li, Weiwei Xu, XuChun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang",
-          venue: "Submitted to EIML@ICML 2026",
-          date: "20 Mar 2026",
-          concept: "A Bayesian reasoning framework for separating knowledge, uncertainty, and unsupported inference so language models can better recognize and communicate their epistemic boundaries."
-        },
-        {
-          title: "Self-Empowering VLMs: Achieving Hierarchical Consistency via Self-Elicited Knowledge Distillation",
-          authors: "Wei Yang, Yiran Zhu, Zilin Li, Xunjia Zhang, Jun Xia, Hongtao Wang",
-          venue: "ECCV 2026 submission; earlier KDD and CVPR versions withdrawn",
-          date: "30 Jan 2026",
-          concept: "A self-elicited distillation strategy that teaches a vision-language model to align predictions across semantic levels without relying entirely on externally supplied rationales."
-        }
-      ]
-    };
+const synonyms=[['分布式','distributed','decentralized','federated','联邦','去中心化'],['表征','representation','embedding','嵌入','feature','特征'],['学习','learning','训练','training'],['隐私','privacy','private'],['通信','communication','bandwidth','带宽'],['收敛','convergence','优化','optimization'],['评估','evaluation','metric','指标'],['论文','paper','publication','文章'],['项目','project','课题','选题'],['异质','heterogeneous','non-iid','noniid','非iid'],['解释','explain','什么是','what is'],['详细','detail','more','展开','具体']];
+function norm(s){return String(s||'').toLowerCase().normalize('NFKC').replace(/[，。！？、；：“”‘’（）【】《》,.!?;:()\[\]{}<>/\\|@#$%^&*_+=~`"']/g,' ').replace(/\s+/g,' ').trim()}
+function tokens(s){const n=norm(s),out=new Set(n.split(' ').filter(x=>x.length>1)),zh=[...n.replace(/[a-z0-9\s-]/g,'')];for(let k=2;k<=3;k++)for(let i=0;i<=zh.length-k;i++)out.add(zh.slice(i,i+k).join(''));for(const group of synonyms)if(group.some(w=>n.includes(norm(w))))group.forEach(w=>out.add(norm(w)));return out}
+const docs=CORPUS.map(e=>{const text=[...(e.questionsZh||[]),...(e.questionsEn||[]),...(e.keywords||[]),e.category].join(' ');return {e,t:tokens(text),n:norm(text)}}),df=new Map();docs.forEach(d=>d.t.forEach(t=>df.set(t,(df.get(t)||0)+1)));const N=Math.max(1,docs.length);function idf(t){return Math.log(1+(N-(df.get(t)||0)+.5)/((df.get(t)||0)+.5))}
+function detectZh(q){return /[\u3400-\u9fff]/.test(q)}function score(q,d){const nq=norm(q),qt=tokens(q);let s=0,inter=0;for(const t of qt)if(d.t.has(t)){inter++;s+=idf(t)*(t.length>3?1.25:1)}const union=new Set([...qt,...d.t]).size||1;s+=4.2*inter/union;for(const p of [...(d.e.questionsZh||[]),...(d.e.questionsEn||[])]){const np=norm(p);if(nq===np)s+=12;else if(nq.includes(np)||np.includes(nq))s+=3.2}for(const k of d.e.keywords||[])if(nq.includes(norm(k)))s+=2.3;return s}
+function retrieve(q){return docs.map(d=>({d,s:score(q,d)})).sort((a,b)=>b.s-a.s).slice(0,3)}function isDetail(q){const n=norm(q);return ['详细','展开','具体','more detail','explain more','why','为什么','公式'].some(x=>n.includes(x))}
+function offlineAnswer(q){const zh=detectZh(q);if(isDetail(q)&&state.lastOffline){const e=state.lastOffline;return {e,text:zh?e.detailZh:e.detailEn,conf:.93}}const best=retrieve(q)[0];if(!best||best.s<1.45)return {e:null,conf:.18,text:zh?'这个问题暂时不在本地语料中。你可以换一种说法，或询问 Zilin 的简介、分布式机器学习、表征学习、联邦学习、自监督学习、实验设计和论文写作。':'That question is not yet covered by the local corpus. Try rephrasing it, or ask about Zilin, distributed machine learning, representation learning, federated learning, self-supervision, experimental design, or paper writing.'};const conf=Math.min(.98,.38+best.s/13);return {e:best.d.e,conf,text:zh?best.d.e.answerZh:best.d.e.answerEn}}
+async function sendOffline(text){const h=state.histories.offline;h.push({role:'user',text,mode:'offline'});renderHistory();setBusy(true);addTyping();await new Promise(r=>setTimeout(r,180));$('#typing')?.remove();const r=offlineAnswer(text);state.lastOffline=r.e;h.push({role:'assistant',text:r.text,mode:'offline',conf:r.conf,suggestions:r.e?.suggestions||[]});setBusy(false);renderHistory()}
+async function sendAPI(text){if(!state.apiKey){openModal('settingsModal');toast('Configure or unlock an API key first');return}const h=state.histories.api;h.push({role:'user',text,mode:'api'});renderHistory();setBusy(true);addTyping();state.controller=new AbortController();try{const endpoint=$('#endpointInput').value.trim(),model=$('#modelInput').value;localStorage.setItem('zilin_api_endpoint',endpoint);localStorage.setItem('zilin_api_model',model);const apiMessages=h.slice(-16).map(m=>({role:m.role,content:m.text}));const res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+state.apiKey},body:JSON.stringify({model,messages:[{role:'system',content:SYSTEM},...apiMessages],temperature:.55,stream:true}),signal:state.controller.signal});if(!res.ok)throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0,220)}`);$('#typing')?.remove();const row=document.createElement('div');row.className='message assistant';row.innerHTML='<div class="msg-avatar">AI</div><div class="bubble"></div>';els.inner.appendChild(row);const bubble=row.querySelector('.bubble');let full='',type=res.headers.get('content-type')||'';if(!res.body||!type.includes('text/event-stream')){const data=await res.json();full=data.choices?.[0]?.message?.content||'No response content.';bubble.textContent=full}else{const reader=res.body.getReader(),decoder=new TextDecoder();let buf='';while(true){const {value,done}=await reader.read();if(done)break;buf+=decoder.decode(value,{stream:true});const lines=buf.split('\n');buf=lines.pop()||'';for(const line of lines){const s=line.trim();if(!s.startsWith('data:'))continue;const payload=s.slice(5).trim();if(payload==='[DONE]')continue;try{const j=JSON.parse(payload),delta=j.choices?.[0]?.delta?.content||'';full+=delta;bubble.textContent=full;els.messages.scrollTop=els.messages.scrollHeight}catch{}}}}h.push({role:'assistant',text:full||'No response content.',mode:'api'});state.lastActivity=Date.now()}catch(err){if(err.name!=='AbortError')h.push({role:'assistant',text:`Request failed: ${err.message}\n\nTry a custom proxy endpoint if the browser blocks direct cross-origin requests.`,mode:'api'})}finally{state.controller=null;setBusy(false);renderHistory()}}
+async function send(){const text=els.input.value.trim();if(!text||state.busy)return;els.input.value='';fit();els.send.disabled=true;if(state.mode==='offline')await sendOffline(text);else await sendAPI(text)}
+$('#clearBtn').onclick=()=>{if(state.controller)state.controller.abort();state.histories[state.mode]=[];if(state.mode==='offline')state.lastOffline=null;state.busy=false;els.input.disabled=false;renderHistory();toast('Current conversation cleared')};
 
-    const domainKB = {
-      decentralized: {
-        title: "Decentralized representation learning",
-        body: `Decentralized representation learning asks multiple agents to learn a useful shared feature space without routing all raw data through one central server. The hard part is not merely communication efficiency. Each node may observe a different distribution, update asynchronously, and influence the data it later receives. This creates a coupled system involving optimization, network mixing, stochastic processes, and representation geometry.\n\nA strong theoretical treatment usually separates several questions: whether local information mixes across the graph, whether the stochastic process generating samples has a stable limit, whether the learning rule tracks an averaged dynamical system, and whether the resulting representation converges to a meaningful subspace rather than collapsing. Zilin's work in this area is notable because it tries to study the data-generation process and the representation update together, rather than treating samples as an exogenous i.i.d. stream.`
-      },
-      representation: {
-        title: "Representation learning",
-        body: `Representation learning is the problem of transforming raw observations into features that preserve the information needed for downstream tasks. Good representations compress nuisance variation while retaining structure such as class identity, semantic hierarchy, geometry, or causal factors.\n\nThe central tension is that a representation can be predictive without being stable, transferable, or interpretable. Modern research therefore studies not only task accuracy but also invariance, alignment, disentanglement, calibration, and robustness under distribution shift. In Zilin's portfolio, this theme appears in both the decentralized learning work and the vision-language projects: one emphasizes the dynamics of learning a subspace, while the other emphasizes consistency across levels of semantic abstraction.`
-      },
-      vlm: {
-        title: "Hierarchical consistency in VLMs",
-        body: `Hierarchical consistency means that predictions at different semantic resolutions should agree. For example, if a model identifies an image as a “golden retriever,” its broader predictions should also support “dog,” “mammal,” and “animal.” A model is hierarchically inconsistent when its fine-grained answer conflicts with its coarse understanding.\n\nThis matters because many real tasks require moving between levels of abstraction. A vision-language model may need to identify an object, explain its category, compare it with related concepts, and justify a decision. Self-teaching and self-elicited distillation are attractive because the model can generate intermediate supervisory signals from its own stronger or differently conditioned views, reducing dependence on expensive external annotations. The technical risk is confirmation bias: a model can reinforce its own mistakes unless the teacher roles, confidence control, and cross-level constraints are designed carefully.`
-      },
-      diagnostic: {
-        title: "Multi-step diagnostic reasoning",
-        body: `Multi-step diagnostic reasoning is more than producing a final label. It involves deciding what evidence matters, generating candidate explanations, testing alternatives, identifying contradictions, and stopping when the remaining uncertainty is acceptable. A model that only memorizes answer patterns may look strong on familiar benchmarks but fail when evidence arrives in a new order or when several hypotheses remain plausible.\n\nA procedure-centered approach attempts to internalize the reasoning protocol itself. That can improve transfer because the model learns a reusable diagnostic workflow rather than a narrow mapping from prompt to answer. Evaluation should therefore examine intermediate decision quality, error localization, calibration, and robustness to missing or misleading evidence—not only final accuracy.`
-      },
-      epistemic: {
-        title: "Epistemic boundaries in LLMs",
-        body: `An epistemic boundary separates what a model can support from what it can only guess. For language models, this boundary is difficult to estimate because fluent generation can make weakly supported claims look certain. A useful framework should distinguish evidence-backed knowledge, uncertainty among plausible alternatives, and claims that fall outside the available evidence.\n\nBayesian reasoning is relevant because it provides a language for updating belief under uncertainty. A triadic formulation can be used to represent support, conflict, and ignorance separately rather than compressing everything into one confidence score. The practical objective is not to make a model refuse more often; it is to make the model know when to answer directly, when to qualify, when to ask for evidence, and when to abstain.`
-      },
-      research: {
-        title: "Research strategy",
-        body: `A strong undergraduate research profile is built less by maximizing the number of simultaneous submissions and more by developing a visible technical identity. Zilin's current identity is already emerging around structured reasoning, representation learning, and reliability. The next step is to make the connection among these themes explicit and to produce at least one project with unusually deep evidence: a rigorous theorem, a carefully controlled benchmark, or a clean open-source system that other researchers can reuse.\n\nThe highest-leverage improvements would be stronger experimental reproducibility, sharper statements of theoretical scope, and a consistent public narrative across the homepage, papers, code, and talks. A small number of polished artifacts usually creates more credibility than a larger set of loosely connected projects.`
-      },
-      coding: {
-        title: "Technical implementation advice",
-        body: `For a research codebase, the most important design choice is to separate the scientific claim from the engineering scaffolding. Keep data processing, model definitions, training loops, evaluation, and configuration independent enough that an ablation changes one component rather than the entire pipeline.\n\nA credible repository should include deterministic seeds, exact environment metadata, a minimal smoke test, machine-readable result files, and scripts that regenerate the main tables or figures. This structure reduces accidental leakage between experiments and makes it easier for reviewers to distinguish a real empirical effect from a fragile implementation detail.`
-      }
-    };
-
-    const exactResponses = [
-      {
-        test: q => /who is zilin|overview of zilin|about zilin|introduce zilin|concise overview/i.test(q),
-        answer: () => `Zilin Li is an undergraduate researcher at the School of Information and Intelligent Science, Donghua University, Shanghai. He has also worked as an intern at BCMI Lab, Shanghai Jiao Tong University. His current interests center on distributed machine learning, representation learning, structured reasoning, and the reliability of intelligent systems.\n\nHis recent work spans three connected directions: **decentralized learning dynamics**, **hierarchical reasoning in vision-language models**, and **epistemic or diagnostic reliability in large models**. This gives his profile a theory-to-system character: some projects study convergence and coupled stochastic processes, while others design training frameworks for more consistent multi-step decisions.\n\nAt this stage, his strongest differentiator is the breadth of technical ambition combined with a relatively coherent theme—how learning systems form, coordinate, and validate internal representations under limited supervision or uncertainty.`
-      },
-      {
-        test: q => /publication|papers|work has zilin published|list zilin/i.test(q),
-        answer: () => {
-          const lines = profile.publications.map((p, i) => `${i + 1}. **${p.title}**  \n${p.venue}. ${p.concept}`).join("\n\n");
-          return `Zilin's current publication record covers decentralized learning, vision-language reasoning, diagnostic procedures, and epistemic reliability.\n\n${lines}\n\nTaken together, the papers suggest a research agenda around **structured internal decision-making**: how models learn representations, coordinate reasoning across levels, and recognize the limits of what they know.`;
-        }
-      },
-      {
-        test: q => /research agenda|projects connect|common theme|research direction/i.test(q),
-        answer: () => `The common thread across Zilin's projects is **structured learning under imperfect information**. The projects differ in domain, but they repeatedly ask how an intelligent system should organize internal representations and make reliable decisions when data, supervision, or certainty is limited.\n\n- **Decentralized Coupled Representation Learning** studies how distributed agents learn a shared subspace while interacting with a dynamic data-generation process.\n- **DuoTeach** and **Self-Empowering VLMs** focus on coordination across coarse and fine semantic levels in vision-language models.\n- **IntraDiag** shifts the focus from final-answer imitation to learning reusable diagnostic procedures.\n- **PIERCE** addresses the boundary between justified knowledge, uncertainty, and unsupported inference.\n\nA concise way to describe the agenda is: **representation, reasoning, and reliability in learning systems that must supervise or coordinate themselves**.`
-      },
-      {
-        test: q => /duoteach/i.test(q),
-        answer: () => `DuoTeach can be understood as a self-teaching architecture for hierarchical visual decision-making. Instead of relying on one teacher signal, the framework uses two complementary roles: one emphasizes broad semantic structure, while the other emphasizes fine-grained discrimination. The student is trained to coordinate both.\n\nThe motivation is that vision-language models often behave inconsistently across abstraction levels. A model may correctly identify a specific object yet give an incompatible super-category, or it may understand the scene globally but fail on a subtle local distinction. Dual-role supervision creates pressure for the representation to support both decisions simultaneously.\n\nThe technically important questions are how the two teacher roles are generated, how conflicting signals are reconciled, and how the method avoids amplifying its own mistakes. A convincing evaluation should measure not only top-line accuracy but also cross-level consistency, calibration, error propagation, and robustness on fine-grained categories.`
-      },
-      {
-        test: q => /most theoretically ambitious|theoretical ambition|most ambitious project/i.test(q),
-        answer: () => `**Decentralized Coupled Representation Learning** is the most theoretically ambitious project in the current portfolio. It tries to connect several difficult layers of analysis: graph-based interaction, a Markovian data-generation process, stochastic approximation, averaged dynamics, and convergence toward a representation subspace.\n\nIts ambition comes from the coupling. In standard learning theory, the data distribution is often treated as fixed. Here, the representation can affect exploration, and exploration can affect subsequent learning. That feedback loop makes the problem substantially harder because the learner is no longer optimizing against a passive environment.\n\nThe main risk is scope. A paper can rigorously prove graph-to-diffusion limits or averaged dynamics while still leaving the fully feedback-coupled stochastic system only partially resolved. The strongest presentation is therefore precise about which layers are fully proved, which are deterministic comparison results, and which remain open.`
-      },
-      {
-        test: q => /focus on next|stronger research profile|career advice|what should zilin do next/i.test(q),
-        answer: () => `Zilin should now optimize for **depth, coherence, and public evidence** rather than simply adding more project titles.\n\nFirst, choose one flagship direction and make it unmistakably strong. The decentralized learning project is a natural theory flagship, while DuoTeach could become the empirical flagship. Each needs a clean statement of the problem, a narrow set of defensible claims, and reproducible evidence.\n\nSecond, unify the public narrative. The homepage, paper abstracts, code repositories, and research statement should all reinforce the same identity: structured representation and reliable reasoning under decentralization, hierarchy, or uncertainty.\n\nThird, publish artifacts that demonstrate independent technical ability—well-documented code, theorem notes, diagnostic visualizations, and concise technical essays. For an undergraduate researcher, these artifacts often carry more signal than another lightly differentiated submission.`
-      },
-      {
-        test: q => /email|contact|reach zilin/i.test(q),
-        answer: () => `Zilin's preferred confirmed email is **231310414@mail.dhu.edu.cn**. He can also be reached at **723602212576@sjtu.edu.cn**.\n\nFor research correspondence, a concise message should mention the specific paper or topic, explain why the connection is relevant, and make one concrete request.`
-      },
-      {
-        test: q => /advisor|supervisor/i.test(q),
-        answer: () => `Zilin's undergraduate advisor is **Ge Zhang**, beginning in 2025. His earlier research experience also includes an internship at BCMI Lab, Shanghai Jiao Tong University, from 2024 to 2025.`
-      },
-      {
-        test: q => /education|university|school|background/i.test(q),
-        answer: () => `Zilin Li has been an undergraduate student at Donghua University since 2023, in the School of Information and Intelligent Science. From 2024 to 2025, he also worked as an intern at BCMI Lab, Shanghai Jiao Tong University.\n\nThis combination gives him exposure to both a formal undergraduate program and a research-lab environment, with current work spanning theoretical machine learning and multimodal reasoning.`
-      }
-    ];
-
-    const openingPhrases = [
-      "A useful way to frame this is",
-      "The central issue is",
-      "From a research perspective",
-      "A careful answer has three parts",
-      "The most defensible interpretation is"
-    ];
-
-    const cautiousClosers = [
-      "The exact conclusion depends on the assumptions and evidence available, so the strongest version of the answer should state those limits explicitly.",
-      "In practice, the key is to separate what is demonstrated from what is merely plausible.",
-      "That distinction matters because a polished explanation can otherwise sound more certain than the underlying evidence supports.",
-      "A rigorous treatment would turn these points into testable claims, explicit assumptions, and measurable failure cases."
-    ];
-
-    const chatScroll = document.getElementById("chatScroll");
-    const messages = document.getElementById("messages");
-    const hero = document.getElementById("hero");
-    const input = document.getElementById("promptInput");
-    const sendBtn = document.getElementById("sendBtn");
-    const sidebar = document.getElementById("sidebar");
-    const historyList = document.getElementById("historyList");
-    let isGenerating = false;
-    let sessionMessages = [];
-
-    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-
-    function escapeHTML(str) {
-      return str.replace(/[&<>'"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[ch]));
-    }
-
-    function formatMarkdown(text) {
-      let html = escapeHTML(text);
-      html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-      html = html.replace(/`(.+?)`/g, "<code>$1</code>");
-      const blocks = html.split(/\n\n+/);
-      return blocks.map(block => {
-        const lines = block.split("\n");
-        if (lines.every(line => /^[-*] /.test(line))) {
-          return `<ul>${lines.map(line => `<li>${line.replace(/^[-*] /, "")}</li>`).join("")}</ul>`;
-        }
-        if (lines.every(line => /^\d+\. /.test(line))) {
-          return `<ol>${lines.map(line => `<li>${line.replace(/^\d+\. /, "")}</li>`).join("")}</ol>`;
-        }
-        if (/^### /.test(block)) return `<h3>${block.replace(/^### /, "")}</h3>`;
-        return `<p>${lines.join("<br>")}</p>`;
-      }).join("");
-    }
-
-    function addMessage(role, text, options = {}) {
-      hero.style.display = "none";
-      const wrap = document.createElement("article");
-      wrap.className = `message ${role}`;
-      const initials = role === "assistant" ? "ZL" : "You";
-      const time = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-      wrap.innerHTML = `
-        <div class="message-avatar">${initials}</div>
-        <div class="message-body">
-          <div class="message-meta">${role === "assistant" ? "Zilin Research Reasoner" : "You"}<span>·</span><span>${time}</span></div>
-          ${options.thinking ? options.thinking : ""}
-          <div class="message-text">${role === "assistant" ? formatMarkdown(text) : `<p>${escapeHTML(text)}</p>`}</div>
-          ${role === "assistant" ? `<div class="answer-tools">
-            <button class="tool-btn copy-answer" title="Copy answer" aria-label="Copy answer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
-            <button class="tool-btn regenerate" title="Regenerate" aria-label="Regenerate"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11a8.1 8.1 0 0 0-15.5-2M4 4v5h5M4 13a8.1 8.1 0 0 0 15.5 2M20 20v-5h-5"/></svg></button>
-          </div>` : ""}
-        </div>`;
-      messages.appendChild(wrap);
-      if (role === "assistant") {
-        wrap.querySelector(".copy-answer").addEventListener("click", async e => {
-          await navigator.clipboard.writeText(text).catch(() => {});
-          const btn = e.currentTarget;
-          btn.innerHTML = "✓";
-          setTimeout(() => btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`, 1200);
-        });
-        wrap.querySelector(".regenerate").addEventListener("click", () => {
-          const lastUser = [...sessionMessages].reverse().find(m => m.role === "user");
-          if (lastUser && !isGenerating) generate(lastUser.text, true);
-        });
-      }
-      scrollBottom();
-      return wrap;
-    }
-
-    function addThinking() {
-      hero.style.display = "none";
-      const wrap = document.createElement("article");
-      wrap.className = "message assistant";
-      wrap.innerHTML = `
-        <div class="message-avatar">ZL</div>
-        <div class="message-body">
-          <div class="message-meta">Zilin Research Reasoner<span>·</span><span>reasoning</span></div>
-          <div class="thinking-card">
-            <div class="thinking-head">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.5 4.5A3.5 3.5 0 0 0 6 8v1a3 3 0 0 0-2 2.83V14a4 4 0 0 0 4 4h1.5M14.5 4.5A3.5 3.5 0 0 1 18 8v1a3 3 0 0 1 2 2.83V14a4 4 0 0 1-4 4h-1.5M12 3v18"/></svg>
-              Analyzing context<span class="dots"><i></i><i></i><i></i></span>
-            </div>
-            <div class="thinking-lines"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
-          </div>
-        </div>`;
-      messages.appendChild(wrap);
-      scrollBottom();
-      return wrap;
-    }
-
-    function scrollBottom() {
-      requestAnimationFrame(() => chatScroll.scrollTo({ top: chatScroll.scrollHeight, behavior: "smooth" }));
-    }
-
-    function detectDomain(q) {
-      const s = q.toLowerCase();
-      if (/decentral|distributed|federated|consensus|graph|oja|langevin/.test(s)) return domainKB.decentralized;
-      if (/representation|embedding|feature|subspace|latent/.test(s)) return domainKB.representation;
-      if (/vision.language|vlm|hierarch|coarse|fine.grained|distill/.test(s)) return domainKB.vlm;
-      if (/diagnos|multi.step|clinical|procedure|reasoning chain/.test(s)) return domainKB.diagnostic;
-      if (/epistem|uncertain|hallucinat|bayes|calibrat|confidence|abstain/.test(s)) return domainKB.epistemic;
-      if (/research|paper|review|career|graduate|publication|experiment/.test(s)) return domainKB.research;
-      if (/code|python|implementation|repository|github|debug|software/.test(s)) return domainKB.coding;
-      return null;
-    }
-
-    function extractTopic(q) {
-      const stop = new Set(["what","why","how","when","where","who","is","are","was","were","do","does","did","can","could","would","should","tell","me","about","explain","give","a","an","the","of","to","for","and","or","in","on","with","this","that","it"]);
-      const words = q.toLowerCase().replace(/[^a-z0-9\- ]/g, " ").split(/\s+/).filter(w => w.length > 3 && !stop.has(w));
-      return words.slice(0, 5).join(" ") || "the topic";
-    }
-
-    function fallbackResponse(q) {
-      const topic = extractTopic(q);
-      const intro = pick(openingPhrases);
-      const closer = pick(cautiousClosers);
-      const modes = [
-        `**${intro}: ${topic}.**\n\nStart by separating the objective, the mechanism, and the evidence. The objective asks what successful performance would look like. The mechanism asks what process could plausibly produce that outcome. The evidence asks what observation would distinguish the proposed explanation from a simpler alternative.\n\nFor a technical analysis, I would examine assumptions, measurable variables, baseline comparisons, and failure cases. For a practical decision, I would compare expected benefit, cost, reversibility, and uncertainty. This prevents the answer from becoming a collection of plausible-sounding claims without a decision rule.\n\n${closer}`,
-        `I do not have a dedicated local entry for **${topic}**, but I can still give a robust analytical answer.\n\nA good first pass is to define the term precisely, identify the system boundary, and ask which variables are controlled versus merely observed. Then consider at least two competing explanations. The strongest explanation is not the most elaborate one; it is the one that accounts for the evidence with the fewest unsupported assumptions.\n\nNext, test sensitivity. Ask whether the conclusion changes under different data, scales, time horizons, or definitions. A reliable answer should remain useful even when one assumption is weakened.\n\n${closer}`,
-        `Here is a disciplined way to reason about **${topic}**.\n\n1. **Clarify the claim.** Convert the question into a statement that could be true or false.\n2. **Map the causal structure.** Identify inputs, intermediate mechanisms, outputs, and feedback loops.\n3. **Check the evidence.** Separate direct observations from interpretation and analogy.\n4. **Stress-test the result.** Look for edge cases, distribution shifts, and alternative baselines.\n\nMy offline knowledge base may not contain the specific fact you are asking for, so I would treat any narrow factual detail cautiously. The reasoning framework above is reliable, but exact claims should be verified against an authoritative source.`
-      ];
-      return pick(modes);
-    }
-
-    function answerQuestion(q) {
-      const exact = exactResponses.find(item => item.test(q));
-      if (exact) return exact.answer();
-      const domain = detectDomain(q);
-      if (domain) return `${domain.body}\n\n**Applied to your question:** the most useful next step is to make the target claim explicit and evaluate it with evidence that directly tests the mechanism, not only the final outcome.`;
-      return fallbackResponse(q);
-    }
-
-    async function streamText(el, text) {
-      el.innerHTML = "";
-      const chunks = text.split(/(\s+)/);
-      let rendered = "";
-      for (let i = 0; i < chunks.length; i++) {
-        rendered += chunks[i];
-        if (i % 3 === 0 || i === chunks.length - 1) {
-          el.innerHTML = formatMarkdown(rendered);
-          scrollBottom();
-          await new Promise(r => setTimeout(r, 9 + Math.random() * 14));
-        }
-      }
-    }
-
-    async function generate(q, regenerated = false) {
-      if (!q.trim() || isGenerating) return;
-      isGenerating = true;
-      sendBtn.disabled = true;
-      if (!regenerated) {
-        addMessage("user", q.trim());
-        sessionMessages.push({ role: "user", text: q.trim() });
-        input.value = "";
-        resizeInput();
-        addHistory(q.trim());
-      }
-      const thinking = addThinking();
-      const delay = 700 + Math.random() * 900;
-      await new Promise(r => setTimeout(r, delay));
-      const answer = answerQuestion(q);
-      thinking.remove();
-      const answerWrap = addMessage("assistant", "");
-      await streamText(answerWrap.querySelector(".message-text"), answer);
-      sessionMessages.push({ role: "assistant", text: answer });
-      isGenerating = false;
-      sendBtn.disabled = false;
-      input.focus();
-    }
-
-    function addHistory(text) {
-      const first = historyList.querySelector(".nav-item");
-      if (first && first.textContent.includes("Research profile assistant")) first.remove();
-      const item = document.createElement("button");
-      item.className = "nav-item";
-      item.innerHTML = `<span>${escapeHTML(text.length > 31 ? text.slice(0, 31) + "…" : text)}</span>`;
-      item.addEventListener("click", () => { input.value = text; resizeInput(); input.focus(); });
-      historyList.prepend(item);
-      while (historyList.children.length > 5) historyList.lastElementChild.remove();
-    }
-
-    function resizeInput() {
-      input.style.height = "auto";
-      input.style.height = Math.min(input.scrollHeight, 180) + "px";
-    }
-
-    function resetChat() {
-      messages.innerHTML = "";
-      hero.style.display = "flex";
-      sessionMessages = [];
-      historyList.innerHTML = `<button class="nav-item"><span>Research profile assistant</span></button>`;
-      input.value = "";
-      resizeInput();
-      sidebar.classList.remove("open");
-      input.focus();
-    }
-
-    document.querySelectorAll("[data-prompt]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        sidebar.classList.remove("open");
-        generate(btn.dataset.prompt);
-      });
-    });
-
-    sendBtn.addEventListener("click", () => generate(input.value));
-    input.addEventListener("input", resizeInput);
-    input.addEventListener("keydown", e => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault();
-        generate(input.value);
-      }
-    });
-
-    document.getElementById("newChatBtn").addEventListener("click", resetChat);
-    document.getElementById("menuBtn").addEventListener("click", () => sidebar.classList.toggle("open"));
-    document.addEventListener("keydown", e => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault(); resetChat();
-      }
-      if (e.key === "Escape") {
-        sidebar.classList.remove("open");
-        document.getElementById("profileModal").classList.remove("open");
-      }
-    });
-
-    const modal = document.getElementById("profileModal");
-    function openModal() { modal.classList.add("open"); }
-    document.getElementById("openProfile").addEventListener("click", openModal);
-    document.getElementById("openProfileTop").addEventListener("click", openModal);
-    document.getElementById("closeProfile").addEventListener("click", () => modal.classList.remove("open"));
-    modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("open"); });
-
-    document.getElementById("shareBtn").addEventListener("click", async e => {
-      await navigator.clipboard.writeText(location.href).catch(() => {});
-      const btn = e.currentTarget;
-      const old = btn.innerHTML;
-      btn.innerHTML = "✓";
-      setTimeout(() => btn.innerHTML = old, 1200);
-    });
-
-    const pubs = document.getElementById("modalPublications");
-    profile.publications.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "pub";
-      card.innerHTML = `<strong>${escapeHTML(p.title)}</strong><span>${escapeHTML(p.venue)} · ${escapeHTML(p.date)}</span>`;
-      pubs.appendChild(card);
-    });
-
-    window.addEventListener("load", () => input.focus());
-  </script>
-</body>
-</html>
+const enc=new TextEncoder(),dec=new TextDecoder(),b64=a=>btoa(String.fromCharCode(...new Uint8Array(a))),unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function derive(pass,salt,uses,iterations=600000){const base=await crypto.subtle.importKey('raw',enc.encode(pass),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,uses)}
+async function saveVault(){try{const key=$('#apiKeyInput').value.trim(),pass=$('#passphraseInput').value;if(!key.startsWith('sk-'))return toast('Enter a valid API key');if(pass.length<12)return toast('Passphrase must be at least 12 characters');const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),iterations=600000,k=await derive(pass,salt,['encrypt'],iterations),ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,enc.encode(key));localStorage.setItem('zilin_api_vault',JSON.stringify({v:1,i:iterations,s:b64(salt),iv:b64(iv),ct:b64(ct)}));state.apiKey=key;state.lastActivity=Date.now();$('#apiKeyInput').value='';$('#passphraseInput').value='';setStatus();closeModal('settingsModal');toast('Encrypted vault saved')}catch{toast('Unable to save encrypted vault')}}
+async function unlockVault(){try{const v=JSON.parse(localStorage.getItem('zilin_api_vault')||'null');if(!v)return toast('No saved vault found');const pass=$('#passphraseInput').value;if(!pass)return toast('Enter the vault passphrase');const k=await derive(pass,unb64(v.s),['decrypt'],v.i||600000),pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(v.iv)},k,unb64(v.ct));state.apiKey=dec.decode(pt);state.lastActivity=Date.now();$('#passphraseInput').value='';setStatus();closeModal('settingsModal');toast('Vault unlocked')}catch{toast('Unable to unlock vault')}}
+$('#saveVaultBtn').onclick=saveVault;$('#unlockBtn').onclick=unlockVault;$('#useSessionBtn').onclick=()=>{const k=$('#apiKeyInput').value.trim();if(!k.startsWith('sk-'))return toast('Enter a valid API key');state.apiKey=k;state.lastActivity=Date.now();$('#apiKeyInput').value='';setStatus();closeModal('settingsModal');toast('API key loaded for this tab')};$('#removeVaultBtn').onclick=()=>{localStorage.removeItem('zilin_api_vault');state.apiKey='';setStatus();toast('Saved vault removed')};
+setInterval(()=>{if(state.apiKey&&Date.now()-state.lastActivity>15*60*1000){state.apiKey='';setStatus();toast('Vault locked after inactivity')}},60000);
+const categories=[...new Set(CORPUS.map(x=>x.category))].sort();$('#entryCount').textContent=CORPUS.length;$('#categoryCount').textContent=categories.length;$('#categoryList').innerHTML=categories.map(c=>`<span>${esc(c)}</span>`).join('');$('#endpointInput').value=localStorage.getItem('zilin_api_endpoint')||'https://api.deepseek.com/chat/completions';$('#modelInput').value=localStorage.getItem('zilin_api_model')||'deepseek-v4-flash';
+setStatus();renderHistory();
+</script></body></html>
