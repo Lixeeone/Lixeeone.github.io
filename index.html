@@ -2,699 +2,1675 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Zilin Li (李子林)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-        content="Personal homepage of Zilin Li (李子林), undergraduate student at Donghua University and research intern at BCMI Lab, Shanghai Jiao Tong University.">
-
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zilin Li — research portfolio and offline conversational assistant." />
+  <meta name="theme-color" content="#0f0f10" />
+  <title>Zilin Li — Conversational Portfolio</title>
 
   <style>
-    body {
+    :root {
+      --bg: #212121;
+      --panel: #171717;
+      --panel-2: #2f2f2f;
+      --panel-3: #383838;
+      --text: #ececec;
+      --muted: #a8a8a8;
+      --line: rgba(255,255,255,.10);
+      --accent: #10a37f;
+      --accent-2: #19c37d;
+      --danger: #ef6461;
+      --shadow: 0 12px 34px rgba(0,0,0,.28);
+      --radius: 18px;
+      --sidebar-width: 270px;
+      --content-width: 840px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   "Helvetica Neue", Arial, sans-serif;
-      background: #f3f4f6;
-      color: #111827;
+    }
+
+    body {
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, textarea, input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
     }
 
     a {
-      color: #2563eb;
-      text-decoration: none;
+      color: inherit;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .app {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) 1fr;
+      height: 100%;
     }
 
-    main {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 28px 16px 40px;
-      background: #ffffff;
+    .sidebar {
+      min-width: 0;
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      z-index: 20;
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
-    h1 {
-      font-size: 30px;
-      margin: 14px 0 6px;
-      font-weight: 700;
-    }
-
-    .subtitle {
-      font-size: 15px;
-      color: #6b7280;
-      margin-bottom: 14px;
-    }
-
-    .profile-photo {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto;
-    }
-
-    section {
-      margin-bottom: 32px;
-    }
-
-    h2 {
-      font-size: 22px;
-      margin: 10px 0 12px;
-      border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 4px;
-      font-weight: 600;
-    }
-
-    h3 {
-      font-size: 17px;
-      margin: 14px 0 6px;
-      font-weight: 600;
-    }
-
-    p {
-      font-size: 15px;
-      line-height: 1.8;
-      margin: 6px 0 12px;
-      text-align: justify;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .contact-list {
-      list-style: none;
-      padding-left: 0;
-      margin: 4px 0 0;
-    }
-
-    .contact-list li {
-      font-size: 15px;
-      margin-bottom: 8px;
+    .brand {
+      height: 48px;
+      padding: 0 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      word-break: break-all;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
     }
 
-    .contact-list i {
-      width: 18px;
-      text-align: center;
-      color: #4b5563;
-      flex-shrink: 0;
-    }
-
-    .interests-list {
-      font-size: 15px;
-      margin-top: 4px;
-    }
-
-    .interests-list li {
-      margin-bottom: 4px;
-    }
-
-    .advisor-photo {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .advisor-name {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .zh-note {
-      color: #6b7280;
-      font-style: italic;
-    }
-
-    .pub-list {
-      font-size: 15px;
-      padding-left: 20px;
-      margin-top: 6px;
-    }
-
-    .pub-list li {
-      margin-bottom: 20px;
-      list-style-position: outside;
-    }
-
-    .pub-item {
+    .brand-left {
       display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .pub-text {
-      flex: 1 1 0;
+      align-items: center;
+      gap: 10px;
       min-width: 0;
     }
 
-    .pub-fig {
-      flex: 0 0 180px;
-      max-width: 40%;
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.36), transparent 28%),
+        linear-gradient(135deg, var(--accent), #0c725c);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.14);
     }
 
-    .pub-fig img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .pub-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .pub-authors {
-      color: #4b5563;
-      margin-bottom: 4px;
-    }
-
-    .pub-links {
+    .brand-title {
       font-size: 14px;
-      color: #374151;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .pub-links a {
-      margin-right: 8px;
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 9px;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: .16s ease;
     }
 
-    .footer {
+    .icon-btn:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    .new-chat {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: transparent;
+      border-radius: 10px;
+      min-height: 42px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: .16s ease;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .new-chat:hover {
+      background: rgba(255,255,255,.06);
+    }
+
+    .history-title {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 12px 10px 7px;
+    }
+
+    .history {
+      flex: 1;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .history::-webkit-scrollbar,
+    .messages::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .history::-webkit-scrollbar-thumb,
+    .messages::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+    }
+
+    .history-item {
+      border: 0;
+      width: 100%;
+      min-height: 40px;
+      border-radius: 9px;
+      padding: 8px 10px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      text-align: left;
+      color: #d8d8d8;
+    }
+
+    .history-item:hover,
+    .history-item.active {
+      background: rgba(255,255,255,.07);
+    }
+
+    .history-item span {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 13px;
+    }
+
+    .sidebar-footer {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .profile-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 8px;
+      border-radius: 10px;
+    }
+
+    .profile-mini:hover {
+      background: rgba(255,255,255,.05);
+    }
+
+    .mini-avatar,
+    .avatar {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .mini-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #654f9d;
       font-size: 12px;
-      color: #9ca3af;
-      text-align: right;
-      margin-top: 10px;
     }
-    .profile-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 6px 0 0;
-}
 
-.profile-item {
-  margin-bottom: 10px;
-}
+    .mini-copy {
+      min-width: 0;
+    }
 
-.profile-role {
-  font-weight: 600;
-  font-size: 15px;
-}
+    .mini-name {
+      font-size: 13px;
+      font-weight: 650;
+    }
 
-.profile-desc {
-  font-size: 14px;
-  color: #4b5563;
-  margin-left: 10px;     /* 略向右缩进，形成错落感 */
-  line-height: 1.8;
-}
-.profile-center {
-  text-align: center;   /* 让这块内容居中 */
-}
+    .mini-role {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 2px;
+    }
 
-.profile-center .profile-desc {
-  margin-left: 0;       /* 之前为了“错落”加的缩进，这里取消 */
-}
+    .main {
+      min-width: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(255,255,255,.035), transparent 33%),
+        var(--bg);
+    }
 
- 
+    .topbar {
+      height: 58px;
+      flex: 0 0 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-bottom: 1px solid transparent;
+      position: relative;
+      z-index: 10;
+    }
+
+    .model-button {
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: default;
+      font-weight: 650;
+    }
+
+    .model-button:hover {
+      background: rgba(255,255,255,.06);
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 5px rgba(25,195,125,.09);
+    }
+
+    .menu-mobile {
+      display: none;
+    }
+
+    .chat-shell {
+      min-height: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .messages {
+      min-height: 0;
+      flex: 1;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 168px;
+    }
+
+    .welcome {
+      width: min(var(--content-width), calc(100% - 32px));
+      margin: 11vh auto 0;
+      animation: fadeUp .35s ease both;
+    }
+
+    .welcome-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 18px;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.32), transparent 28%),
+        linear-gradient(135deg, var(--accent), #0c725c);
+      box-shadow: var(--shadow), inset 0 0 0 1px rgba(255,255,255,.13);
+    }
+
+    .welcome h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+      margin: 0 0 10px;
+    }
+
+    .welcome p {
+      max-width: 640px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .suggestions {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .suggestion {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.025);
+      border-radius: 14px;
+      padding: 15px;
+      min-height: 94px;
+      text-align: left;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .suggestion:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .suggestion strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .suggestion span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .message {
+      width: min(var(--content-width), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 18px 0;
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 14px;
+      animation: fadeUp .24s ease both;
+    }
+
+    .message + .message {
+      border-top: 1px solid rgba(255,255,255,.035);
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-top: 1px;
+    }
+
+    .message.user .avatar {
+      border-radius: 50%;
+      background: #654f9d;
+    }
+
+    .message.assistant .avatar {
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.30), transparent 28%),
+        linear-gradient(135deg, var(--accent), #0c725c);
+    }
+
+    .message-body {
+      min-width: 0;
+      line-height: 1.72;
+      color: #ededed;
+      font-size: 15px;
+      word-break: break-word;
+    }
+
+    .message-meta {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .message-body p {
+      margin: 0 0 10px;
+    }
+
+    .message-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .message-body ul {
+      margin: 8px 0 10px 20px;
+      padding: 0;
+    }
+
+    .message-body li {
+      margin: 4px 0;
+    }
+
+    .message-body strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .message-body code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: .91em;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 2px 5px;
+      border-radius: 6px;
+    }
+
+    .message-body pre {
+      overflow-x: auto;
+      background: #111;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 14px;
+      line-height: 1.5;
+    }
+
+    .message-body pre code {
+      background: transparent;
+      border: 0;
+      padding: 0;
+    }
+
+    .message-body a {
+      color: #8bc8ff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(139,200,255,.35);
+    }
+
+    .thinking {
+      color: var(--muted);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 1px;
+    }
+
+    .thinking-dots {
+      display: inline-flex;
+      gap: 3px;
+    }
+
+    .thinking-dots i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: pulse 1.1s infinite ease-in-out;
+    }
+
+    .thinking-dots i:nth-child(2) { animation-delay: .14s; }
+    .thinking-dots i:nth-child(3) { animation-delay: .28s; }
+
+    .composer-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 12px 18px 18px;
+      background: linear-gradient(180deg, rgba(33,33,33,0), var(--bg) 30%, var(--bg));
+      z-index: 8;
+    }
+
+    .composer {
+      width: min(var(--content-width), 100%);
+      margin: 0 auto;
+      min-height: 58px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 26px;
+      background: var(--panel-2);
+      box-shadow: 0 6px 24px rgba(0,0,0,.18);
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 10px 10px 10px 16px;
+      transition: .18s ease;
+    }
+
+    .composer:focus-within {
+      border-color: rgba(255,255,255,.22);
+      box-shadow: 0 8px 30px rgba(0,0,0,.26);
+    }
+
+    #prompt {
+      flex: 1;
+      resize: none;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      min-height: 34px;
+      max-height: 180px;
+      line-height: 1.5;
+      padding: 6px 0 4px;
+    }
+
+    #prompt::placeholder {
+      color: #a3a3a3;
+    }
+
+    .send-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 0;
+      background: #fff;
+      color: #111;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      flex: 0 0 auto;
+      transition: .16s ease;
+    }
+
+    .send-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    .send-btn:disabled {
+      opacity: .28;
+      cursor: not-allowed;
+    }
+
+    .disclaimer {
+      width: min(var(--content-width), 100%);
+      margin: 8px auto 0;
+      text-align: center;
+      color: #8e8e8e;
+      font-size: 10.5px;
+      line-height: 1.4;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 130px;
+      transform: translateX(-50%) translateY(12px);
+      background: #111;
+      border: 1px solid var(--line);
+      color: #eee;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 50;
+      box-shadow: var(--shadow);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .overlay {
+      display: none;
+    }
+
+    @keyframes pulse {
+      0%, 80%, 100% { opacity: .28; transform: translateY(0); }
+      40% { opacity: 1; transform: translateY(-2px); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 820px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(86vw, 310px);
+        transform: translateX(-102%);
+        transition: transform .22s ease;
+        box-shadow: 18px 0 44px rgba(0,0,0,.34);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 15;
+        background: rgba(0,0,0,.46);
+        opacity: 0;
+        pointer-events: none;
+        transition: .22s ease;
+      }
+
+      .overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .menu-mobile {
+        display: grid;
+      }
+
+      .topbar {
+        padding: 0 10px;
+      }
+
+      .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .status span:last-child {
+        display: none;
+      }
+
+      .welcome {
+        margin-top: 7vh;
+      }
+    }
+
     @media (max-width: 600px) {
-      main {
-        padding: 22px 12px 32px;
+      .suggestions {
+        grid-template-columns: 1fr;
       }
-      h1 {
-        font-size: 26px;
+
+      .suggestion {
+        min-height: 78px;
       }
-      h2 {
-        font-size: 20px;
+
+      .message {
+        width: calc(100% - 24px);
+        grid-template-columns: 30px minmax(0, 1fr);
+        gap: 11px;
       }
-      p, .contact-list li, .interests-list li {
-        font-size: 14px;
+
+      .welcome {
+        width: calc(100% - 28px);
       }
-      .pub-item {
-        flex-direction: column;
+
+      .composer-wrap {
+        padding-left: 10px;
+        padding-right: 10px;
       }
-      .pub-fig {
-        max-width: 100%;
-        flex-basis: auto;
-      }
-      .advisor-photo {
-        margin-top: 4px;
+
+      .composer {
+        border-radius: 22px;
       }
     }
-    .conf-under-review {
-  color: #9aa0a6;      /* 学术网页常用中性灰 */
-  font-style: italic; /* 斜体 */
-  font-weight: 500;   /* 不要太细，保持正式 */
-}
-    .profile {
-  width: 160px;          /* 你想要的显示宽度 */
-  height: 160px;         /* 头像占位尺寸 */
-  object-fit: contain;   /* 关键：保持原始比例 */
-  background-color: #fff; /* 防止出现透明边 */
-}
-
-  /* 这里的 margin-top 决定了它离上方版权文字的距离 */
-.footer-watermark {
-  text-align: center;
-  margin-top: 35px;      
-  padding-bottom: 30px;  /* 页面最底部的留白 */
-}
-
-/* 水印图片的样式 */
-.footer-watermark img {
-  width: 180px;          /* 宽度大一点，显眼 */
-  height: auto;
-  opacity: 0.2;          /* 【关键】透明度0.2，制造“水印”感 */
-  filter: grayscale(100%); /* 【关键】强制转为纯灰色 */
-  transition: all 0.3s ease;
-}
-
-/* 鼠标悬停时的交互效果 */
-.footer-watermark a:hover img {
-  opacity: 0.8;          /* 变清晰 */
-  filter: grayscale(0%); /* 恢复原始颜色（如果有的话） */
-}
-
-   .news-ticker {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0;
-  padding: 9px 12px;
-  max-width: 720px;
-  border: 1px solid #e5e7eb;
-  border-radius: 999px;
-  background: #f9fafb;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.04);
-}
-
-.news-ticker-icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.news-ticker-track {
-  overflow: hidden;
-  white-space: nowrap;
-  flex: 1;
-}
-
-.news-ticker-text {
-  display: inline-block;
-  padding-left: 100%;
-  font-size: 14px;
-  color: #374151;
-  font-weight: 500;
-  animation: ticker-scroll 22s linear infinite;
-}
-
-@keyframes ticker-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@media (max-width: 600px) {
-  .news-ticker {
-    margin: 14px auto 22px;
-    padding: 8px 10px;
-  }
-
-  .news-ticker-text {
-    font-size: 13px;
-    animation-duration: 26s;
-  }
-}
-    .latest-news-block {
-  margin: 18px auto 28px;
-  max-width: 720px;
-}
-
-.latest-news-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #111827;
-  margin: 0 0 8px 4px;
-  letter-spacing: 0.02em;
-}
   </style>
 </head>
+
 <body>
-  <main>
-    <!-- Top: name + photo -->
-    <header> <img src="assets/images/newest.png" alt="Portrait of Zilin Li (李子林)" class="profile"> <h1>Zilin Li (李子林)</h1> </header>
-
-  
-    <!-- Profile -->
-   <section>
-  <ul class="profile-list profile-center">
-    <li class="profile-item">
-      <div class="profile-role">Undergraduate Student</div>
-      <div class="profile-desc">
-        School of Information and Intelligent Science<br>
-        Donghua University, Shanghai, China
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Conversation sidebar">
+      <div class="brand">
+        <div class="brand-left">
+          <div class="brand-mark">Z</div>
+          <div class="brand-title">Zilin Li Assistant</div>
+        </div>
+        <button class="icon-btn" id="closeSidebar" aria-label="Close sidebar" title="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
       </div>
-    </li>
-    <li class="profile-item">
-      <div class="profile-role">Research Intern</div>
-      <div class="profile-desc">
-        BCMI Lab <br>
-        Shanghai Jiao Tong University, Shanghai, China
-      </div>
-    </li>
-  </ul>
-</section>
-<div class="latest-news-block">
-  <div class="latest-news-title">Latest News</div>
 
-  <div class="news-ticker" aria-label="Latest News">
-    <img src="assets/images/neurips-navbar-logo.svg" alt="NeurIPS icon" class="news-ticker-icon">
-    <div class="news-ticker-track">
-      <span class="news-ticker-text">
-        May 06, 2026 been nominated as a reciprocal reviewer for the Conference on Neural Information Processing Systems (NeurIPS) 2026
-      </span>
-    </div>
+      <button class="new-chat" id="newChatBtn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+          <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span>New chat</span>
+      </button>
+
+      <div class="history-title">Recent</div>
+      <div class="history" id="history"></div>
+
+      <div class="sidebar-footer">
+        <div class="profile-mini">
+          <div class="mini-avatar">ZL</div>
+          <div class="mini-copy">
+            <div class="mini-name">Zilin Li</div>
+            <div class="mini-role">Research portfolio</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-btn menu-mobile" id="openSidebar" aria-label="Open sidebar">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+              <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <div class="model-button" aria-label="Assistant mode">
+            <span>PortfolioGPT</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="status" title="Runs entirely in your browser">
+          <span class="status-dot"></span>
+          <span>Local knowledge mode</span>
+        </div>
+      </header>
+
+      <section class="chat-shell">
+        <div class="messages" id="messages" aria-live="polite"></div>
+
+        <div class="composer-wrap">
+          <form class="composer" id="composer">
+            <textarea
+              id="prompt"
+              rows="1"
+              spellcheck="true"
+              autocomplete="off"
+              placeholder="Message Zilin's portfolio assistant"
+              aria-label="Message"
+            ></textarea>
+
+            <button class="send-btn" id="sendBtn" type="submit" disabled aria-label="Send message">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+                <path d="M12 19V5M12 5L6.5 10.5M12 5L17.5 10.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </form>
+
+          <div class="disclaimer">
+            Offline portfolio assistant. Responses are generated locally from curated site content and lightweight rules.
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
-</div>
 
-    <!-- Contact -->
-    <section>
-      <h2>Contact</h2>
-      <ul class="contact-list">
-        <li>
-          <i class="fa-regular fa-envelope"></i>
-          <span>Email: <a href="mailto:tzulamlee@gmail.com">tzulamlee@gmail.com</a></span>
-        </li>
-        <li>
-          <i class="fa-brands fa-orcid"></i>
-          <span>ORCID:
-            <a href="https://orcid.org/0009-0002-4314-455X" target="_blank" rel="noreferrer">
-              0009-0002-4314-455X
-            </a>
-          </span>
-        </li>
-        <li>
-          <i class="fa-brands fa-github"></i>
-          <span>GitHub:
-            <a href="https://github.com/Lixeeone" target="_blank" rel="noreferrer">
-              github.com/Lixeeone
-            </a>
-          </span>
-        </li>
-        <li>
-          <i class="fa-regular fa-face-smile"></i>
-          <span>HuggingFace:
-            <a href="https://huggingface.co/Lixeeone" target="_blank" rel="noreferrer">
-              huggingface.co/Lixeeone
-            </a>
-          </span>
-        </li>
-      </ul>
-    </section>
+  <div class="toast" id="toast"></div>
 
-    <!-- Research Interests -->
-    <section>
-      <h2>Research Interests</h2>
-      <ul class="interests-list">
-        <li>Affective Computing</li>
-        <li>Human–Computer Interaction</li>
-        <li>Cognitive and Computational Neuroscience</li>
-        <li>Brain-inspired Machine Learning</li>
-      </ul>
+  <script>
+    (() => {
+      "use strict";
 
-      <p>
-        My research is guided by the principle of <strong>“AI4Science, Science2AI”</strong>: on the one hand, using artificial intelligence to
-        accelerate scientific discovery; on the other hand, allowing scientific laws and mechanisms to inform the design and evolution
-        of intelligent systems. Under this principle, I seek to revisit and re-construct “primitive biological structures” within
-        computational models. In an interdisciplinary setting that combines computer science, psychology, and cognitive neuroscience,
-        I use biological and cognitive mechanisms as inspiration for algorithmic architectures and learning paradigms, with the goal of
-        addressing key challenges such as catastrophic forgetting, long-horizon sequence modeling, and performance bottlenecks.
-      </p>
-      <p>
-        During my undergraduate studies and early research experience, I have participated in projects focusing on mechanism- and
-        theory-driven modeling. I have taken or self-studied courses and literature in affective computing, human–computer interaction,
-        natural language processing, and cognitive &amp; computational neuroscience. These experiences have given me a more integrated
-        view of how these fields interact, and have helped me develop an “off-the-beaten-path” style of problem decomposition and
-        solution design. For example, in modeling emotional and cognitive processes, I am particularly interested in extracting
-        structurally meaningful and dynamically relevant features from the human perception–representation–decision pipeline, and
-        mapping them into differentiable modules or learning rules, so that biological plausibility and robustness can be jointly
-        improved.
-      </p>
-      <p>
-        A central question that motivates my work is how to better inspire machines from humans, and how to better enable machines to
-        serve humans. I hope that, by grounding models in real human behavior and neural mechanisms, machine learning can gradually move
-        beyond pure data fitting towards more embodied, interpretable, and adaptive forms of intelligence. At the same time, I aim for
-        future intelligent systems not only to perform well on benchmarks, but also to provide long-term, trustworthy, and human-centered
-        value in terms of safety, reliability, and human–AI collaboration in scientific and societal applications.
-      </p>
-    </section>
+      // ------------------------------------------------------------
+      // Portfolio data
+      // ------------------------------------------------------------
+      const PROFILE = {
+        name: "Zilin Li",
+        alternateName: "Tzu-Lam Lee",
+        pronouns: "he/him",
+        role: "Undergraduate student",
+        school: "School of Information and Intelligent Science, Donghua University",
+        city: "Shanghai",
+        joined: "September 2025",
+        education: {
+          title: "Undergraduate student",
+          institution: "Donghua University",
+          period: "2023–Present"
+        },
+        internship: {
+          title: "Research intern",
+          institution: "BCMI Lab, Shanghai Jiao Tong University",
+          period: "2024–2025"
+        },
+        advisor: {
+          relation: "Undergraduate advisor",
+          name: "Ge Zhang",
+          period: "2025–Present"
+        },
+        emails: [
+          "231310414@mail.dhu.edu.cn",
+          "723602212576@sjtu.edu.cn"
+        ],
+        expertise: [
+          "Distributed Machine Learning",
+          "Representation Learning",
+          "Vision–Language Models",
+          "Multi-step Reasoning",
+          "Knowledge Distillation"
+        ],
+        coauthors: [
+          "Ge Zhang", "Hanning Zhang", "Hongtao Wang", "Jun Xia", "Qi Lu",
+          "Wei Yang", "Weiwei Xu", "XuChun Tong", "Xuanbo Lu", "Xuanqi Zhao",
+          "Xunjia Zhang", "Yiran Zhu", "Ziyang Guo"
+        ]
+      };
 
-    <!-- Academic relations -->
-    <section>
-      <h2>Academic Relations</h2>
+      const PUBLICATIONS = [
+        {
+          title: "DuoTeach: Dual Role Self-Teaching for Coarse-to-Fine Decision Coordination in Vision–Language Models",
+          authors: "Wei Yang, Yiran Zhu, Zilin Li, Xunjia Zhang, Qi Lu, Jun Xia, Hongtao Wang",
+          venue: "AAAI 2027 Conference Submission",
+          date: "22 July 2026",
+          modified: "1 August 2026",
+          tags: ["vision-language", "self-teaching", "hierarchical reasoning", "coordination"]
+        },
+        {
+          title: "Decentralized Coupled Representation Learning",
+          authors: "Zilin Li, Weiwei Xu, XuChun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang",
+          venue: "NeurIPS 2026 Conference Submission",
+          date: "15 April 2026",
+          modified: "28 May 2026",
+          tags: ["distributed learning", "representation learning", "stochastic approximation", "manifolds"]
+        },
+        {
+          title: "IntraDiag: Learning Intrinsic Diagnostic Procedure Capability for Multi-Step Diagnostic Reasoning",
+          authors: "Yiran Zhu, Wei Yang, Hanning Zhang, Zilin Li, Ziyang Guo, Hongtao Wang",
+          venue: "Submitted to ACM Multimedia 2026",
+          date: "26 March 2026",
+          modified: "10 July 2026",
+          tags: ["diagnostic reasoning", "multi-step reasoning", "multimodal learning"]
+        },
+        {
+          title: "PIERCE: Triadic Bayesian Reasoning for Establishing Epistemic Boundaries in LLMs",
+          authors: "Zilin Li, Weiwei Xu, XuChun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang",
+          venue: "Submitted to EIML@ICML 2026",
+          date: "20 March 2026",
+          modified: "19 May 2026",
+          tags: ["LLMs", "Bayesian reasoning", "uncertainty", "epistemic boundaries"]
+        },
+        {
+          title: "DuoTeach: Dual Role Self-Teaching for Coarse-to-Fine Decision Coordination in Vision–Language Models",
+          authors: "Wei Yang, Yiran Zhu, Zilin Li, Xunjia Zhang, Jun Xia, Hongtao Wang",
+          venue: "ECCV 2026 Conference Submission",
+          date: "26 February 2026",
+          modified: "15 March 2026",
+          tags: ["vision-language", "self-teaching", "coarse-to-fine"]
+        },
+        {
+          title: "Self-Empowering VLMs: Achieving Hierarchical Consistency via Self-Elicited Knowledge Distillation",
+          authors: "Wei Yang, Yiran Zhu, Zilin Li, Xunjia Zhang, Jun Xia, Hongtao Wang",
+          venue: "KDD 2026 Research Track Cycle 2 — Withdrawn",
+          date: "30 January 2026",
+          modified: "6 March 2026",
+          tags: ["vision-language", "hierarchical consistency", "knowledge distillation"]
+        },
+        {
+          title: "Self-Empowering VLMs: Achieving Hierarchical Consistency via Self-Elicited Knowledge Distillation",
+          authors: "Wei Yang, Yiran Zhu, Zilin Li, Xunjia Zhang, Hongtao Wang",
+          venue: "CVPR 2026 — Withdrawn",
+          date: "9 December 2025",
+          modified: "30 January 2026",
+          tags: ["vision-language", "knowledge distillation", "hierarchical reasoning"]
+        }
+      ];
 
-<h3>Visiting Advisor</h3>
-<img src="assets/images/Wei-Long_Zhengnew.jpg" alt="Portrait of Wei-Long Zheng (郑伟龙)" class="advisor-photo">
-<p>
-  <span class="advisor-name">Wei-Long Zheng <span class="zh-note">(郑伟龙)</span></span> is an Associate Professor in
-  the Department of Computer Science and Engineering at Shanghai Jiao Tong University and leads the Center for
-  Brain-like Computing and Machine Intelligence (BCMI). His research focuses on affective computing, brain–computer
-  interfaces, computational neuroscience, and machine learning, with applications in clinical healthcare.
-</p>
-<p>
-  He was previously a Postdoctoral Associate at the Massachusetts Institute of Technology (MIT) and a Research
-  Fellow at Massachusetts General Hospital, Harvard Medical School. He received his Ph.D. in Computer Science from
-  Shanghai Jiao Tong University.
+      // A compact local knowledge base. It intentionally covers both the portfolio
+      // and adjacent academic topics so the assistant remains useful without an API.
+      const KNOWLEDGE = [
+        {
+          id: "identity",
+          keywords: ["who are you", "who is zilin", "about zilin", "introduce", "profile", "background", "yourself"],
+          answer: () =>
+            `**Zilin Li** (also known as **Tzu-Lam Lee**) is an undergraduate student in the School of Information and Intelligent Science at Donghua University, Shanghai. His research interests include distributed machine learning, representation learning, vision–language models, and multi-step reasoning.`
+        },
+        {
+          id: "education",
+          keywords: ["education", "university", "school", "dhu", "donghua", "undergraduate", "study"],
+          answer: () =>
+            `Zilin is an undergraduate student at **Donghua University**, School of Information and Intelligent Science, in Shanghai. His undergraduate study period is listed as **2023–Present**.`
+        },
+        {
+          id: "internship",
+          keywords: ["intern", "internship", "bcmi", "sjtu", "shanghai jiao tong", "jiaotong"],
+          answer: () =>
+            `He worked as a research intern at **BCMI Lab, Shanghai Jiao Tong University**, from **2024 to 2025**.`
+        },
+        {
+          id: "advisor",
+          keywords: ["advisor", "supervisor", "mentor", "ge zhang"],
+          answer: () =>
+            `His undergraduate advisor is **Ge Zhang**, with the advising relationship listed from **2025 to the present**.`
+        },
+        {
+          id: "contact",
+          keywords: ["email", "contact", "reach", "mail"],
+          answer: () =>
+            `The preferred contact email is **231310414@mail.dhu.edu.cn**. An additional academic email is **723602212576@sjtu.edu.cn**.`
+        },
+        {
+          id: "expertise",
+          keywords: ["expertise", "research interests", "research area", "interests", "focus", "specialize"],
+          answer: () =>
+            `His main research areas are **distributed machine learning**, **representation learning**, **vision–language models**, **multi-step reasoning**, and **knowledge distillation**.`
+        },
+        {
+          id: "publications",
+          keywords: ["publication", "publications", "papers", "paper", "work", "research output"],
+          answer: () => publicationSummary()
+        },
+        {
+          id: "duoteach",
+          keywords: ["duoteach", "dual role", "coarse-to-fine", "aaai 2027", "eccv 2026"],
+          answer: () =>
+            `**DuoTeach** studies dual-role self-teaching for coarse-to-fine decision coordination in vision–language models. The current portfolio lists an **AAAI 2027 submission**, modified on **1 August 2026**, and an earlier **ECCV 2026 submission**.`
+        },
+        {
+          id: "dcrl",
+          keywords: ["decentralized coupled representation learning", "dcrl", "decentralized", "coupled representation"],
+          answer: () =>
+            `**Decentralized Coupled Representation Learning** investigates representation learning under decentralized, dynamically generated data. Its themes include distributed learning, stochastic approximation, geometric constraints, and subspace alignment. It is listed as a **NeurIPS 2026 conference submission**.`
+        },
+        {
+          id: "intradiag",
+          keywords: ["intradiag", "diagnostic", "diagnosis", "multi-step diagnostic"],
+          answer: () =>
+            `**IntraDiag** focuses on learning an intrinsic diagnostic procedure capability for multi-step diagnostic reasoning. It is listed as submitted to **ACM Multimedia 2026**.`
+        },
+        {
+          id: "pierce",
+          keywords: ["pierce", "triadic bayesian", "epistemic boundaries", "bayesian reasoning"],
+          answer: () =>
+            `**PIERCE** explores triadic Bayesian reasoning for defining epistemic boundaries in large language models, with emphasis on uncertainty, knowledge limits, and calibrated reasoning. It is listed as submitted to **EIML@ICML 2026**.`
+        },
+        {
+          id: "self-empowering",
+          keywords: ["self-empowering", "hierarchical consistency", "self-elicited", "knowledge distillation"],
+          answer: () =>
+            `**Self-Empowering VLMs** studies hierarchical consistency through self-elicited knowledge distillation. Earlier versions were listed as withdrawn submissions to **CVPR 2026** and **KDD 2026**.`
+        },
+        {
+          id: "coauthors",
+          keywords: ["coauthor", "coauthors", "collaborator", "collaborators", "worked with"],
+          answer: () =>
+            `The listed co-authors include ${PROFILE.coauthors.slice(0, -1).join(", ")}, and ${PROFILE.coauthors.at(-1)}.`
+        },
+        {
+          id: "distributed-ml",
+          keywords: ["distributed machine learning", "federated", "decentralized learning", "distributed learning"],
+          answer: () =>
+            `**Distributed machine learning** trains models across multiple workers, devices, or agents. In decentralized learning, peers communicate without a single central coordinator. Important issues include communication cost, topology, consensus, non-IID data, privacy, and convergence under asynchronous updates.`
+        },
+        {
+          id: "representation-learning",
+          keywords: ["representation learning", "embedding", "latent space", "feature learning"],
+          answer: () =>
+            `**Representation learning** aims to learn useful features directly from data. Strong representations preserve task-relevant structure, generalize across domains, and often support transfer, retrieval, clustering, or downstream prediction with limited supervision.`
+        },
+        {
+          id: "vlm",
+          keywords: ["vlm", "vision language model", "vision-language", "multimodal model", "multimodal"],
+          answer: () =>
+            `A **vision–language model** connects visual inputs with language. Typical capabilities include image understanding, visual question answering, grounding, captioning, and multimodal reasoning. Current research often targets compositionality, hallucination reduction, hierarchical understanding, and reliable multi-step inference.`
+        },
+        {
+          id: "knowledge-distillation",
+          keywords: ["distillation", "knowledge distillation", "teacher student", "teacher-student"],
+          answer: () =>
+            `**Knowledge distillation** transfers behavior or internal structure from a teacher model to a student. Besides matching logits, modern methods may distill hidden states, attention, intermediate reasoning traces, relations, or structured predictions.`
+        },
+        {
+          id: "multi-step-reasoning",
+          keywords: ["multi-step reasoning", "chain of thought", "reasoning", "stepwise"],
+          answer: () =>
+            `**Multi-step reasoning** decomposes a problem into intermediate decisions. Useful research questions include whether the steps are faithful, whether errors compound, how supervision is obtained, and whether the final model can reason efficiently without depending on long generated traces.`
+        },
+        {
+          id: "github-pages",
+          keywords: ["github pages", "github.io", "deploy", "deployment", "host this site"],
+          answer: () =>
+            `To deploy this page on GitHub Pages, place this file at the root of a repository named **your-username.github.io**, commit it as **index.html**, and enable Pages from the repository settings. No build step is required.`
+        },
+        {
+          id: "openreview",
+          keywords: ["openreview", "conference submission", "peer review"],
+          answer: () =>
+            `**OpenReview** is a platform used by many research conferences for submissions, reviewing, discussion, and decision workflows. Public visibility varies by venue and stage, so submission status should be interpreted carefully.`
+        },
+        {
+          id: "scholar",
+          keywords: ["google scholar", "scholar profile", "citation"],
+          answer: () =>
+            `A Google Scholar profile is useful for grouping publications and tracking citations. For an early-career researcher, keeping names, affiliations, and duplicate records consistent is often more important than optimizing citation metrics.`
+        },
+        {
+          id: "orcid",
+          keywords: ["orcid"],
+          answer: () =>
+            `An **ORCID iD** is a persistent researcher identifier. It helps distinguish authors with similar names and can connect publications, affiliations, grants, and review activity across platforms.`
+        },
+        {
+          id: "research-advice",
+          keywords: ["research advice", "undergraduate research", "how to research", "research career"],
+          answer: () =>
+            `For undergraduate research, a strong loop is: identify one precise question, reproduce a credible baseline, isolate a measurable failure mode, test one principled intervention, and document negative results. Depth on one problem usually creates more value than many loosely connected experiments.`
+        },
+        {
+          id: "paper-writing",
+          keywords: ["write a paper", "paper writing", "academic writing", "research paper"],
+          answer: () =>
+            `A clear machine-learning paper usually aligns four elements: **problem**, **gap**, **method**, and **evidence**. The introduction should make the gap falsifiable; the method should expose assumptions; and experiments or theory should directly test the central claim rather than nearby claims.`
+        },
+        {
+          id: "shanghai",
+          keywords: ["shanghai"],
+          answer: () =>
+            `Shanghai is a major research and technology hub with universities, industrial labs, and active communities in artificial intelligence, computer vision, data science, and engineering.`
+        }
+      ];
 
+      const FALLBACKS = [
+        (topic) =>
+          `I do not have a verified local entry for **${topic}**. Based on this offline portfolio, the closest areas I can discuss are Zilin's research, publications, distributed learning, representation learning, vision–language models, and academic work.`,
+        (topic) =>
+          `That topic is outside my curated local knowledge, so I should not invent a factual answer. I can still help frame **${topic}** conceptually or connect it to machine learning and research methodology.`,
+        (topic) =>
+          `I cannot verify **${topic}** without an external source. A cautious answer is better here: please treat any broad explanation as general background rather than a current fact.`,
+        (topic) =>
+          `My offline index does not contain enough evidence to answer **${topic}** precisely. Try asking for a definition, a comparison, or how it relates to Zilin's work.`
+      ];
 
-      <h3>Advisor</h3>
-      <img src="assets/images/Ge_Zhang.jpg" alt="Portrait of Ge Zhang (张鸽)" class="advisor-photo">
-      <p>
-        <span class="advisor-name">Ge Zhang <span class="zh-note">(张鸽)</span></span> is a Pujiang Talent
-        <span class="zh-note">（浦江人才）</span> in Shanghai. She received her Ph.D. in Computer Science from
-        Macquarie University, Australia, in 2024, and was awarded the Microsoft Research PhD Fellowship (2022, the only recipient in the
-        Australia &amp; New Zealand region). She serves as a reviewer for top-tier AI conferences and journals, including ICLR,
-        NeurIPS, KDD, and TNNLS.
-</p>
+      const THINKING_STEPS = [
+        "Reading the local portfolio",
+        "Matching relevant research topics",
+        "Checking publication records",
+        "Composing a grounded response",
+        "Searching the offline knowledge index",
+        "Separating verified facts from general context"
+      ];
 
-  <h3>Coworker</h3>
-  
-  <img src="assets/images/Yiran_Zhu.jpg" alt="Portrait of Yiran Zhu" class="advisor-photo">
-  
-  <p style="text-align: left;">
-    <span class="advisor-name">Yiran Zhu <span class="zh-note">(朱一然)</span></span> is an undergraduate student in the Department of Computer at North China Electric Power University (Baoding) and an intern at Hong Kong University of Science and Technology (Guangzhou). He is advised by Jun Xia, an Assistant Professor at Hong Kong University of Science and Technology and HKUST (Guangzhou).
-  </p>
-  
-  <p style="text-align: left;">
-    He was previously an intern in the School of Computer Science and Technology at the University of the Chinese Academy of Sciences (UCAS). He is expected to complete his undergraduate degree in 2027 and plans to pursue a direct Ph.D. program afterwards.
-  </p>
-</div>
-    </section>
+      const SUGGESTIONS = [
+        {
+          title: "Introduce Zilin",
+          subtitle: "A concise academic profile",
+          prompt: "Who is Zilin Li?"
+        },
+        {
+          title: "Research focus",
+          subtitle: "Main areas and current direction",
+          prompt: "What are Zilin's research interests?"
+        },
+        {
+          title: "Publications",
+          subtitle: "Summarize the listed projects",
+          prompt: "Summarize Zilin's publications."
+        },
+        {
+          title: "Decentralized learning",
+          subtitle: "Explain the research area",
+          prompt: "What is decentralized representation learning?"
+        }
+      ];
 
-    <!-- Publications -->
-    <section>
-      <h2>Publications</h2>
-      <ol class="pub-list">
-        <li>
-          <div class="pub-item">
-            <div class="pub-text">
-              <div class="pub-title">
-                NeuroGaze-Distill: Brain-informed Distillation and Depression-Inspired Geometric Priors for Robust Facial Emotion Recognition
-              </div>
-              <div class="pub-authors">
-                <strong>Zilin Li</strong>, Weiwei Xu, Xuanqi Zhao, Yiran Zhu
-              </div>
-              <div class="pub-links">
-                <span>Preprint.</span>
-                <a href="https://arxiv.org/abs/2509.11916" target="_blank" rel="noreferrer">
-                  arxiv.org/abs/2509.11916
-                </a>
-              </div>
-            </div>
-            <div class="pub-fig">
-              <img src="assets/figs/fig6.png" alt="Figure for NeuroGaze-Distill">
+      // ------------------------------------------------------------
+      // State
+      // ------------------------------------------------------------
+      const state = {
+        chats: loadChats(),
+        currentId: null,
+        busy: false
+      };
+
+      const els = {
+        messages: document.getElementById("messages"),
+        history: document.getElementById("history"),
+        composer: document.getElementById("composer"),
+        prompt: document.getElementById("prompt"),
+        sendBtn: document.getElementById("sendBtn"),
+        newChatBtn: document.getElementById("newChatBtn"),
+        sidebar: document.getElementById("sidebar"),
+        overlay: document.getElementById("overlay"),
+        openSidebar: document.getElementById("openSidebar"),
+        closeSidebar: document.getElementById("closeSidebar"),
+        toast: document.getElementById("toast")
+      };
+
+      // ------------------------------------------------------------
+      // Utilities
+      // ------------------------------------------------------------
+      function uid() {
+        return "chat_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+      }
+
+      function pick(array) {
+        return array[Math.floor(Math.random() * array.length)];
+      }
+
+      function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      function normalize(text) {
+        return text
+          .toLowerCase()
+          .replace(/[–—]/g, "-")
+          .replace(/[^\w\s@.'-]/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function escapeHTML(text) {
+        return String(text)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function inlineMarkdown(text) {
+        let safe = escapeHTML(text);
+        safe = safe.replace(/`([^`]+)`/g, "<code>$1</code>");
+        safe = safe.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+        safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        safe = safe.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+        return safe;
+      }
+
+      function renderMarkdown(text) {
+        const blocks = String(text).split(/\n{2,}/);
+        return blocks.map(block => {
+          const trimmed = block.trim();
+
+          if (/^```/.test(trimmed) && /```$/.test(trimmed)) {
+            const code = trimmed.replace(/^```[a-zA-Z0-9_-]*\n?/, "").replace(/```$/, "");
+            return `<pre><code>${escapeHTML(code)}</code></pre>`;
+          }
+
+          const lines = trimmed.split("\n");
+          if (lines.every(line => /^[-*]\s+/.test(line))) {
+            return `<ul>${lines.map(line => `<li>${inlineMarkdown(line.replace(/^[-*]\s+/, ""))}</li>`).join("")}</ul>`;
+          }
+
+          return `<p>${lines.map(inlineMarkdown).join("<br>")}</p>`;
+        }).join("");
+      }
+
+      function titleFrom(text) {
+        const cleaned = text.replace(/\s+/g, " ").trim();
+        return cleaned.length > 34 ? cleaned.slice(0, 34).trim() + "…" : cleaned || "New chat";
+      }
+
+      function saveChats() {
+        localStorage.setItem("zilin_portfolio_chats_v1", JSON.stringify(state.chats));
+      }
+
+      function loadChats() {
+        try {
+          const data = JSON.parse(localStorage.getItem("zilin_portfolio_chats_v1") || "[]");
+          return Array.isArray(data) ? data : [];
+        } catch {
+          return [];
+        }
+      }
+
+      function currentChat() {
+        return state.chats.find(chat => chat.id === state.currentId) || null;
+      }
+
+      function closeMobileSidebar() {
+        els.sidebar.classList.remove("open");
+        els.overlay.classList.remove("open");
+      }
+
+      function showToast(message) {
+        els.toast.textContent = message;
+        els.toast.classList.add("show");
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(() => els.toast.classList.remove("show"), 1700);
+      }
+
+      // ------------------------------------------------------------
+      // Chat creation and rendering
+      // ------------------------------------------------------------
+      function createChat() {
+        const chat = {
+          id: uid(),
+          title: "New chat",
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+          messages: []
+        };
+        state.chats.unshift(chat);
+        state.currentId = chat.id;
+        saveChats();
+        renderAll();
+        els.prompt.focus();
+        closeMobileSidebar();
+      }
+
+      function deleteAllChats() {
+        state.chats = [];
+        state.currentId = null;
+        saveChats();
+        renderAll();
+        showToast("Conversation history cleared");
+      }
+
+      function renderAll() {
+        renderHistory();
+        renderMessages();
+      }
+
+      function renderHistory() {
+        els.history.innerHTML = "";
+
+        if (!state.chats.length) {
+          const empty = document.createElement("div");
+          empty.style.cssText = "color:#777;font-size:12px;padding:10px;line-height:1.5;";
+          empty.textContent = "Your local chats will appear here.";
+          els.history.appendChild(empty);
+          return;
+        }
+
+        [...state.chats]
+          .sort((a, b) => b.updatedAt - a.updatedAt)
+          .forEach(chat => {
+            const btn = document.createElement("button");
+            btn.className = "history-item" + (chat.id === state.currentId ? " active" : "");
+            btn.innerHTML = `
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 8H17M7 12H14M6 19L4 21V5C4 3.9 4.9 3 6 3H18C19.1 3 20 3.9 20 5V16C20 17.1 19.1 18 18 18H8L6 19Z"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>${escapeHTML(chat.title)}</span>
+            `;
+            btn.addEventListener("click", () => {
+              state.currentId = chat.id;
+              renderAll();
+              closeMobileSidebar();
+            });
+            els.history.appendChild(btn);
+          });
+      }
+
+      function renderWelcome() {
+        const box = document.createElement("div");
+        box.className = "welcome";
+        box.innerHTML = `
+          <div class="welcome-mark">Z</div>
+          <h1>Meet Zilin's research.</h1>
+          <p>
+            Ask about his background, publications, collaborators, or research topics.
+            This assistant runs entirely in your browser.
+          </p>
+          <div class="suggestions">
+            ${SUGGESTIONS.map(item => `
+              <button class="suggestion" data-prompt="${escapeHTML(item.prompt)}">
+                <strong>${escapeHTML(item.title)}</strong>
+                <span>${escapeHTML(item.subtitle)}</span>
+              </button>
+            `).join("")}
+          </div>
+        `;
+        box.querySelectorAll(".suggestion").forEach(btn => {
+          btn.addEventListener("click", () => {
+            els.prompt.value = btn.dataset.prompt || "";
+            autoResize();
+            updateSendState();
+            submitPrompt();
+          });
+        });
+        els.messages.appendChild(box);
+      }
+
+      function renderMessages() {
+        els.messages.innerHTML = "";
+        const chat = currentChat();
+
+        if (!chat || !chat.messages.length) {
+          renderWelcome();
+          return;
+        }
+
+        chat.messages.forEach(message => {
+          els.messages.appendChild(messageElement(message));
+        });
+
+        requestAnimationFrame(scrollToBottom);
+      }
+
+      function messageElement(message) {
+        const node = document.createElement("article");
+        node.className = `message ${message.role}`;
+        const isUser = message.role === "user";
+
+        node.innerHTML = `
+          <div class="avatar">${isUser ? "ZL" : "Z"}</div>
+          <div>
+            <div class="message-meta">${isUser ? "You" : "PortfolioGPT"}</div>
+            <div class="message-body">${renderMarkdown(message.content)}</div>
+          </div>
+        `;
+        return node;
+      }
+
+      function addMessage(role, content) {
+        let chat = currentChat();
+        if (!chat) {
+          createChat();
+          chat = currentChat();
+        }
+
+        const message = {
+          id: uid(),
+          role,
+          content,
+          createdAt: Date.now()
+        };
+
+        chat.messages.push(message);
+        chat.updatedAt = Date.now();
+
+        if (role === "user" && chat.messages.filter(m => m.role === "user").length === 1) {
+          chat.title = titleFrom(content);
+        }
+
+        saveChats();
+        renderHistory();
+
+        const welcome = els.messages.querySelector(".welcome");
+        if (welcome) els.messages.innerHTML = "";
+
+        els.messages.appendChild(messageElement(message));
+        scrollToBottom();
+        return message;
+      }
+
+      function addThinkingNode() {
+        const node = document.createElement("article");
+        node.className = "message assistant";
+        node.dataset.thinking = "true";
+        node.innerHTML = `
+          <div class="avatar">Z</div>
+          <div>
+            <div class="message-meta">PortfolioGPT</div>
+            <div class="thinking">
+              <span class="thinking-label">${pick(THINKING_STEPS)}</span>
+              <span class="thinking-dots"><i></i><i></i><i></i></span>
             </div>
           </div>
-        </li>
+        `;
+        els.messages.appendChild(node);
+        scrollToBottom();
+        return node;
+      }
 
-        <li>
-          <div class="pub-item">
-            <div class="pub-text">
-              <div class="pub-title">
-                DuoTeach: Dual Role Self-Teaching for Coarse-to-Fine Decision Coordination in Vision--Language Models
-              </div>
-              <div class="pub-authors">
-                Wei Yang, Yiran Zhu, <strong>Zilin Li</strong>, Xunjia Zhang, Hongtao Wang<span class="corresponding-author">*</span>, Jun Xia<span class="corresponding-author">*</span>
-              </div>
-              <div class="pub-links">
-                <span class="conf-under-review">ECCV 2026 Submission.</span>  
-                <a href="https://arxiv.org/abs/2511.18415" target="_blank" rel="noreferrer">
-                  arxiv.org/abs/2511.18415
-                </a>
-              </div>
-            </div>
-            <div class="pub-fig">
-              <img src="assets/figs/fig7.png" alt="Figure for Self-Empowering VLMs">
-            </div>
-          </div>
-        </li>
+      function scrollToBottom() {
+        els.messages.scrollTop = els.messages.scrollHeight;
+      }
 
-        <li>
-          <div class="pub-item">
-            <div class="pub-text">
-              <div class="pub-title">
-                Neuro-Vesicles: Neuromodulation Should Be a Dynamical System, Not a Tensor Decoration
-              </div>
-              <div class="pub-authors">
-                <strong>Zilin Li</strong>, Weiwei Xu, Vicki Kane
-              </div>
-              <div class="pub-links">
-                <span>Preprint.</span>
-                <a href="https://doi.org/10.48550/arxiv.2512.06966" target="_blank" rel="noreferrer">
-                  doi.org/10.48550/arxiv.2512.06966
-                </a>
-                <a href="https://sci-hub.vg/" target="_blank" rel="noreferrer" title="sci-hub.vg">
-                  <i class="fa-solid fa-flask"></i>
-                </a>
-              </div>
-            </div>
-            <div class="pub-fig">
-              <img src="assets/figs/fig8.png" alt="Figure for Neuro-Vesicles">
-            </div>
-          </div>
-        </li>
+      // ------------------------------------------------------------
+      // Response engine
+      // ------------------------------------------------------------
+      function publicationSummary() {
+        const current = PUBLICATIONS.slice(0, 4)
+          .map((p, i) => `${i + 1}. **${p.title}** — ${p.venue}.`)
+          .join("\n");
 
-        <li>
-  <div class="pub-item">
-    <div class="pub-text">
-      <div class="pub-title">
-        EmoLoom-2B: Fast Base-Model Screening for Emotion Classification and VAD
-        with Lexicon-Weak Supervision and KV-Off Evaluation
-      </div>
-      <div class="pub-authors">
-        <strong>Zilin Li</strong>, Weiwei Xu, Xuanbo Lu, Zheda Liu
-      </div>
-      <div class="pub-links">
-        <span>Preprint.</span>
-        <a href="https://arxiv.org/abs/2601.01112" target="_blank" rel="noreferrer">
-          arxiv.org/abs/2601.01112
-        </a>
-      </div>
-    </div>
+        return `The portfolio currently highlights:\n${current}\n\nIt also records earlier versions of DuoTeach and Self-Empowering VLMs submitted to ECCV, KDD, and CVPR.`;
+      }
 
-    <div class="pub-fig">
-      <img src="assets/figs/fig4.png" alt="Figure for EmoLoom-2B">
-    </div>
-  </div>
-</li>
+      function scoreEntry(query, entry) {
+        const q = normalize(query);
+        let score = 0;
 
+        for (const keyword of entry.keywords) {
+          const k = normalize(keyword);
+          if (q === k) score += 8;
+          else if (q.includes(k)) score += Math.min(6, 2 + k.split(" ").length);
+          else {
+            const words = k.split(" ");
+            const overlap = words.filter(w => q.includes(w)).length;
+            score += overlap * 0.55;
+          }
+        }
 
-        <li>
-<div class="pub-item">
-<div class="pub-text">
-<div class="pub-title">
-PIERCE: Triadic Bayesian Reasoning for Establishing Epistemic Boundaries in LLMs
-</div>
-<div class="pub-authors">
-<strong>Zilin Li</strong>, Weiwei Xu, XuChun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang<span class="corresponding-author">*</span>
-</div>
-<div class="pub-links">
-<span class="conf-under-review">ICML 2026 Workshop EIML Submission.</span>
-</a>
-</div>
-</div>
-<div class="pub-fig">
-<img src="assets/fig16.png" alt="Figure for PIERCE">
-</div>
-</div>
-</li>
+        return score;
+      }
 
-        <li>
-<div class="pub-item">
-<div class="pub-text">
-<div class="pub-title">
-IntraDiag: Learning Intrinsic Diagnostic Procedure Capability for Multi-Step Diagnostic Reasoning
-</div>
-<div class="pub-authors">
-Yiran Zhu, Wei Yang, Hanning Zhang, <strong>Zilin Li</strong>, Ziyang Guo, Hongtao Wang<span class="corresponding-author">*</span>
-</div>
-<div class="pub-links">
-<span class="conf-under-review">ACMMM 2026 Conference Submission.</span>
-</div>
-</div>
-<div class="pub-fig">
-<img src="assets/fig15.png" alt="Figure for IntraDiag" >
-</div>
-</div>
-</li>
+      function detectSmallTalk(q) {
+        const t = normalize(q);
 
-  <li>
-<div class="pub-item">
-<div class="pub-text">
-<div class="pub-title">
-Feature Binding without Attentional Glue: An In Silico Lesion Study on Asymmetric Attribute Amnesia in Bimodal Systems
-</div>
-<div class="pub-authors">
-<strong>Zilin Li</strong>, Tianle Jiang
-</div>
-<div class="pub-links">
-<span>PsyArXiv Preprint.</span>
-<a href="https://doi.org/10.31234/osf.io/xtu5m_v1" target="_blank" rel="noreferrer">
-doi.org/10.31234/osf.io/xtu5m_v1
-</a>
-<a href="https://sci-hub.vg/" target="_blank" rel="noreferrer" title="sci-hub.vg">
-<i class="fa-solid fa-flask"></i>
-</a>
-</div>
-</div>
-<div class="pub-fig">
-<img src="assets/fig14.png" alt="Figure for Feature Binding without Attentional Glue" >
-</div>
-</div>
-</li>
+        if (/^(hi|hello|hey|good morning|good afternoon|good evening)\b/.test(t)) {
+          return pick([
+            "Hello. Ask me about Zilin's research, publications, academic background, or related machine-learning topics.",
+            "Hi. I can help you explore Zilin Li's portfolio and research areas.",
+            "Hello. What would you like to know about Zilin's work?"
+          ]);
+        }
 
-  
-      </ol>
-<div class="footer">
-  <div>
-    &copy; 2025&nbsp;Maintained by Zilin&nbsp;Li
-  </div>
+        if (/^(thanks|thank you|thx)\b/.test(t)) {
+          return pick([
+            "You are welcome.",
+            "Glad to help.",
+            "My pleasure."
+          ]);
+        }
 
-  <div class="footer-watermark">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="Licensed under CC BY-NC-SA 4.0">
-      <img src="https://mirrors.creativecommons.org/presskit/logos/cc.logo.svg" alt="Creative Commons Watermark">
-    </a>
-  </div>
-</div>
-      
-    
-    </section>
+        if (/^(bye|goodbye|see you)\b/.test(t)) {
+          return "Goodbye. The conversation will remain saved in this browser.";
+        }
 
-  </main>
+        return null;
+      }
+
+      function detectCommands(query) {
+        const q = normalize(query);
+
+        if (q === "/help" || q === "help") {
+          return `Try questions such as:\n- Who is Zilin Li?\n- What are his research interests?\n- Summarize his publications.\n- Explain decentralized representation learning.\n- What is knowledge distillation?\n\nCommands: \`/clear\`, \`/about\`, and \`/help\`.`;
+        }
+
+        if (q === "/about") {
+          return `This is a static, offline conversational portfolio. It uses a curated JavaScript knowledge base, intent matching, local chat memory, simulated thinking, and streamed responses. It does not call an external model or API.`;
+        }
+
+        if (q === "/clear") {
+          setTimeout(deleteAllChats, 50);
+          return "Clearing local conversation history.";
+        }
+
+        return null;
+      }
+
+      function answerQuestion(query) {
+        const command = detectCommands(query);
+        if (command) return command;
+
+        const smallTalk = detectSmallTalk(query);
+        if (smallTalk) return smallTalk;
+
+        const ranked = KNOWLEDGE
+          .map(entry => ({ entry, score: scoreEntry(query, entry) }))
+          .sort((a, b) => b.score - a.score);
+
+        const best = ranked[0];
+        const second = ranked[1];
+
+        if (best && best.score >= 2.1) {
+          let response = best.entry.answer(query);
+
+          // Blend a second relevant entry for richer, less repetitive answers.
+          if (
+            second &&
+            second.score >= 2.8 &&
+            second.entry.id !== best.entry.id &&
+            Math.random() > 0.52
+          ) {
+            const extra = second.entry.answer(query);
+            response += `\n\n${extra}`;
+          }
+
+          return response;
+        }
+
+        const compactTopic = query.trim().replace(/\s+/g, " ").slice(0, 100);
+        return pick(FALLBACKS)(compactTopic || "that question");
+      }
+
+      function responseDelay(query) {
+        const base = 560 + Math.random() * 850;
+        const lengthFactor = Math.min(950, query.length * 8);
+        return base + lengthFactor;
+      }
+
+      async function streamAssistantMessage(text) {
+        let chat = currentChat();
+        if (!chat) return;
+
+        const message = {
+          id: uid(),
+          role: "assistant",
+          content: "",
+          createdAt: Date.now()
+        };
+
+        chat.messages.push(message);
+        chat.updatedAt = Date.now();
+        saveChats();
+
+        const node = messageElement(message);
+        els.messages.appendChild(node);
+        const body = node.querySelector(".message-body");
+
+        // Stream by short chunks rather than one character at a time.
+        const tokens = text.match(/(\s+|[^\s]+)/g) || [text];
+        for (let i = 0; i < tokens.length; i++) {
+          message.content += tokens[i];
+          body.innerHTML = renderMarkdown(message.content);
+
+          if (i % 3 === 0) {
+            scrollToBottom();
+            await delay(15 + Math.random() * 28);
+          }
+        }
+
+        saveChats();
+        scrollToBottom();
+      }
+
+      async function submitPrompt() {
+        const text = els.prompt.value.trim();
+        if (!text || state.busy) return;
+
+        state.busy = true;
+        els.prompt.value = "";
+        autoResize();
+        updateSendState();
+
+        addMessage("user", text);
+
+        const thinking = addThinkingNode();
+        const total = responseDelay(text);
+
+        const labels = [...THINKING_STEPS].sort(() => Math.random() - 0.5).slice(0, 3);
+        const labelNode = thinking.querySelector(".thinking-label");
+
+        const interval = setInterval(() => {
+          labelNode.textContent = labels.shift() || pick(THINKING_STEPS);
+        }, Math.max(420, total / 2.2));
+
+        await delay(total);
+        clearInterval(interval);
+        thinking.remove();
+
+        const answer = answerQuestion(text);
+        await streamAssistantMessage(answer);
+
+        state.busy = false;
+        updateSendState();
+        els.prompt.focus();
+      }
+
+      // ------------------------------------------------------------
+      // Input behavior
+      // ------------------------------------------------------------
+      function autoResize() {
+        els.prompt.style.height = "auto";
+        els.prompt.style.height = Math.min(180, els.prompt.scrollHeight) + "px";
+      }
+
+      function updateSendState() {
+        els.sendBtn.disabled = state.busy || !els.prompt.value.trim();
+      }
+
+      els.prompt.addEventListener("input", () => {
+        autoResize();
+        updateSendState();
+      });
+
+      els.prompt.addEventListener("keydown", event => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          submitPrompt();
+        }
+      });
+
+      els.composer.addEventListener("submit", event => {
+        event.preventDefault();
+        submitPrompt();
+      });
+
+      els.newChatBtn.addEventListener("click", createChat);
+      els.openSidebar.addEventListener("click", () => {
+        els.sidebar.classList.add("open");
+        els.overlay.classList.add("open");
+      });
+      els.closeSidebar.addEventListener("click", closeMobileSidebar);
+      els.overlay.addEventListener("click", closeMobileSidebar);
+
+      document.addEventListener("keydown", event => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+          event.preventDefault();
+          els.prompt.focus();
+        }
+
+        if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLowerCase() === "o") {
+          event.preventDefault();
+          createChat();
+        }
+      });
+
+      // ------------------------------------------------------------
+      // Initial load
+      // ------------------------------------------------------------
+      if (state.chats.length) {
+        state.currentId = [...state.chats].sort((a, b) => b.updatedAt - a.updatedAt)[0].id;
+      }
+
+      renderAll();
+      updateSendState();
+      autoResize();
+
+      // Expose a tiny debugging surface for easy customization.
+      window.PortfolioGPT = {
+        profile: PROFILE,
+        publications: PUBLICATIONS,
+        knowledge: KNOWLEDGE,
+        clear: deleteAllChats
+      };
+    })();
+  </script>
 </body>
 </html>
