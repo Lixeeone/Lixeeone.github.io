@@ -1,1 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Academic homepage of Zilin Li (Tzulam-Lee).">
+  <title>Zilin Li — Tzulam-Lee</title>
 
+  <style>
+    :root {
+      --black: #000000;
+      --blue: #000080;
+      --red: #800000;
+      --gray: #666666;
+      --paper: #ffffff;
+    }
+
+    html {
+      background: var(--paper);
+    }
+
+    body {
+      max-width: 880px;
+      margin: 28px auto 60px;
+      padding: 0 22px;
+      background: var(--paper);
+      color: var(--black);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+
+    a:visited {
+      color: #551a8b;
+    }
+
+    a:hover {
+      color: var(--red);
+    }
+
+    .top-rule,
+    .section-rule {
+      border: 0;
+      border-top: 1px solid var(--red);
+      margin: 0;
+    }
+
+    .top-rule {
+      border-top-width: 3px;
+      margin-bottom: 18px;
+    }
+
+    .header-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .header-text {
+      vertical-align: top;
+      padding-right: 34px;
+    }
+
+    .header-photo {
+      width: 175px;
+      vertical-align: top;
+      text-align: right;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 36px;
+      line-height: 1.05;
+      font-weight: normal;
+    }
+
+    .name-note {
+      margin-bottom: 18px;
+      color: var(--red);
+      font-size: 18px;
+      font-style: italic;
+    }
+
+    .portrait {
+      width: 165px;
+      height: auto;
+      border: 1px solid var(--black);
+      padding: 3px;
+      background: #ffffff;
+      filter: grayscale(100%);
+    }
+
+    .intro {
+      margin: 0 0 14px;
+    }
+
+    .email {
+      margin: 12px 0 8px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 14px;
+    }
+
+    .links {
+      margin: 8px 0 0;
+      font-size: 15px;
+    }
+
+    .links a {
+      margin-right: 14px;
+    }
+
+    section {
+      margin-top: 24px;
+    }
+
+    h2 {
+      margin: 8px 0 10px;
+      color: var(--blue);
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    h2::before {
+      content: "§ ";
+      color: var(--red);
+    }
+
+    p {
+      margin: 8px 0 12px;
+    }
+
+    ul {
+      margin: 8px 0 0 22px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .paper-title {
+      font-weight: bold;
+    }
+
+    .venue {
+      color: var(--red);
+      font-style: italic;
+    }
+
+    .small-note {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding-top: 10px;
+      border-top: 1px solid var(--red);
+      color: var(--gray);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        margin-top: 18px;
+        padding: 0 15px;
+      }
+
+      .header-table,
+      .header-table tbody,
+      .header-table tr,
+      .header-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .header-photo {
+        text-align: left;
+        margin-top: 18px;
+      }
+
+      .portrait {
+        width: 145px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <hr class="top-rule">
+
+  <table class="header-table" role="presentation">
+    <tr>
+      <td class="header-text">
+        <h1>Zilin Li</h1>
+        <div class="name-note">李子林 · Tzulam-Lee</div>
+
+        <p class="intro">
+          Undergraduate researcher at Donghua University and research intern at
+          the BCMI Laboratory, Shanghai Jiao Tong University. My research interests
+          include scientific machine learning, decentralized representation learning,
+          multi-agent systems, and multimodal learning.
+        </p>
+
+        <div class="email">
+          Email: tzulamlee [at] gmail [dot] com
+        </div>
+
+        <div class="links">
+          <a href="https://github.com/Lixeeone">GitHub</a>
+          <a href="https://huggingface.co/Lixeeone">Hugging Face</a>
+          <a href="https://orcid.org/0009-0002-4314-455X">ORCID</a>
+          <a href="https://scholar.google.com/">Google Scholar</a>
+        </div>
+      </td>
+
+      <td class="header-photo">
+        <img class="portrait" src="self.jpg" alt="Portrait of Zilin Li">
+      </td>
+    </tr>
+  </table>
+
+  <section>
+    <hr class="section-rule">
+    <h2>Research Interests</h2>
+    <ul>
+      <li>Scientific machine learning and graph-based models</li>
+      <li>Decentralized representation learning and multi-agent coordination</li>
+      <li>Multimodal learning and efficient deep learning</li>
+    </ul>
+  </section>
+
+  <section>
+    <hr class="section-rule">
+    <h2>Selected Papers</h2>
+
+    <ul>
+      <li>
+        <span class="paper-title">Decentralized Coupled Representation Learning.</span><br>
+        Zilin Li, Weiwei Xu, Xuchun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang.<br>
+        <span class="venue">NeurIPS 2026, spotlight.</span>
+      </li>
+
+      <li>
+        <span class="paper-title">How Do Stochastic Graph Flows Estimate Effective Geometry?</span><br>
+        Zilin Li, Yiran Zhu, Weiwei Xu, Xuchun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang.<br>
+        <span class="venue">ICLR 2027 submission.</span>
+      </li>
+
+      <li>
+        <span class="paper-title">PIERCE: Triadic Bayesian Reasoning for Establishing Epistemic Boundaries in LLMs.</span><br>
+        Zilin Li, Weiwei Xu, Xuchun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang.<br>
+        <span class="venue">ICML 2026 Workshop on EIML, poster.</span>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <hr class="section-rule">
+    <h2>Affiliations</h2>
+    <ul>
+      <li>
+        School of Information and Intelligent Science,
+        <strong>Donghua University</strong>
+      </li>
+      <li>
+        BCMI Laboratory,
+        <strong>Shanghai Jiao Tong University</strong>
+      </li>
+    </ul>
+  </section>
+
+
+  <footer>
+    © 2026 Zilin Li · Tzulam-Lee
+  </footer>
+</body>
+</html>
