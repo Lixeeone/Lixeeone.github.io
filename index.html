@@ -29,9 +29,13 @@
       background: var(--canvas);
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.5;
+      animation: page-in 520ms ease both;
     }
+
+    @keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
     a { color: inherit; }
     a:focus-visible,
@@ -43,7 +47,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 86px;
+      min-height: 72px;
       border-bottom: 1px solid var(--line);
     }
 
@@ -116,9 +120,15 @@
       grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
       gap: 72px;
       align-items: end;
-      min-height: 548px;
-      padding: 86px 0 90px;
+      min-height: 438px;
+      padding: 62px 0 66px;
     }
+
+    .hero-copy > * { animation: rise-in 600ms ease both; }
+    .hero-copy > :nth-child(2) { animation-delay: 70ms; }
+    .hero-copy > :nth-child(3) { animation-delay: 130ms; }
+    .hero-copy > :nth-child(4) { animation-delay: 190ms; }
+    .hero-copy > :nth-child(5) { animation-delay: 250ms; }
 
     .eyebrow,
     .section-kicker {
@@ -138,30 +148,30 @@
     h1 {
       max-width: 680px;
       margin: 20px 0 16px;
-      font-size: 66px;
+      font-size: 54px;
       font-weight: 760;
       letter-spacing: 0;
       line-height: 1.04;
     }
-    .name-alt { display: block; margin-top: 8px; color: var(--muted); font-size: 18px; font-weight: 450; letter-spacing: 0; }
-    .hero-lede { max-width: 590px; margin: 0; color: #405058; font-size: 20px; line-height: 1.55; }
+    .name-alt { display: block; margin-top: 6px; color: var(--muted); font-size: 16px; font-weight: 450; letter-spacing: 0; }
+    .hero-lede { max-width: 520px; margin: 0; color: #405058; font-size: 16px; line-height: 1.5; }
 
-    .hero-meta { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 28px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
     .meta-chip {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      min-height: 34px;
-      padding: 0 12px;
+      min-height: 30px;
+      padding: 0 10px;
       border: 1px solid var(--line-dark);
       background: rgba(255, 255, 255, 0.42);
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 650;
     }
     .meta-chip svg { width: 14px; height: 14px; color: var(--blue); }
 
-    .hero-links { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 34px; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 25px; }
     .hero-links a,
     .card-link { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 13px; font-weight: 750; text-decoration: none; }
     .hero-links a { border-bottom: 1px solid var(--ink); padding-bottom: 4px; }
@@ -177,9 +187,10 @@
       background: var(--night);
       color: #eef3f1;
       box-shadow: var(--shadow);
+      animation: rise-in 650ms 120ms ease both;
     }
     .hero-aside::before { position: absolute; top: -1px; left: 22px; width: 48px; height: 3px; content: ""; background: var(--copper); }
-    .hero-avatar-wrap { position: relative; width: min(100%, 280px); margin: 0 auto 24px; aspect-ratio: 1; }
+    .hero-avatar-wrap { position: relative; width: min(100%, 220px); margin: 0 auto 18px; aspect-ratio: 1; }
     .hero-avatar-wrap::after { position: absolute; inset: 12px; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 50%; content: ""; pointer-events: none; }
     .hero-avatar { display: block; width: 100%; height: 100%; border: 7px solid rgba(255, 255, 255, 0.9); border-radius: 50%; object-fit: cover; object-position: 54% 42%; filter: saturate(0.82) contrast(1.03); }
     .aside-label { margin-bottom: 7px; color: #97a8ac; font-size: 10px; font-weight: 750; letter-spacing: 0.16em; text-transform: uppercase; }
@@ -187,40 +198,70 @@
     .aside-rule { height: 1px; margin: 20px 0; border: 0; background: rgba(255, 255, 255, 0.16); }
     .aside-foot { display: flex; justify-content: space-between; gap: 16px; color: #9eafb1; font-size: 11px; }
 
-    .section { border-top: 1px solid var(--line); padding: 74px 0 82px; }
-    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 34px; }
-    h2 { margin: 12px 0 0; font-size: 34px; font-weight: 720; letter-spacing: 0; line-height: 1.1; }
-    .section-note { max-width: 330px; margin: 0; color: var(--muted); font-size: 13px; text-align: right; }
+    .section { border-top: 1px solid var(--line); padding: 52px 0 58px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+    h2 { margin: 10px 0 0; font-size: 28px; font-weight: 720; letter-spacing: 0; line-height: 1.15; }
+    .section-note { max-width: 280px; margin: 0; color: var(--muted); font-size: 12px; text-align: right; }
 
     .research-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
-    .research-item { min-height: 186px; padding: 26px 24px; background: var(--paper); }
-    .research-index { display: block; margin-bottom: 24px; color: var(--copper); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; font-weight: 750; }
-    .research-item h3 { margin-bottom: 8px; font-size: 17px; line-height: 1.3; }
-    .research-item p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .research-item { min-height: 148px; padding: 20px 18px; background: var(--paper); animation: rise-in 520ms ease both; }
+    .research-item:nth-child(2) { animation-delay: 70ms; }
+    .research-item:nth-child(3) { animation-delay: 140ms; }
+    .research-index { display: block; margin-bottom: 16px; color: var(--copper); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; font-weight: 750; }
+    .research-item h3 { margin-bottom: 6px; font-size: 15px; line-height: 1.3; }
+    .research-item p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
 
     .work-list { border-top: 1px solid var(--line-dark); }
-    .work-item { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 24px; align-items: start; padding: 25px 0; border-bottom: 1px solid var(--line); }
+    .work-item { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 16px; align-items: start; padding: 18px 0; border-bottom: 1px solid var(--line); animation: rise-in 520ms ease both; }
+    .work-item:nth-child(2) { animation-delay: 70ms; }
+    .work-item:nth-child(3) { animation-delay: 140ms; }
     .work-number { color: var(--copper); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; font-weight: 750; }
-    .work-item h3 { margin-bottom: 8px; font-size: 17px; font-weight: 700; line-height: 1.35; }
-    .work-authors,
-    .work-venue { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
-    .work-venue { color: var(--blue); font-weight: 700; white-space: nowrap; }
+    .work-item h3 { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.35; }
+    .work-authors { display: none; }
+    .work-venue { margin: 0; color: var(--blue); font-size: 12px; font-weight: 700; white-space: nowrap; }
 
     .collab-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 18px; }
-    .collab-card { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 16px; min-height: 150px; padding: 18px; border: 1px solid var(--line); background: var(--paper); transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease; }
+    .collab-card { display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 13px; min-height: 122px; padding: 14px; border: 1px solid var(--line); background: var(--paper); animation: rise-in 520ms ease both; transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease; }
+    .collab-card:nth-child(2) { animation-delay: 60ms; }
+    .collab-card:nth-child(3) { animation-delay: 120ms; }
+    .collab-card:nth-child(4) { animation-delay: 180ms; }
+    .collab-card:nth-child(5) { animation-delay: 240ms; }
+    .collab-card:nth-child(6) { animation-delay: 300ms; }
     .collab-card:hover { border-color: var(--blue); box-shadow: 0 12px 28px rgba(24, 36, 42, 0.08); transform: translateY(-3px); }
-    .collab-avatar { width: 76px; height: 76px; border: 3px solid var(--blue-soft); border-radius: 50%; object-fit: cover; object-position: center; background: #e2e7e4; }
-    .collab-card h3 { margin: 2px 0 5px; font-size: 16px; line-height: 1.25; }
-    .collab-role { min-height: 61px; margin: 0 0 11px; color: var(--muted); font-size: 12px; line-height: 1.45; }
-    .card-link { color: var(--blue); font-size: 12px; }
+    .collab-avatar { width: 62px; height: 62px; border: 3px solid var(--blue-soft); border-radius: 50%; object-fit: cover; object-position: center; background: #e2e7e4; }
+    .collab-card h3 { margin: 1px 0 4px; font-size: 14px; line-height: 1.25; }
+    .collab-role { min-height: 38px; margin: 0 0 8px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .card-link { color: var(--blue); font-size: 11px; }
+
+    .guestbook-layout { display: grid; grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr); gap: 28px; align-items: start; }
+    .guestbook-form { padding: 18px; border: 1px solid var(--line); background: var(--paper); animation: rise-in 520ms ease both; }
+    .guestbook-form label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: 0.04em; }
+    .guestbook-form input,
+    .guestbook-form textarea { display: block; width: 100%; border: 1px solid var(--line-dark); border-radius: 0; background: #fbfcfb; color: var(--ink); font: inherit; font-size: 13px; }
+    .guestbook-form input { height: 36px; padding: 0 10px; }
+    .guestbook-form textarea { min-height: 96px; padding: 9px 10px; resize: vertical; }
+    .guestbook-form input:focus,
+    .guestbook-form textarea:focus { border-color: var(--blue); outline: 2px solid rgba(23, 105, 194, 0.16); outline-offset: 0; }
+    .guestbook-field { margin-bottom: 13px; }
+    .guestbook-submit { display: inline-flex; align-items: center; gap: 8px; min-height: 34px; padding: 0 13px; border: 1px solid var(--ink); border-radius: 0; background: var(--ink); color: #fff; cursor: pointer; font: inherit; font-size: 12px; font-weight: 750; transition: background 180ms ease, transform 180ms ease; }
+    .guestbook-submit svg { width: 14px; height: 14px; }
+    .guestbook-submit:hover { background: var(--blue); transform: translateY(-2px); }
+    .guestbook-status { min-height: 18px; margin: 10px 0 0; color: var(--blue); font-size: 11px; }
+    .guestbook-list { display: grid; gap: 10px; max-height: 260px; overflow: auto; }
+    .guestbook-empty { margin: 0; padding: 20px; border: 1px dashed var(--line-dark); color: var(--muted); font-size: 12px; text-align: center; }
+    .guest-note { padding: 14px 16px; border-left: 2px solid var(--blue); background: var(--paper); animation: rise-in 420ms ease both; }
+    .guest-note-header { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 5px; }
+    .guest-note-name { margin: 0; font-size: 13px; font-weight: 750; }
+    .guest-note-date { color: var(--muted); font-size: 10px; }
+    .guest-note-text { margin: 0; color: #405058; font-size: 12px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
 
     .affiliation-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border: 1px solid var(--line); background: var(--line); }
-    .affiliation { display: flex; align-items: center; gap: 14px; min-height: 102px; padding: 22px 24px; background: var(--paper); }
+    .affiliation { display: flex; align-items: center; gap: 14px; min-height: 88px; padding: 18px 20px; background: var(--paper); animation: rise-in 520ms ease both; }
     .affiliation svg { flex: 0 0 auto; width: 22px; height: 22px; color: var(--blue); }
     .affiliation-label { margin: 0 0 2px; color: var(--muted); font-size: 11px; }
     .affiliation-name { margin: 0; font-size: 15px; font-weight: 700; }
 
-    footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 22px 0 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
     footer a { color: var(--ink); font-weight: 700; text-decoration: none; }
     footer a:hover { color: var(--blue); }
 
@@ -233,7 +274,8 @@
     @media (max-width: 680px) {
       .page-shell { width: min(100% - 32px, 520px); }
       .site-header { min-height: 72px; }
-      .site-nav { gap: 16px; font-size: 12px; }
+      .brand > span:last-child { display: none; }
+      .site-nav { gap: 11px; font-size: 11px; }
       .site-nav a:nth-child(1) { display: none; }
       .hero { display: flex; flex-direction: column; align-items: stretch; gap: 42px; min-height: 0; padding: 60px 0 64px; }
       h1 { font-size: 44px; }
@@ -245,7 +287,8 @@
       h2 { font-size: 30px; }
       .research-grid,
       .collab-grid,
-      .affiliation-row { grid-template-columns: 1fr; }
+      .affiliation-row,
+      .guestbook-layout { grid-template-columns: 1fr; }
       .work-item { grid-template-columns: 38px minmax(0, 1fr); gap: 14px; }
       .work-venue { grid-column: 2; white-space: normal; }
       footer { display: block; }
@@ -269,6 +312,7 @@
         <a href="#research">Research</a>
         <a href="#work">Selected work</a>
         <a href="#collaborators">Collaborators</a>
+        <a href="#guestbook">Guestbook</a>
       </nav>
     </header>
 
@@ -277,11 +321,11 @@
         <div class="hero-copy">
           <span class="eyebrow">Independent researcher | Shanghai</span>
           <h1 id="page-title">Zilin Li<span class="name-alt">Tzu-Lam Lee</span></h1>
-          <p class="hero-lede">Undergraduate researcher at Donghua University and research intern at the BCMI Laboratory, Shanghai Jiao Tong University. I study learning systems that coordinate, communicate, and reason across data and agents.</p>
+          <p class="hero-lede">I build learning systems that coordinate, communicate, and reason across data and agents.</p>
           <div class="hero-meta" aria-label="Research focus">
-            <span class="meta-chip"><i data-lucide="brain-circuit" aria-hidden="true"></i>Machine learning</span>
-            <span class="meta-chip"><i data-lucide="network" aria-hidden="true"></i>Multi-agent systems</span>
-            <span class="meta-chip"><i data-lucide="layers-3" aria-hidden="true"></i>Multimodal learning</span>
+            <span class="meta-chip"><i data-lucide="brain-circuit" aria-hidden="true"></i>ML systems</span>
+            <span class="meta-chip"><i data-lucide="network" aria-hidden="true"></i>Agent coordination</span>
+            <span class="meta-chip"><i data-lucide="layers-3" aria-hidden="true"></i>Multimodal</span>
           </div>
           <div class="hero-links">
             <a href="https://github.com/Lixeeone" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>GitHub</a>
@@ -300,37 +344,50 @@
       </section>
 
       <section class="section" id="research" aria-labelledby="research-title">
-        <div class="section-heading"><div><span class="section-kicker">01 | Focus</span><h2 id="research-title">Research interests</h2></div><p class="section-note">Building compact, dependable learning systems for complex environments.</p></div>
+        <div class="section-heading"><div><span class="section-kicker">01 | Focus</span><h2 id="research-title">Research interests</h2></div><p class="section-note">What I keep returning to.</p></div>
         <div class="research-grid">
-          <article class="research-item"><span class="research-index">01 / 03</span><h3>Scientific machine learning</h3><p>Graph-based models and representations that respect structure, dynamics, and the evidence in data.</p></article>
-          <article class="research-item"><span class="research-index">02 / 03</span><h3>Decentralized coordination</h3><p>Learning protocols for multi-agent systems that remain efficient and useful under limited communication.</p></article>
-          <article class="research-item"><span class="research-index">03 / 03</span><h3>Multimodal reasoning</h3><p>Efficient deep learning methods that connect language, vision, and the boundaries of model knowledge.</p></article>
+          <article class="research-item"><span class="research-index">01 / 03</span><h3>Scientific ML</h3><p>Structure-aware models for data and dynamics.</p></article>
+          <article class="research-item"><span class="research-index">02 / 03</span><h3>Decentralized agents</h3><p>Efficient learning under limited communication.</p></article>
+          <article class="research-item"><span class="research-index">03 / 03</span><h3>Multimodal reasoning</h3><p>Connecting language, vision, and model knowledge.</p></article>
         </div>
       </section>
 
       <section class="section" id="work" aria-labelledby="work-title">
-        <div class="section-heading"><div><span class="section-kicker">02 | Output</span><h2 id="work-title">Selected work</h2></div><p class="section-note">A short list of current collaborations and working papers.</p></div>
+        <div class="section-heading"><div><span class="section-kicker">02 | Output</span><h2 id="work-title">Selected work</h2></div><p class="section-note">Recent papers and collaborations.</p></div>
         <div class="work-list">
-          <article class="work-item"><span class="work-number">01</span><div><h3>Decentralized Coupled Representation Learning</h3><p class="work-authors">Zilin Li, Weiwei Xu, Xuchun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang</p></div><p class="work-venue">NeurIPS 2026 | poster</p></article>
-          <article class="work-item"><span class="work-number">02</span><div><h3>How Do Stochastic Graph Flows Estimate Effective Geometry?</h3><p class="work-authors">Zilin Li, Yiran Zhu, Wei Yang, Bingrui Quan, Weiwei Xu, Xuchun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang</p></div><p class="work-venue">ICLR 2027 | submission</p></article>
-          <article class="work-item"><span class="work-number">03</span><div><h3>PIERCE: Triadic Bayesian Reasoning for Establishing Epistemic Boundaries in LLMs</h3><p class="work-authors">Zilin Li, Weiwei Xu, Xuchun Tong, Xuanbo Lu, Xuanqi Zhao, Ge Zhang</p></div><p class="work-venue">ICML 2026 | EIML workshop</p></article>
+          <article class="work-item"><span class="work-number">01</span><div><h3>Decentralized Coupled Representation Learning</h3></div><p class="work-venue">NeurIPS 2026 | poster</p></article>
+          <article class="work-item"><span class="work-number">02</span><div><h3>How Do Stochastic Graph Flows Estimate Effective Geometry?</h3></div><p class="work-venue">ICLR 2027 | submission</p></article>
+          <article class="work-item"><span class="work-number">03</span><div><h3>PIERCE: Triadic Bayesian Reasoning for Epistemic Boundaries in LLMs</h3></div><p class="work-venue">ICML 2026 | EIML workshop</p></article>
         </div>
       </section>
 
       <section class="section" id="collaborators" aria-labelledby="collaborators-title">
-        <div class="section-heading"><div><span class="section-kicker">03 | People</span><h2 id="collaborators-title">Collaborators</h2></div><p class="section-note">A small, generous group spanning information science and computer science.</p></div>
+        <div class="section-heading"><div><span class="section-kicker">03 | People</span><h2 id="collaborators-title">Collaborators</h2></div><p class="section-note">Research friends and mentors.</p></div>
         <div class="collab-grid">
-          <article class="collab-card"><img class="collab-avatar" src="quanbingrui.jpg" alt="Bingrui Quan" loading="lazy"><div><h3>Bingrui Quan</h3><p class="collab-role">Undergrad student, School of Information and Intelligent Science, Donghua University</p><a class="card-link" href="https://github.com/qbr-wspx" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>GitHub</a></div></article>
-          <article class="collab-card"><img class="collab-avatar" src="zhangge.jpg" alt="Ge Zhang" loading="lazy"><div><h3>Ge Zhang</h3><p class="collab-role">Lecturer, School of Information and Intelligent Science, Donghua University</p><a class="card-link" href="https://gezhangmq.github.io/" target="_blank" rel="noreferrer"><i data-lucide="external-link" aria-hidden="true"></i>Personal site</a></div></article>
-          <article class="collab-card"><img class="collab-avatar" src="yangwei.jpg" alt="Wei Yang" loading="lazy"><div><h3>Wei Yang</h3><p class="collab-role">Undergrad student, Department of computer, North China Electric Power University</p><a class="card-link" href="https://github.com/weiyang209" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>GitHub</a></div></article>
-          <article class="collab-card"><img class="collab-avatar" src="xuweiwei.jpg" alt="Weiwei Xu" loading="lazy"><div><h3>Weiwei Xu</h3><p class="collab-role">Undergrad student, Donghua University, Shanghai</p><a class="card-link" href="https://github.com/avaritia-1" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>GitHub</a></div></article>
-          <article class="collab-card"><img class="collab-avatar" src="tongxuchun.jpg" alt="XuChun Tong" loading="lazy"><div><h3>XuChun Tong</h3><p class="collab-role">Undergrad student, Donghua University, Shanghai</p><a class="card-link" href="https://github.com/Mrkonjak" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>GitHub</a></div></article>
-          <article class="collab-card"><img class="collab-avatar" src="zhuyiran.jpg" alt="Yiran Zhu" loading="lazy"><div><h3>Yiran Zhu</h3><p class="collab-role">Undergrad student, Department of computer, North China Electric Power University (Baoding)</p><a class="card-link" href="https://yiranzhu06.github.io/" target="_blank" rel="noreferrer"><i data-lucide="external-link" aria-hidden="true"></i>Personal site</a></div></article>
+          <article class="collab-card"><img class="collab-avatar" src="quanbingrui.jpg" alt="Bingrui Quan" loading="lazy"><div><h3>Bingrui Quan</h3><p class="collab-role">Undergrad | Donghua University<br>Information &amp; Intelligent Science</p><a class="card-link" href="https://github.com/qbr-wspx" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>GitHub</a></div></article>
+          <article class="collab-card"><img class="collab-avatar" src="zhangge.jpg" alt="Ge Zhang" loading="lazy"><div><h3>Ge Zhang</h3><p class="collab-role">Lecturer | Donghua University<br>Information &amp; Intelligent Science</p><a class="card-link" href="https://gezhangmq.github.io/" target="_blank" rel="noreferrer"><i data-lucide="external-link" aria-hidden="true"></i>Personal site</a></div></article>
+          <article class="collab-card"><img class="collab-avatar" src="yangwei.jpg" alt="Wei Yang" loading="lazy"><div><h3>Wei Yang</h3><p class="collab-role">Undergrad | North China Electric Power University<br>Department of Computer</p><a class="card-link" href="https://github.com/weiyang209" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>GitHub</a></div></article>
+          <article class="collab-card"><img class="collab-avatar" src="xuweiwei.jpg" alt="Weiwei Xu" loading="lazy"><div><h3>Weiwei Xu</h3><p class="collab-role">Undergrad | Donghua University<br>Shanghai</p><a class="card-link" href="https://github.com/avaritia-1" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>GitHub</a></div></article>
+          <article class="collab-card"><img class="collab-avatar" src="tongxuchun.jpg" alt="XuChun Tong" loading="lazy"><div><h3>XuChun Tong</h3><p class="collab-role">Undergrad | Donghua University<br>Shanghai</p><a class="card-link" href="https://github.com/Mrkonjak" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>GitHub</a></div></article>
+          <article class="collab-card"><img class="collab-avatar" src="zhuyiran.jpg" alt="Yiran Zhu" loading="lazy"><div><h3>Yiran Zhu</h3><p class="collab-role">Undergrad | North China Electric Power University<br>Baoding | Department of Computer</p><a class="card-link" href="https://yiranzhu06.github.io/" target="_blank" rel="noreferrer"><i data-lucide="external-link" aria-hidden="true"></i>Personal site</a></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="guestbook" aria-labelledby="guestbook-title">
+        <div class="section-heading"><div><span class="section-kicker">04 | Notes</span><h2 id="guestbook-title">Guestbook</h2></div><p class="section-note">Leave a short hello.</p></div>
+        <div class="guestbook-layout">
+          <form class="guestbook-form" id="guestbook-form">
+            <div class="guestbook-field"><label for="guest-name">Name</label><input id="guest-name" name="name" type="text" maxlength="40" autocomplete="name" required></div>
+            <div class="guestbook-field"><label for="guest-message">Message</label><textarea id="guest-message" name="message" maxlength="240" required></textarea></div>
+            <button class="guestbook-submit" type="submit"><i data-lucide="send" aria-hidden="true"></i>Post note</button>
+            <p class="guestbook-status" id="guestbook-status" aria-live="polite"></p>
+          </form>
+          <div class="guestbook-list" id="guestbook-list" aria-live="polite"></div>
         </div>
       </section>
 
       <section class="section" aria-labelledby="affiliations-title">
-        <div class="section-heading"><div><span class="section-kicker">04 | Context</span><h2 id="affiliations-title">Affiliations</h2></div></div>
+        <div class="section-heading"><div><span class="section-kicker">05 | Context</span><h2 id="affiliations-title">Affiliations</h2></div></div>
         <div class="affiliation-row">
           <div class="affiliation"><i data-lucide="building-2" aria-hidden="true"></i><div><p class="affiliation-label">Undergraduate researcher</p><p class="affiliation-name">Donghua University</p></div></div>
           <div class="affiliation"><i data-lucide="microscope" aria-hidden="true"></i><div><p class="affiliation-label">Research intern</p><p class="affiliation-name">BCMI Laboratory | Shanghai Jiao Tong University</p></div></div>
@@ -342,6 +399,79 @@
   </div>
 
   <script src="https://unpkg.com/lucide@0.468.0"></script>
-  <script>if (window.lucide) window.lucide.createIcons();</script>
+  <script>
+    if (window.lucide) window.lucide.createIcons();
+
+    const guestbookKey = "zilin-guestbook";
+    const guestbookForm = document.querySelector("#guestbook-form");
+    const guestbookList = document.querySelector("#guestbook-list");
+    const guestbookStatus = document.querySelector("#guestbook-status");
+
+    function readNotes() {
+      try {
+        const notes = JSON.parse(localStorage.getItem(guestbookKey) || "[]");
+        return Array.isArray(notes) ? notes.filter(note => note && note.name && note.message).slice(0, 30) : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function renderNotes() {
+      const notes = readNotes();
+      guestbookList.replaceChildren();
+
+      if (!notes.length) {
+        const empty = document.createElement("p");
+        empty.className = "guestbook-empty";
+        empty.textContent = "No notes yet.";
+        guestbookList.append(empty);
+        return;
+      }
+
+      notes.forEach(note => {
+        const item = document.createElement("article");
+        item.className = "guest-note";
+
+        const header = document.createElement("div");
+        header.className = "guest-note-header";
+        const name = document.createElement("p");
+        name.className = "guest-note-name";
+        name.textContent = note.name;
+        const date = document.createElement("time");
+        date.className = "guest-note-date";
+        const parsedDate = new Date(note.createdAt);
+        date.textContent = Number.isNaN(parsedDate.getTime()) ? "" : new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric" }).format(parsedDate);
+        header.append(name, date);
+
+        const message = document.createElement("p");
+        message.className = "guest-note-text";
+        message.textContent = note.message;
+        item.append(header, message);
+        guestbookList.append(item);
+      });
+    }
+
+    guestbookForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const formData = new FormData(guestbookForm);
+      const name = String(formData.get("name") || "").trim();
+      const message = String(formData.get("message") || "").trim();
+
+      if (!name || !message) {
+        guestbookStatus.textContent = "Add a name and a message.";
+        return;
+      }
+
+      const notes = readNotes();
+      notes.unshift({ name, message, createdAt: new Date().toISOString() });
+      try { localStorage.setItem(guestbookKey, JSON.stringify(notes.slice(0, 30))); } catch (error) { /* local-only fallback */ }
+      guestbookForm.reset();
+      guestbookStatus.textContent = "Note posted.";
+      renderNotes();
+      window.setTimeout(() => { guestbookStatus.textContent = ""; }, 2400);
+    });
+
+    renderNotes();
+  </script>
 </body>
 </html>
