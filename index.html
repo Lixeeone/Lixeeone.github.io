@@ -76,7 +76,18 @@
     p {
       margin: 0 0 18px;
     }
+.publication-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.publication-title img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex: 0 0 32px;
+}
     /* About */
 
     .about {
@@ -526,27 +537,7 @@
        SIMPLE PAGE VIEW COUNTER
        ========================= -->
 
-<div class="page-view-counter">
-  <span class="page-view-icon">👁</span>
-  <span id="page-views">0</span>
-</div>
-
-<script>
-  const counterKey = "tzulamlee-page-views";
-
-  let views = localStorage.getItem(counterKey);
-
-  if (!views) {
-    views = 1;
-  } else {
-    views = parseInt(views, 10) + 1;
-  }
-
-  localStorage.setItem(counterKey, views);
-
-  document.getElementById("page-views").textContent =
-    views.toLocaleString();
-</script>
+<script> const counterKey = "tzulamlee-page-views"; let views = localStorage.getItem(counterKey); if (!views) { views = 1; } else { views = parseInt(views, 10) + 1; } localStorage.setItem(counterKey, views); document.getElementById("page-views").textContent = views.toLocaleString(); </script>
 
 </body>
 </html>
