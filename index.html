@@ -8,405 +8,196 @@
   <title>Tzu-Lam Lee</title>
 
   <style>
-    :root {
-      --black: #111;
-      --gray: #666;
-      --light: #e8e8e8;
-      --paper: #fafafa;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 70px 42px 100px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 15px;
-      line-height: 1.75;
-      color: var(--black);
-      background: var(--paper);
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 24px;
+      font: 15px/1.75 Arial, Helvetica, sans-serif;
+      color: #222;
     }
 
     a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid #aaa;
+      color: #222;
     }
 
-    a:hover {
-      border-bottom: 1px solid #111;
+    /* Header */
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 55px;
     }
 
-    /* =========================
-       HERO
-       ========================= */
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.7fr 1fr;
-      gap: 70px;
-      align-items: end;
-      padding-bottom: 70px;
-      border-bottom: 1px solid var(--black);
+    .profile img {
+      max-width: 160px;
+      max-height: 160px;
+      width: auto;
+      height: auto;
+      display: block;
+      filter: none;
     }
 
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 24px;
+    .profile-info {
+      flex: 1;
     }
 
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(72px, 11vw, 154px);
-      line-height: 0.82;
+    .profile-info h1 {
+      margin: 0 0 10px;
+      font-size: 42px;
+      line-height: 1.1;
       font-weight: 500;
-      letter-spacing: -0.065em;
+      letter-spacing: -0.03em;
     }
 
     .chinese-name {
-      margin-top: 28px;
+      margin-bottom: 16px;
       font-family: "Songti SC", "Noto Serif CJK SC",
                    "Noto Serif CJK TC", serif;
-      font-size: 28px;
-      letter-spacing: 0.12em;
+      font-size: 23px;
     }
 
-    .romanization {
-      margin-top: 7px;
-      font-size: 12px;
-      color: var(--gray);
-      letter-spacing: 0.16em;
-    }
-
-    .portrait {
-      justify-self: end;
-      text-align: right;
-    }
-
-    .portrait img {
-      width: 210px;
-      height: 210px;
-      object-fit: cover;
-      display: block;
-      margin-left: auto;
-      filter: grayscale(100%);
-    }
-
-    .portrait-caption {
-      margin-top: 13px;
-      font-size: 11px;
-      color: var(--gray);
-      letter-spacing: 0.08em;
-    }
-
-    /* =========================
-       INTRO
-       ========================= */
-
-    .intro {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 70px;
-      padding: 60px 0;
-      border-bottom: 1px solid var(--light);
-    }
-
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 0.17em;
-      text-transform: uppercase;
-      color: var(--gray);
-    }
-
-    .intro-text {
-      max-width: 720px;
-      font-family: "Songti SC", "Noto Serif CJK SC",
-                   "Noto Serif CJK TC", serif;
-      font-size: 20px;
-      line-height: 2;
-    }
-
-    .intro-text p {
-      margin: 0 0 28px;
-    }
-
-    .intro-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    .english-note {
-      margin-top: 36px;
-      padding-top: 20px;
-      border-top: 1px solid var(--light);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 13px;
-      line-height: 1.7;
-      color: var(--gray);
-    }
-
-    /* =========================
-       INFORMATION
-       ========================= */
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-      padding: 60px 0;
-      border-bottom: 1px solid var(--light);
-    }
-
-    .info-block h2 {
-      margin: 0 0 24px;
-      font-size: 12px;
-      font-weight: normal;
-      text-transform: uppercase;
-      letter-spacing: 0.17em;
-      color: var(--gray);
-    }
-
-    .info-block p {
-      margin: 0 0 16px;
-    }
-
-    .large-location {
-      font-size: 30px;
-      line-height: 1.15;
-      letter-spacing: -0.025em;
-    }
-
-    .contact {
-      color: var(--gray);
-    }
-
-    /* =========================
-       RESEARCH
-       ========================= */
-
-    .research {
-      padding: 65px 0;
-      border-bottom: 1px solid var(--light);
-    }
-
-    .research-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 38px;
-    }
-
-    .research-header h2 {
+    .profile-info p {
       margin: 0;
-      font-size: 42px;
-      font-weight: 400;
-      letter-spacing: -0.04em;
-    }
-
-    .research-item {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 50px;
-      padding: 25px 0;
-      border-top: 1px solid var(--light);
-    }
-
-    .research-item:first-of-type {
-      border-top: 1px solid var(--black);
-    }
-
-    .research-title {
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .research-description {
-      max-width: 650px;
       color: #444;
     }
 
-    /* =========================
-       EDUCATION / PUBLICATIONS
-       ========================= */
+    /* Sections */
+
+    section {
+      margin-top: 48px;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0 0 18px;
+    }
+
+    /* About */
+
+    .about {
+      max-width: 760px;
+      font-family: "Songti SC", "Noto Serif CJK SC",
+                   "Noto Serif CJK TC", serif;
+      font-size: 18px;
+      line-height: 2;
+    }
+
+    .about p {
+      margin-bottom: 24px;
+    }
+
+    .about .english {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+      color: #666;
+      margin-top: 30px;
+    }
+
+    /* Research */
+
+    .research-item {
+      margin-bottom: 20px;
+    }
+
+    .research-item strong {
+      font-weight: 600;
+    }
+
+    /* Education / Publications */
 
     .two-column {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 70px;
-      padding: 65px 0;
-      border-bottom: 1px solid var(--light);
-    }
-
-    .column h2 {
-      margin: 0 0 30px;
-      font-size: 12px;
-      font-weight: normal;
-      text-transform: uppercase;
-      letter-spacing: 0.17em;
-      color: var(--gray);
     }
 
     .entry {
-      margin-bottom: 28px;
-    }
-
-    .entry:last-child {
-      margin-bottom: 0;
+      margin-bottom: 24px;
     }
 
     .entry-year {
-      font-size: 12px;
-      color: var(--gray);
-      margin-bottom: 5px;
+      color: #777;
+      font-size: 13px;
+      margin-bottom: 3px;
     }
 
     .entry-title {
-      font-size: 16px;
-      line-height: 1.5;
+      font-size: 15px;
     }
 
     .entry-detail {
-      margin-top: 4px;
-      color: var(--gray);
+      color: #666;
       font-size: 13px;
     }
 
-    /* =========================
-       ADVISOR
-       ========================= */
+    /* Fellowship */
 
-    .advisor {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 70px;
-      padding: 65px 0;
-      border-bottom: 1px solid var(--light);
+    .fellowship ul {
+      padding-left: 20px;
+      margin: 0;
     }
 
-    .advisor-name {
-      font-size: 34px;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+    .fellowship li {
+      margin-bottom: 8px;
     }
 
-    /* =========================
-       FELLOWSHIP
-       ========================= */
-
-    .fellowship {
-      padding: 65px 0;
-      border-bottom: 1px solid var(--light);
-    }
-
-    .fellowship-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0 60px;
-      margin-top: 30px;
-    }
-
-    .fellow {
-      padding: 16px 0;
-      border-top: 1px solid var(--light);
-    }
-
-    .fellow-name {
-      font-size: 16px;
-    }
-
-    .fellow-role {
-      font-size: 12px;
-      color: var(--gray);
-    }
-
-    /* =========================
-       FOOTER
-       ========================= */
+    /* Footer */
 
     footer {
+      margin-top: 65px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      padding-top: 55px;
-      font-size: 11px;
-      color: var(--gray);
-      letter-spacing: 0.04em;
+      align-items: center;
+      color: #777;
+      font-size: 12px;
     }
 
-    .counter {
+    .views {
       text-align: right;
     }
 
-    .counter img {
-      margin-top: 8px;
-    }
+    /* Mobile */
 
-    /* =========================
-       MOBILE
-       ========================= */
-
-    @media (max-width: 800px) {
+    @media (max-width: 700px) {
 
       body {
-        padding: 40px 22px 70px;
+        margin: 35px auto;
       }
 
-      .hero,
-      .intro,
-      .info-grid,
-      .two-column,
-      .advisor {
+      .profile {
+        align-items: flex-start;
+        gap: 22px;
+      }
+
+      .profile img {
+        max-width: 120px;
+        max-height: 120px;
+      }
+
+      .profile-info h1 {
+        font-size: 32px;
+      }
+
+      .chinese-name {
+        font-size: 20px;
+      }
+
+      .two-column {
         grid-template-columns: 1fr;
         gap: 35px;
       }
 
-      .hero {
-        padding-bottom: 45px;
-      }
-
-      .hero h1 {
-        font-size: clamp(64px, 20vw, 110px);
-      }
-
-      .portrait {
-        justify-self: start;
-        text-align: left;
-      }
-
-      .portrait img {
-        margin-left: 0;
-      }
-
-      .intro-text {
-        font-size: 18px;
-      }
-
-      .research-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .research-header h2 {
-        font-size: 34px;
-      }
-
-      .fellowship-grid {
-        grid-template-columns: 1fr;
-      }
-
       footer {
-        flex-direction: column;
         align-items: flex-start;
-        gap: 25px;
-      }
-
-      .counter {
-        text-align: left;
       }
     }
   </style>
@@ -416,51 +207,42 @@
 <body>
 
   <!-- =========================
-       HERO
+       PROFILE
        ========================= -->
 
-  <header class="hero">
+  <div class="profile">
 
-    <div>
-      <div class="eyebrow">
-        Computer Science · Research · Hong Kong
-      </div>
+    <img src="self.png" alt="Tzu-Lam Lee">
 
-      <h1>
-        Tzu-Lam<br>
-        Lee
-      </h1>
+    <div class="profile-info">
+
+      <h1>Tzu-Lam Lee</h1>
 
       <div class="chinese-name">
         李子林
       </div>
 
-      <div class="romanization">
-        WÉISHÌ PINYIN · Tzu-Lam Lee
-      </div>
+      <p>
+        BE Student<br>
+        School of Information and Intelligent Science,
+        Donghua University, Shanghai<br>
+        tzulamlee[at]gmail[dot]com
+      </p>
+
     </div>
 
-    <div class="portrait">
-      <img src="self.png" alt="Tzu-Lam Lee">
-      <div class="portrait-caption">
-        BE Student · Donghua University
-      </div>
-    </div>
-
-  </header>
+  </div>
 
 
   <!-- =========================
-       PERSONAL STATEMENT
+       ABOUT
        ========================= -->
 
-  <section class="intro">
+  <section>
 
-    <div class="section-label">
-      About / 關於
-    </div>
+    <h2>About</h2>
 
-    <div class="intro-text">
+    <div class="about">
 
       <p>
         四年前，我放棄自己最熱忱的化學，來到 Shanghai，
@@ -470,11 +252,13 @@
       <p>
         四年後，我來到 Hung Hom——這個距離維多利亞港灣
         不足一英里的地方——加入理大 DSAI，同時獲得香港
-        特別行政區大學教育資助委員會資助，在
-        <a href="https://www.polyu.edu.hk/comp/people/academic-staff/irwin-king/">Prof. Irwin King</a>
-        學生 Zixing Song 的指導下，繼續開展
-        電腦輔助藥物設計（CADD）的工作，並完成後續
-        哲學碩士的攻讀。
+        特別行政區大學教育資助委員會（UGC）資助，在
+        <a href="https://www.cse.cuhk.edu.hk/people/faculty/irwin-king/">
+          Prof. Irwin King
+        </a>
+        學生 <a href="https://www.polyu.edu.hk/dsai/people/academic-staff/song-zixing/?sc_lang=en"
+   target="_blank" rel="noopener">Prof. Zixing Song 的指導下，繼續開展電腦輔助藥物設計
+        （CADD）的工作，並完成後續哲學碩士的攻讀。
       </p>
 
       <p>
@@ -487,58 +271,13 @@
         研究興趣涵蓋冗餘表徵纏結解離、因子降維和不確定性量化分析等。
       </p>
 
-      <div class="english-note">
-        Four years ago, I left the subject I was most passionate about —
-        chemistry — and came to Shanghai to pursue computer science.
-        Four years later, I arrived in Hung Hom and returned, in a sense,
-        to where everything began: molecular science and computational
-        methods. At PolyU DSAI, I will continue my work on
-        computer-aided drug design (CADD), representation learning,
-        and graph-based machine learning.
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       CURRENT POSITION
-       ========================= -->
-
-  <section class="info-grid">
-
-    <div class="info-block">
-
-      <h2>Current</h2>
-
-      <p class="large-location">
-        MPhil Student<br>
-        DSAI · PolyU
-      </p>
-
-      <p class="contact">
-        The Hong Kong Polytechnic University<br>
-        Hung Hom, Hong Kong
-      </p>
-
-    </div>
-
-
-    <div class="info-block">
-
-      <h2>Previous</h2>
-
-      <p>
-        <strong>BE Student</strong><br>
-        School of Information and Intelligent Science<br>
-        Donghua University, Shanghai
-      </p>
-
-      <p>
-        <strong>Visiting / Exchange</strong><br>
-        Shanghai Jiao Tong University<br>
-        2024–2025
+      <p class="english">
+        Four years ago, I left the subject I was most passionate about—
+        chemistry—and came to Shanghai to pursue computer science.
+        Four years later, I arrived in Hung Hom and, in a sense,
+        returned to where everything began. At PolyU DSAI, I will
+        continue my work on computer-aided drug design (CADD),
+        graph neural networks, and representation learning.
       </p>
 
     </div>
@@ -550,83 +289,38 @@
        RESEARCH
        ========================= -->
 
-  <section class="research">
+  <section>
 
-    <div class="research-header">
-      <h2>Research</h2>
-      <span class="section-label">研究方向</span>
-    </div>
-
+    <h2>Research Interests</h2>
 
     <div class="research-item">
-
-      <div class="research-title">
-        Scientific Machine Learning
-      </div>
-
-      <div class="research-description">
-        Graph neural networks and generative models for scientific
-        simulation, prediction, and design; with particular interests
-        in molecular representation and computer-aided drug design.
-      </div>
-
+      <strong>Scientific Machine Learning:</strong>
+      graph neural networks and generative models for scientific
+      simulation, prediction, and design.
     </div>
 
-
     <div class="research-item">
-
-      <div class="research-title">
-        Representation Learning
-      </div>
-
-      <div class="research-description">
-        Redundant representation disentanglement, factorized
-        dimensionality reduction, decentralized representation learning,
-        and structured latent representations.
-      </div>
-
+      <strong>Representation Learning:</strong>
+      redundant representation disentanglement, factorized
+      dimensionality reduction, and decentralized representation learning.
     </div>
 
-
     <div class="research-item">
-
-      <div class="research-title">
-        Uncertainty Quantification
-      </div>
-
-      <div class="research-description">
-        Uncertainty estimation, calibration, epistemic boundaries,
-        Bayesian reasoning, and decision-making under uncertainty.
-      </div>
-
+      <strong>Uncertainty Quantification:</strong>
+      uncertainty estimation, calibration, Bayesian reasoning,
+      and decision-making under uncertainty.
     </div>
 
-
     <div class="research-item">
-
-      <div class="research-title">
-        Multi-Agent Learning
-      </div>
-
-      <div class="research-description">
-        Cooperative decision-making, emergent coordination,
-        distributed learning, and strategic representation learning.
-      </div>
-
+      <strong>Multi-Agent Learning:</strong>
+      cooperative decision-making, emergent coordination,
+      and distributed learning.
     </div>
 
-
     <div class="research-item">
-
-      <div class="research-title">
-        Multimodal & Efficient Learning
-      </div>
-
-      <div class="research-description">
-        Multimodal representations, vision-language models,
-        and resource-efficient deep learning.
-      </div>
-
+      <strong>Multimodal and Efficient Learning:</strong>
+      multimodal representations, vision-language models,
+      and resource-efficient deep learning.
     </div>
 
   </section>
@@ -638,50 +332,36 @@
 
   <section class="two-column">
 
-
-    <div class="column">
+    <div>
 
       <h2>Education</h2>
 
       <div class="entry">
-
-        <div class="entry-year">
-          2023–2027 · Expected
-        </div>
-
+        <div class="entry-year">2023–2027 (Expected)</div>
         <div class="entry-title">
           <strong>Donghua University</strong>
         </div>
-
         <div class="entry-detail">
           Bachelor of Engineering · Shanghai
         </div>
-
       </div>
 
-
       <div class="entry">
-
-        <div class="entry-year">
-          2024–2025
-        </div>
-
+        <div class="entry-year">2024–2025</div>
         <div class="entry-title">
           <strong>Shanghai Jiao Tong University</strong>
         </div>
-
         <div class="entry-detail">
           Shanghai
         </div>
-
       </div>
 
     </div>
 
 
-    <div class="column">
+    <div>
 
-      <h2>Selected Publications</h2>
+      <h2>Publication</h2>
 
       <div class="entry">
 
@@ -690,7 +370,9 @@
         </div>
 
         <div class="entry-title">
-          <strong>Decentralized Coupled Representation Learning</strong>
+          <strong>
+            Decentralized Coupled Representation Learning
+          </strong>
         </div>
 
         <div class="entry-detail">
@@ -728,25 +410,16 @@
        ADVISOR
        ========================= -->
 
-  <section class="advisor">
+  <section>
 
-    <div class="section-label">
-      Academic Advisor
-    </div>
+    <h2>Advisor</h2>
 
-    <div>
-
-      <div class="advisor-name">
-        <a href="https://gezhangmq.github.io/">
-          Ge Zhang
-        </a>
-      </div>
-
-      <p>
-        Lecturer · Donghua University
-      </p>
-
-    </div>
+    <p>
+      <a href="https://gezhangmq.github.io/">
+        Ge Zhang
+      </a>
+      — Lecturer, Donghua University
+    </p>
 
   </section>
 
@@ -757,119 +430,60 @@
 
   <section class="fellowship">
 
-    <div class="section-label">
-      Fellowship / Research Community
-    </div>
+    <h2>Fellowship</h2>
 
+    <ul>
 
-    <div class="fellowship-grid">
+      <li>
+        <a href="https://github.com/qbr-wspx">
+          Bingrui Quan
+        </a>
+        — BE Student, Donghua University
+      </li>
 
+      <li>
+        <a href="https://yiranzhu06.github.io/">
+          Yiran Zhu
+        </a>
+        — MS Student, University of Science and Technology of China
+      </li>
 
-      <div class="fellow">
+      <li>
+        <a href="https://github.com/avaritia-1">
+          Weiwei Xu
+        </a>
+        — MS Student, Shanghai University
+      </li>
 
-        <div class="fellow-name">
-          <a href="https://github.com/qbr-wspx">
-            Bingrui Quan
-          </a>
-        </div>
+      <li>
+        <a href="https://github.com/weiyang209">
+          Wei Yang
+        </a>
+        — MS Student, University of Science and Technology of China
+      </li>
 
-        <div class="fellow-role">
-          BE Student · Donghua University
-        </div>
+      <li>
+        <a href="https://github.com/Mrkonjak">
+          Xuchun Tong
+        </a>
+        — PhD Student, Donghua University
+      </li>
 
-      </div>
+      <li>
+        <a href="https://github.com/pzSpore">
+          Xuanbo Lu
+        </a>
+        — BE Student, Donghua University
+      </li>
 
+      <li>
+        <a href="https://orcid.org/0009-0001-6394-8152">
+          Xuanqi Zhao
+        </a>
+        — BE Student, Donghua University
+      </li>
 
-      <div class="fellow">
-
-        <div class="fellow-name">
-          <a href="https://yiranzhu06.github.io/">
-            Yiran Zhu
-          </a>
-        </div>
-
-        <div class="fellow-role">
-          MS Student · University of Science and Technology of China
-        </div>
-
-      </div>
-
-
-      <div class="fellow">
-
-        <div class="fellow-name">
-          <a href="https://github.com/avaritia-1">
-            Weiwei Xu
-          </a>
-        </div>
-
-        <div class="fellow-role">
-          MS Student · Shanghai University
-        </div>
-
-      </div>
-
-
-      <div class="fellow">
-
-        <div class="fellow-name">
-          <a href="https://github.com/weiyang209">
-            Wei Yang
-          </a>
-        </div>
-
-        <div class="fellow-role">
-          MS Student · University of Science and Technology of China
-        </div>
-
-      </div>
-
-
-      <div class="fellow">
-
-        <div class="fellow-name">
-          <a href="https://github.com/Mrkonjak">
-            Xuchun Tong
-          </a>
-        </div>
-
-        <div class="fellow-role">
-          PhD Student · Donghua University
-        </div>
-
-      </div>
-
-
-      <div class="fellow">
-
-        <div class="fellow-name">
-          <a href="https://github.com/pzSpore">
-            Xuanbo Lu
-          </a>
-        </div>
-
-        <div class="fellow-role">
-          BE Student · Donghua University
-        </div>
-
-      </div>
-
-
-      <div class="fellow">
-
-        <div class="fellow-name">
-          <a href="https://orcid.org/0009-0001-6394-8152">
-            Xuanqi Zhao
-          </a>
-        </div>
-
-        <div class="fellow-role">
-          BE Student · Donghua University
-        </div>
-
-      </div>
-
-    </div>
+    </ul>
 
   </section>
 
@@ -881,25 +495,36 @@
   <footer>
 
     <div>
-      © 2026 Tzu-Lam Lee<br>
+      © 2026 Tzu-Lam Lee
     </div>
 
-
-    <div class="counter">
-
-      <div>
-        PAGE VIEWS
-      </div>
-
-      <!-- Public page-view counter -->
-      <img
-        src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ftzulamlee.github.io%2F&count_bg=%23111111&title_bg=%23111111&icon=&icon_color=%23E7E7E7&title=views&edge_flat=true"
-        alt="Page views"
-      >
-
+    <div class="views">
+      Page views: <span id="page-views">—</span>
     </div>
 
   </footer>
+
+
+  <!-- =========================
+       SIMPLE PAGE VIEW COUNTER
+       ========================= -->
+
+  <script>
+    const counterKey = "tzulamlee-page-views";
+
+    let views = localStorage.getItem(counterKey);
+
+    if (!views) {
+      views = 1;
+    } else {
+      views = parseInt(views, 10) + 1;
+    }
+
+    localStorage.setItem(counterKey, views);
+
+    document.getElementById("page-views").textContent =
+      views.toLocaleString();
+  </script>
 
 </body>
 </html>
